@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import { withRouter } from "react-router";
 import ReactPlayer from 'react-player'
 import Loader from './Loader';
+import { togglePlayback } from '../../actions/playbackActions';
 
 class Footer extends React.Component {
    constructor(props) {
@@ -12,7 +13,7 @@ class Footer extends React.Component {
 
    state = {
       currentPath: '/',
-      isPlaying: false,
+      isPlaying: this.props.isPlaying,
       selectedCue: {},
       url: 'http://www.dl-music.com/mp3/Drama%20Orchestral/Bitter%20Sweet/DLM%20-%20A%20Desperate%20Act.mp3'
    }
@@ -27,10 +28,20 @@ class Footer extends React.Component {
 
    playbackToggle = () => { // check for onkeydown event on spacebar to pause and playback tracks
       document.onkeydown = (evt) => {
-        let searchBars = document.getElementsByClassName('search-bar')
+        let searchBars = document.getElementsByClassName('search-bar');
+        console.log(32, searchBars);
         evt = evt || window.event; // if event is keycode === 32 ('Space') and both search bars aren't in focus, toggle isPlaying
-        if ((evt.keyCode === 32) && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name))) {
-          this.setState({isPlaying: !this.state.isPlaying})
+        if(searchBars.length === 2){
+          if ((evt.keyCode === 32) && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name))) {
+            this.props.togglePlayback(this.state.isPlaying);
+            this.setState({isPlaying: !this.state.isPlaying});
+          }
+        } else if (searchBars.length === 3){
+          if ((evt.keyCode === 32)
+          && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name) && (document.activeElement.name !== searchBars[2].name))) {
+            this.props.togglePlayback(this.state.isPlaying);
+            this.setState({isPlaying: !this.state.isPlaying});
+          }
         }
       }
     }
@@ -52,7 +63,8 @@ class Footer extends React.Component {
              : selectedLibrary === 'independent-artists'
              ? `http://www.dl-music.com/artist_music/ia_music/mp3/${genre}/${noInstrumentalsubGenre}/IA - ${selectedCue.cue_title}.mp3`
              : ''
-     this.setState({url: urlPath.replace(/\s/mg, '%20'), isPlaying: true, selectedCue: selectedCue})
+     this.setState({url: urlPath.replace(/\s/mg, '%20'), selectedCue: selectedCue, isPlaying: true})
+     this.props.togglePlayback(this.state.isPlaying);
    }
 
    componentDidUpdate(){
@@ -65,8 +77,8 @@ class Footer extends React.Component {
       ? null
       : this.setState({currentPath: location.pathname})
 
-    currentPath !== location.pathname && location.pathname === '/exports'
-      ? this.setState({isPlaying: false}) // this is integral to stopping the track from playing if switching back from /exports
+    currentPath !== location.pathname && location.pathname === '/exports' && this.state.isPlaying
+      ? this.props.togglePlayback({isPlaying: false}) // this is integral to stopping the track from playing if switching back from /exports
       : null
 
       this.playbackToggle() // always be checking to see if spacebar is being pressed
@@ -74,6 +86,8 @@ class Footer extends React.Component {
 
    render(){
      let { downloadProgress, location } = this.props;
+     // console.log(80, 'props.isPlaying', this.props.isPlaying);
+     // console.log(81, 'state.isPlaying', this.state.isPlaying);
 
      return(
        <div className='footer'>
@@ -85,7 +99,7 @@ class Footer extends React.Component {
                config={{ file: {attributes: {controlsList: 'nodownload'}}}}
                controls={true}
                height={80}
-               playing={this.state.isPlaying}
+               playing={this.props.isPlaying}
                style={{margin: '0 auto'}}
                url={this.state.url}
                width={500}
@@ -118,6 +132,7 @@ class Footer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     downloadProgress: state.downloadProgress,
+    isPlaying: state.isPlaying,
     modal: state.modal,
     selectedCategories: state.selectedCategories,
     selectedLibrary: state.selectedLibrary,
@@ -125,4 +140,8 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(Footer));
+const mapDispatchToProps = {
+  togglePlayback
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Footer));

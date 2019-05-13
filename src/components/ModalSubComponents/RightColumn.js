@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import TextBox from './TextBox';
@@ -12,12 +12,33 @@ import { selectStyle } from '../../actions/selectedStylesActions';
 import { selectTempos } from '../../actions/temposActions';
 import { updateTracks } from '../../actions/IndieArtistsActions/tracksActions';
 
+import { togglePlayback } from '../../actions/playbackActions';
+
+
 const RightColumn = (props) => {
   let { handleSearchFilter, modal, ratings, saveIAKeyword, searchFilter, selectedCategories, selectCategory, selectedInstruments,
         selectInstruments, selectedLibrary, selectedKeywords, selectKeywords, selectedRating, selectRating, selectedStyles, selectStyle,
         selectTempos, tempos, tracks, updateTracks, updateData
   } = props;
 
+  const [isPlaying, setPlayback] = useState(props.isPlaying);
+
+
+  const playbackToggle = () => { // check for onkeydown event on spacebar to pause and playback tracks
+     let searchBars = document.getElementsByClassName('search-bar');
+
+     if(searchBars & document.activeElement){
+       document.onkeydown = (evt) => {
+         console.log(32, evt)
+         evt = evt || window.event; // if event is keycode === 32 ('Space') and both search bars aren't in focus, toggle isPlaying
+         if ((evt.keyCode === 32) && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name))) {
+           togglePlayback(props.isPlaying)
+         }
+       }
+     }
+   }
+
+   playbackToggle();
   // **********************************************************************************************************
   // CATEGORIES FUNCTIONS
   // **********************************************************************************************************
@@ -709,7 +730,7 @@ const RightColumn = (props) => {
   }
   // -------------------------------------------------------------------------------------------------------------
   const addKeyword = () => {
-    console.log(712, modal.searchFilter)
+    // console.log(712, modal.searchFilter)
     // create a function that adds the new query to the SQL database.
     // set up an express post route.
   }
@@ -720,11 +741,13 @@ const RightColumn = (props) => {
       <div>
         <br/>
         <input
+          className='search-bar'
           id='search-filter'
-          type="text"
           name="search"
+          onChange={ e => handleSearchFilter(e.target.value, modal) & togglePlayback() & (document.getElementsByClassName('scrollableModalDiv')[0] && scrollToTop())}
+          onClick={() => {document.getElementById('search-filter') && document.getElementById('search-filter').focus()}}
+          type="text"
           value={searchFilter}
-          onChange={ e => handleSearchFilter(e.target.value, modal)}
         />
         <button onClick={addKeyword}>Add</button>
         <button onClick={handleClearSearch}>Clear</button>
@@ -738,9 +761,8 @@ const RightColumn = (props) => {
       div ? div.scrollTop = 0 : null;
     }
     // If the InfiniteScroll component is present, this function will get called every time this RightColumn component renders.
-    document.getElementsByClassName('scrollableModalDiv')[0] && scrollToTop()
+    // document.getElementsByClassName('scrollableModalDiv')[0] && scrollToTop()
   // -------------------------------------------------------------------------------------------------------------
-
   return(
     <div className='modal-right-column'>
       {searchBar}
@@ -785,6 +807,7 @@ const RightColumn = (props) => {
 // -------------------------------------------------------------------------------------------------------------
 const mapStateToProps = (state) => {
   return {
+    isPlaying: state.isPlaying,
     modal: state.modal,
     ratings: state.ratings,
     searchFilter: state.searchFilter,
@@ -808,6 +831,7 @@ const mapDispatchToProps = {
   selectRating,
   selectStyle,
   selectTempos,
+  togglePlayback,
   updateTracks,
   updateData
 }

@@ -172,8 +172,7 @@ class ExportDashboard extends React.Component {
               <input
                 checked={this.state.selectedOption === 'background-instrumentals'}
                 className='form-check-input'
-                isOptionDisabled='true'
-                isDisabled='true'
+                disabled={true}
                 name='react-tips'
                 onChange={this.handleRadio}
                 type='radio'

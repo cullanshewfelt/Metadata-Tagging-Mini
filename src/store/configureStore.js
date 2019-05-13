@@ -27,12 +27,14 @@ import temposReducers from '../reducers/temposReducers';
 import tracksReducers from '../reducers/IndependentArtistsReducers/tracksReducers';
 import exportReducers from '../reducers/ExportReducers/exportReducers';
 
+import playbackReducers from '../reducers/playbackReducers.js';
 
 const reducers = combineReducers({
   categoriesIA: categoriesIAReducers,
   composersIA: composersIAReducers,
   downloadProgress: exportReducers,
   instrumentsIA: instrumentsIAReducers,
+  isPlaying: playbackReducers,
   keywordsIA: keywordsReducersIA,
   modal: modalReducers,
   ratings: ratingsReducers,
