@@ -154,8 +154,9 @@ class MetaDataTaggingApp extends React.Component {
     const SelectLoader = () => (
       selectedComposers.length !== 0 && selectedLibrary.library.length === 0
       ? 'This app is stripped down and simplified in order to deployed for free. \
-         This explains why some code may look or seem unneccesarry because the full application deals with a more libraries / \
+         This explains why some code may look or seem unneccesary because the full application deals with more libraries / \
          and larger databases than the one being used on this example site. \
+         The application will scale to over 50,000 tracks. \
          Please Select a Menu To Begin'
      : <Loader/>
     )

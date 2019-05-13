@@ -97,14 +97,7 @@ class ExportDashboard extends React.Component {
 
  componentDidMount (){
    document.title = 'DL Music | Export Portal | ';
-
-   // this.state.monitoring.length === 0 ? this.props.asyncMonitoringFetch((x)=>{
-   //   this.setState({monitoring: x})
-   // }) : null;
-   // this.state.clients.length === 0 ? this.props.asyncClientsFetch((x)=>{
-   //   this.setState({clients: x})}) : null;
     this.props.asyncTracksFetch()
-    // this.props.asyncSearchFetch();
     this.props.initializeSelectedCategories(this.props.categoriesIA);
     if(this.props.composersIA.length === 0){
       this.props.initializeSelectedComposer(this.props.composersIA)
@@ -162,7 +155,7 @@ class ExportDashboard extends React.Component {
     const batchesDropDown = this.props.releasesIA.map(rel => {
       return {value: rel.rel_id, label: rel.rel_num}}
     );
-    // console.log(163, batchesDropDown);
+
     return(
     <div className='dashboard'>
       { this.props.selectedComposers.length === 0 & this.props.releasesIA.length === 0
@@ -177,12 +170,14 @@ class ExportDashboard extends React.Component {
             <h3>Filter Options: </h3>
             <label className='radio'>
               <input
-                type='radio'
-                name='react-tips'
-                value='background-instrumentals'
                 checked={this.state.selectedOption === 'background-instrumentals'}
                 className='form-check-input'
+                isOptionDisabled='true'
+                isDisabled='true'
+                name='react-tips'
                 onChange={this.handleRadio}
+                type='radio'
+                value='background-instrumentals'
               /> Background Instrumentals
             </label>
             <label className='radio'>
@@ -237,32 +232,6 @@ class ExportDashboard extends React.Component {
             (checking this will include all releases before the one that's selected)
             <br/>
             <br/>
-            <strong>Select A Date Range To Export A Usage Report</strong>
-            <br/>
-            Start Date:
-
-            <DatePicker
-              selected={this.state.startDate}
-              selectsStart
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              filterDate={(date) => {
-                return moment() > date;
-              }}
-              onChange={this.handleChangeStart}
-            />
-            <br/>
-            End Date:
-            <DatePicker
-              selected={this.state.endDate}
-              selectsEnd
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              filterDate={(date) => {
-                return moment() > date;
-              }}
-              onChange={this.handleChangeEnd}
-            />
           </div>
           {/****************************************** RIGHT COLUMN - DOWNLOAD LINKS ******************************************/}
           <div className='dashboard-right-column'>

@@ -506,7 +506,7 @@ const RightColumn = (props) => {
 
   // this function handles the dispatches to modify our redux store and SQL queries
   let updateKeywords = (allKeywords, tracks, modal, newKeyword, updatedCue) => {
-    if(selectedLibrary.libraryName === 'background-instrumentals'){
+    if(selectedLibrary.libraryName === 'independent-artists'){
       saveIAKeyword(newKeyword, allKeywords);
       updateData(modal, updatedCue);
       selectKeywords(allKeywords);
@@ -709,7 +709,7 @@ const RightColumn = (props) => {
   }
   // -------------------------------------------------------------------------------------------------------------
   const addKeyword = () => {
-    console.log(654, modal.searchFilter)
+    console.log(712, modal.searchFilter)
     // create a function that adds the new query to the SQL database.
     // set up an express post route.
   }
