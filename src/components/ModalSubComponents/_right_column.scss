@@ -1,0 +1,22 @@
+.modal-right-column {
+  flex: 50%;
+  float: left;
+  max-height: 80%;
+  width: 50%;
+  padding: 10px;
+  // margin-bottom: 20px;
+  // overflow-y: auto;
+}
+
+
+.text-area {
+  display: block;
+  // margin-bottom: 1em;
+  rows: 10;
+  cols: 400;
+  width: 100%;
+  height: 100%;
+
+  // box-sizing: border-box;
+  overflow: auto;
+}

@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/react"
+  ],
+  "plugins": [
+    "emotion",
+    "transform-class-properties",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-runtime"
+  ]
+}

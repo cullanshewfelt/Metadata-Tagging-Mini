@@ -1,0 +1,132 @@
+.header{
+  text-align: center;
+}
+
+.select{
+
+}
+
+.selected{
+  background: $hover-gray;
+}
+
+.dashboard{
+  margin: 0 6% 0 6%;
+}
+
+::-webkit-scrollbar { // MAKES SCROLLBAR TRANSPARENT
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.scrollableDiv {
+   overflowY: hidden;
+}
+
+.cue-titles{
+  padding: $xs-size 0 $xs-size;
+  height: $m-size;
+  border-radius: 10px 10px 10px 10px;
+  padding-left: 5%;
+}
+
+.cue-titles:hover {
+  // border-radius: 25px;
+  height: $m-size;
+  border-radius: 15px 15px 15px 15px;
+  padding-left: 5%;
+  background: $hover-gray;
+  -webkit-transition: $hover-transition;
+  -moz-transition: $hover-transition;
+  -o-transition: $hover-transition;
+  transition: $hover-transition;
+}
+
+.blank-divs {
+  height: $m-size;
+  padding: $xs-size 0 $xs-size;
+  border-radius: 10px 10px 10px 10px;
+  padding-left: 5%;
+  visibility: hidden;
+}
+
+
+a.download-links {
+  height: $m-size;
+  display:inline-block;
+  width: 85%;
+  padding: $xs-size 0 $xs-size $s-size;
+  border-radius: 10px 10px 10px 10px;
+}
+
+a.strikethrough {
+  height: $m-size;
+  text-decoration: line-through;
+  display:inline-block;
+  width: 85%;
+  padding: $xs-size 0 $xs-size $s-size;
+  border-radius: 10px 10px 10px 10px;
+}
+
+a.download-links:hover {
+  height: $m-size;
+  background: $hover-gray;
+  -webkit-transition: $hover-transition;
+  -moz-transition: $hover-transition;
+  -o-transition: $hover-transition;
+  transition: $hover-transition;
+}
+
+
+
+.search-bar{
+  width: 78%;
+  padding-left: 5px;
+  // padding-right: 5px;
+}
+
+.release-dropdown{
+  width: 80%;
+}
+
+.exports-dropdown{
+  width: 85%;
+}
+
+.dashboard-left-column{
+    flex: 50%;
+    float: left;
+    max-height: 80%;
+    width: 50%;
+    padding: 10px;
+    word-wrap: break-word;
+    // overflow-y: auto;
+}
+
+.dashboard-right-column{
+    display:inline-block;
+    flex: 50%;
+    float: left;
+    max-height: 80%;
+    // height: 80%;
+    width: 50%;
+    padding: 10px;
+    word-wrap: break-word;
+    overflow-y:auto;
+    // overflow-y: auto;
+}
+
+
+label.radio{
+  // display: block;
+  padding: $s-size;
+  // margin-left: auto;
+  // left: auto;
+  // right:auto;
+  // margin-right: auto;
+  // width: 50%;
+}
+
+.form-check-input{
+  padding: $xs-size;
+}
