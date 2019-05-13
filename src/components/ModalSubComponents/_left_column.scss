@@ -7,3 +7,13 @@
   word-wrap: break-word;
   // overflow-y: auto;
 }
+
+.modal-category{
+  height: $s-size;
+  padding: $xs-size 0 $xs-size;
+}
+
+.modal-category-select{
+  height: $s-size;
+  padding: $xs-size 0 $xs-size;
+}

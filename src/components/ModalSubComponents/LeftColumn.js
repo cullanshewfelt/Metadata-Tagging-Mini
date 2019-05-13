@@ -71,56 +71,59 @@ const LeftColumn = (props) => {
             ? releasesIA.filter(rel => rel.rel_id === modal.selectedCue.rel_id).map(obj => obj.rel_num)
             : null
       }
-      <br/><strong>Duration:</strong> {modal.selectedCue.cue_duration}
-      <br/><br/><strong>Catalog Name:</strong> {
+      <br/><div className='modal-category'><strong >Duration:</strong> {modal.selectedCue.cue_duration}</div>
+      <div className='modal-category'><strong>Catalog Name:</strong> {
         selectedLibrary.libraryName === 'background-instrumentals'
           ? 'Background Instrumentals'
           : selectedLibrary.libraryName === 'independent-artists'
             ? 'Independent Artists'
             : null
       }
-      <br/><br/><div><strong>Status:</strong> {
+      </div>
+      <div className='modal-category'><strong>Status:</strong> {
         modal.selectedCue
           ? modal.selectedCue.cue_status
           : null
       }
       </div>
-      <br/><div className='modal-category-select' onClick={handleShowCategories}><strong>Category:</strong> {
+      <div className='modal-category-select' onClick={handleShowCategories}><strong>Category:</strong> {
         modal.selectedCategories
           ? selectedCategories.filter(category => category.cat_id === modal.selectedCue.cat_id).map(obj => obj.cat_name)
           : null
       }
       </div>
-      <br/><div className='modal-category-select' onClick={handleShowStyles}>
+      <div className='modal-category-select' onClick={handleShowStyles}>
         <strong>Style: </strong> {
             selectedStyles
               ? selectedStyles.filter(style => style.style_id === modal.selectedCue.style_id).map(obj => obj.style_name)
               : null
         }
       </div>
-      <br/><strong>Composer(s): </strong> {
+      <div className='modal-category'>
+        <strong>Composer(s): </strong> {
           modal.selectedComposer.length === 1
             ? modal.selectedComposer.map((composer, i) => `${composer.composer_name} (${composer.pro_name}) ${composer.composer_split}%`)
             : modal.selectedComposer.map((composer, i) => `${composer.composer_name} (${composer.pro_name}) ${composer.composer_split}%  ${String.fromCodePoint(183)} `)
       }
-
-      <br/><br/><strong>Publisher(s): </strong> {
-          modal.selectedComposer.length === 1
-            ? modal.selectedComposer.map((composer, i) => `${composer.publisher_name}  ${composer.composer_split}%`)
-            : modal.selectedComposer.map((composer, i) => `${composer.publisher_name}  ${composer.composer_split}% ${String.fromCodePoint(183)}  `)
-      }
-      <br/><br/>
+      </div>
+      <div className='modal-category'>
+        <strong>Publisher(s): </strong> {
+            modal.selectedComposer.length === 1
+              ? modal.selectedComposer.map((composer, i) => `${composer.publisher_name}  ${composer.composer_split}%`)
+              : modal.selectedComposer.map((composer, i) => `${composer.publisher_name}  ${composer.composer_split}% ${String.fromCodePoint(183)}  `)
+        }
+      </div>  
       <div className='modal-category-select' onClick={handleShowInstruments}>
         {/* <strong>Instruments: </strong> {modal.selectedCue.cue_instrus} */}
         <strong>Instruments: </strong> {modal.selectedCue.cue_instrus_edit}
       </div>
-      <br/><div className='modal-category-select' onClick={handleShowKeywords}>
+      <div className='modal-category-select' onClick={handleShowKeywords}>
         <strong>Keywords: </strong> {modal.selectedCue.cue_desc}
       </div>
-      <br/><div className='modal-category-select' onClick={handleShowTempos}>
+      <div className='modal-category-select' onClick={handleShowTempos}>
         <strong>Tempo: </strong> {tempos.filter(tempo => tempo.tempo_id === modal.selectedCue.tempo_id).map(obj => obj.tempo_name)}
       </div>
-      <br/><div className='modal-category-select' onClick={handleShowRating}>
+      <div className='modal-category-select' onClick={handleShowRating}>
         <strong>Rating: </strong> {modal.selectedCue.cue_rating}
       </div>
       { selectedLibrary.libraryName === 'background-instrumentals' ?
