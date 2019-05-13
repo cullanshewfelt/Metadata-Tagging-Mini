@@ -60,7 +60,7 @@ app.get('/api/independent-artists/categoriesIA/', (req, res) => {
 })
 
 app.get('/api/independent-artists/tracksIA/', (req, res) => {
-  indieDB.query(`SELECT cues.cue_id, cues.cat_id, cues.style_id, cues.cue_title, cues.cue_desc, cues.cue_duration, cues.cue_rating,
+  indieDB.query(`SELECT cues.cue_id, cues.cat_id, cues.style_id, cues.cue_title, cues.cue_desc, cues.key_id_arry, cues.cue_duration, cues.cue_rating,
     cues.cue_duration_sec, cues.cue_duration_id, cues.cue_status, cues.rel_id, cues.tempo_id, cues.cue_instrus_edit,
     cues.cue_reldate_h, cues.artist_id, cues.instru_avail, artists.artist_id, artists.artist_name
     FROM cues

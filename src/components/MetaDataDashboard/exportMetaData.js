@@ -39,17 +39,16 @@ class ExportDashboard extends React.Component {
    }
 
    state = {
-     batchesDropDown: batchesDropDown,
-     batchOrRelease: 'Background Instrumental Batch',
+     batchesDropDown: [],
+     batchOrRelease: 'Indie Artist Release',
      clients: this.props.clients,
      downloadFinished: true,
      downloadProgress: this.props.downloadProgress,
      endDate: moment().toDate(),
      inclusive: false,
-     monitoring: this.props.monitoring,
      releaseFilter: 147,
-     releasesDropDown: releasesDropDown,
-     selectedOption: 'background-instrumentals',
+     releasesDropDown: [],
+     selectedOption: 'independent-artists',
      startDate: moment().toDate()
    }
 
@@ -99,15 +98,13 @@ class ExportDashboard extends React.Component {
  componentDidMount (){
    document.title = 'DL Music | Export Portal | ';
 
-   this.state.monitoring.length === 0 ? this.props.asyncMonitoringFetch((x)=>{
-     this.setState({monitoring: x})
-   }) : null;
-   this.state.clients.length === 0 ? this.props.asyncClientsFetch((x)=>{
-     this.setState({clients: x})}) : null;
-   // this.props.monitoring.length === 0 ? this.props.asyncMonitoringFetch() : null;
-   // this.props.clients.length === 0 ? this.props.asyncClientsFetch() : null;
+   // this.state.monitoring.length === 0 ? this.props.asyncMonitoringFetch((x)=>{
+   //   this.setState({monitoring: x})
+   // }) : null;
+   // this.state.clients.length === 0 ? this.props.asyncClientsFetch((x)=>{
+   //   this.setState({clients: x})}) : null;
     this.props.asyncTracksFetch()
-    this.props.asyncSearchFetch();
+    // this.props.asyncSearchFetch();
     this.props.initializeSelectedCategories(this.props.categoriesIA);
     if(this.props.composersIA.length === 0){
       this.props.initializeSelectedComposer(this.props.composersIA)
@@ -124,6 +121,7 @@ class ExportDashboard extends React.Component {
         });
         this.props.initializeSelectedCategories(this.props.categoriesIA);
         this.props.initializeSelectedStyles(this.props.stylesIA);
+        this.props.initializeSelectedReleases(this.props.releasesIA)
         break;
         case '':
           // we reset releaseFilter to it's original state to avoid cues being filtered
@@ -136,6 +134,8 @@ class ExportDashboard extends React.Component {
           });
           this.props.initializeSelectedCategories(this.props.categoriesIA);
           this.props.initializeSelectedStyles(this.props.stylesIA);
+          this.props.initializeSelectedReleases(this.props.releasesIA)
+
           break;
       default:
         null
@@ -159,10 +159,13 @@ class ExportDashboard extends React.Component {
   render(){
     const releaseFilter  = this.state.releaseFilter;
     const selectedLibrary = this.props.selectedLibrary.library;
-    const batchesDropDown = this.state.batchesDropDown;
+    const batchesDropDown = this.props.releasesIA.map(rel => {
+      return {value: rel.rel_id, label: rel.rel_num}}
+    );
+    // console.log(163, batchesDropDown);
     return(
     <div className='dashboard'>
-      { this.state.monitoring.length === 0
+      { this.props.selectedComposers.length === 0 & this.props.releasesIA.length === 0
         ? <div className='loading'>
           <Loader/>
           <br/>
