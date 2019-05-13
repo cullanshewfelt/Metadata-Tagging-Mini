@@ -12,8 +12,6 @@ import { selectStyle } from '../../actions/selectedStylesActions';
 import { selectTempos } from '../../actions/temposActions';
 import { updateTracks } from '../../actions/IndieArtistsActions/tracksActions';
 
-import { togglePlayback } from '../../actions/playbackActions';
-
 
 const RightColumn = (props) => {
   let { handleSearchFilter, modal, ratings, saveIAKeyword, searchFilter, selectedCategories, selectCategory, selectedInstruments,
@@ -21,24 +19,24 @@ const RightColumn = (props) => {
         selectTempos, tempos, tracks, updateTracks, updateData
   } = props;
 
-  const [isPlaying, setPlayback] = useState(props.isPlaying);
-
-
-  const playbackToggle = () => { // check for onkeydown event on spacebar to pause and playback tracks
-     let searchBars = document.getElementsByClassName('search-bar');
-
-     if(searchBars & document.activeElement){
-       document.onkeydown = (evt) => {
-         console.log(32, evt)
-         evt = evt || window.event; // if event is keycode === 32 ('Space') and both search bars aren't in focus, toggle isPlaying
-         if ((evt.keyCode === 32) && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name))) {
-           togglePlayback(props.isPlaying)
-         }
-       }
-     }
-   }
-
-   playbackToggle();
+  // const [isPlaying, setPlayback] = useState(props.isPlaying);
+  //
+  //
+  // const playbackToggle = () => { // check for onkeydown event on spacebar to pause and playback tracks
+  //    let searchBars = document.getElementsByClassName('search-bar');
+  //
+  //    if(searchBars & document.activeElement){
+  //      document.onkeydown = (evt) => {
+  //        console.log(32, evt)
+  //        evt = evt || window.event; // if event is keycode === 32 ('Space') and both search bars aren't in focus, toggle isPlaying
+  //        if ((evt.keyCode === 32) && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name))) {
+  //          togglePlayback(props.isPlaying)
+  //        }
+  //      }
+  //    }
+  //  }
+  //
+  //  playbackToggle();
   // **********************************************************************************************************
   // CATEGORIES FUNCTIONS
   // **********************************************************************************************************
@@ -744,7 +742,7 @@ const RightColumn = (props) => {
           className='search-bar'
           id='search-filter'
           name="search"
-          onChange={ e => handleSearchFilter(e.target.value, modal) & togglePlayback() & (document.getElementsByClassName('scrollableModalDiv')[0] && scrollToTop())}
+          onChange={ e => handleSearchFilter(e.target.value, modal) & (document.getElementsByClassName('scrollableModalDiv')[0] && scrollToTop())}
           onClick={() => {document.getElementById('search-filter') && document.getElementById('search-filter').focus()}}
           type="text"
           value={searchFilter}
@@ -831,7 +829,6 @@ const mapDispatchToProps = {
   selectRating,
   selectStyle,
   selectTempos,
-  togglePlayback,
   updateTracks,
   updateData
 }

@@ -29,7 +29,6 @@ class Footer extends React.Component {
    playbackToggle = () => { // check for onkeydown event on spacebar to pause and playback tracks
       document.onkeydown = (evt) => {
         let searchBars = document.getElementsByClassName('search-bar');
-        console.log(32, searchBars);
         evt = evt || window.event; // if event is keycode === 32 ('Space') and both search bars aren't in focus, toggle isPlaying
         if(searchBars.length === 2){
           if ((evt.keyCode === 32) && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name))) {
