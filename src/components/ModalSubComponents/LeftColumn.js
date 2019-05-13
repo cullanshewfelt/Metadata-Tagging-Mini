@@ -71,7 +71,7 @@ const LeftColumn = (props) => {
             ? releasesIA.filter(rel => rel.rel_id === modal.selectedCue.rel_id).map(obj => obj.rel_num)
             : null
       }
-      <br/><div className='modal-category'><strong >Duration:</strong> {modal.selectedCue.cue_duration}</div>
+      <div className='modal-category'><strong >Duration:</strong> {modal.selectedCue.cue_duration}</div>
       <div className='modal-category'><strong>Catalog Name:</strong> {
         selectedLibrary.libraryName === 'background-instrumentals'
           ? 'Background Instrumentals'
@@ -112,7 +112,7 @@ const LeftColumn = (props) => {
               ? modal.selectedComposer.map((composer, i) => `${composer.publisher_name}  ${composer.composer_split}%`)
               : modal.selectedComposer.map((composer, i) => `${composer.publisher_name}  ${composer.composer_split}% ${String.fromCodePoint(183)}  `)
         }
-      </div>  
+      </div>
       <div className='modal-category-select' onClick={handleShowInstruments}>
         {/* <strong>Instruments: </strong> {modal.selectedCue.cue_instrus} */}
         <strong>Instruments: </strong> {modal.selectedCue.cue_instrus_edit}

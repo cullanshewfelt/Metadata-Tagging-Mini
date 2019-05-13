@@ -13,7 +13,7 @@ import { selectTempos } from '../../actions/temposActions';
 import { updateTracks } from '../../actions/IndieArtistsActions/tracksActions';
 
 const RightColumn = (props) => {
-  let { cues, handleSearchFilter, modal, ratings, saveIAKeyword, searchFilter, selectedCategories, selectCategory, selectedInstruments,
+  let { handleSearchFilter, modal, ratings, saveIAKeyword, searchFilter, selectedCategories, selectCategory, selectedInstruments,
         selectInstruments, selectedLibrary, selectedKeywords, selectKeywords, selectedRating, selectRating, selectedStyles, selectStyle,
         selectTempos, tempos, tracks, updateTracks, updateData
   } = props;
@@ -60,7 +60,7 @@ const RightColumn = (props) => {
         }
         updateData(modal, updatedCue)
         selectCategory(allCategories)
-        updateTracks(updatedCue, cues) // must come last
+        updateTracks(updatedCue, tracks) // must come last
       } else {
         // if newCategory is already the cat_id, then they are clicking it again to remove it
         updatedCue.cat_id = 19;
@@ -71,7 +71,7 @@ const RightColumn = (props) => {
         }
         updateData(modal, updatedCue)
         selectCategory(allCategories)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       }
     // else if the selected cue has no category, add it
     } else {
@@ -83,7 +83,7 @@ const RightColumn = (props) => {
       }
       updateData(modal, updatedCue)
       selectCategory(allCategories)
-      updateTracks(updatedCue, cues)
+      updateTracks(updatedCue, tracks)
     }
   }
   // **********************************************************************************************************
@@ -157,7 +157,7 @@ const RightColumn = (props) => {
         }
         updateData(modal, updatedCue)
         selectStyle(allStyles)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       } else {
         // if newStyle is already the style_id, then they are clicking it again to remove it
         updatedCue.style_id = 147;
@@ -168,7 +168,7 @@ const RightColumn = (props) => {
         }
         updateData(modal, updatedCue)
         selectStyle(allStyles)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       }
     // else if the selected cue has no style, add it
     } else {
@@ -180,7 +180,7 @@ const RightColumn = (props) => {
       }
       updateData(modal, updatedCue)
       selectStyle(allStyles)
-      updateTracks(updatedCue, cues)
+      updateTracks(updatedCue, tracks)
     }
   }
   // **********************************************************************************************************
@@ -311,7 +311,7 @@ const RightColumn = (props) => {
         }
         selectInstruments(allInstruments)
         updateData(modal, updatedCue)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       } else {
         // if the instrument IS in the selectedCue metadata already, we remove it
         let selectedIndex = selectedInstruments.indexOf(newInstrument);
@@ -325,7 +325,7 @@ const RightColumn = (props) => {
         }
         selectInstruments(allInstruments)
         updateData(modal, updatedCue)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       }
     } else {
       updatedCue.cue_instrus_edit = `${newInstrument}`;
@@ -336,7 +336,7 @@ const RightColumn = (props) => {
       }
       selectInstruments(allInstruments)
       updateData(modal, updatedCue)
-      updateTracks(updatedCue, cues)
+      updateTracks(updatedCue, tracks)
     }
   }
   // **********************************************************************************************************
@@ -472,7 +472,7 @@ const RightColumn = (props) => {
         // also add the key_id to the key_id array
         selectedKeyIdArray.push(keywordObject.key_id);
         updatedCue.key_id_arry = selectedKeyIdArray.join(',');
-        updateKeywords(allKeywords, cues, modal, newKeyword, updatedCue);
+        updateKeywords(allKeywords, tracks, modal, newKeyword, updatedCue);
       } else {
         // if newKeyword is already in the cue_desc, then they are clicking it again to remove it
         selectedKeyIdArray.splice(selectedKeyIdArray.indexOf(keywordObject.key_id), 1);
@@ -486,7 +486,7 @@ const RightColumn = (props) => {
             newKeyword = allKeywords[keyword];
           }
         }
-        updateKeywords(allKeywords, cues, modal, newKeyword, updatedCue);
+        updateKeywords(allKeywords, tracks, modal, newKeyword, updatedCue);
       }
       // else if the selected cue has no keywords, add it to the description
     } else {
@@ -500,17 +500,17 @@ const RightColumn = (props) => {
       }
       selectedKeyIdArray.push(keywordObject.key_id);
       updatedCue.key_id_arry = selectedKeyIdArray.join(',');
-      updateKeywords(allKeywords, cues, modal, newKeyword, updatedCue);
+      updateKeywords(allKeywords, tracks, modal, newKeyword, updatedCue);
     }
   }
 
   // this function handles the dispatches to modify our redux store and SQL queries
-  let updateKeywords = (allKeywords, cues, modal, newKeyword, updatedCue) => {
+  let updateKeywords = (allKeywords, tracks, modal, newKeyword, updatedCue) => {
     if(selectedLibrary.libraryName === 'background-instrumentals'){
       saveIAKeyword(newKeyword, allKeywords);
       updateData(modal, updatedCue);
       selectKeywords(allKeywords);
-      updateTracks(updatedCue, cues);
+      updateTracks(updatedCue, tracks);
     }
   }
   // **********************************************************************************************************
@@ -568,7 +568,7 @@ const RightColumn = (props) => {
         }
         updateData(modal, updatedCue)
         selectTempos(allTempos)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       } else {
         // if newTempo is already the tempo_id, then they are clicking it again to remove it
         updatedCue.tempo_id = 28;
@@ -579,7 +579,7 @@ const RightColumn = (props) => {
         }
         updateData(modal, updatedCue)
         selectTempos(allTempos)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       }
     // else if the selected cue has no tempo, add it
     } else {
@@ -591,7 +591,7 @@ const RightColumn = (props) => {
       }
       updateData(modal, updatedCue)
       selectTempos(allTempos)
-      updateTracks(updatedCue, cues)
+      updateTracks(updatedCue, tracks)
     }
   }
   // **********************************************************************************************************
@@ -644,7 +644,7 @@ const RightColumn = (props) => {
         }
         updateData(modal, updatedCue)
         selectRating(allRatings)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       } else {
         updatedCue.cue_rating === 0;
         for(let x in allRatings){
@@ -654,7 +654,7 @@ const RightColumn = (props) => {
         }
         updateData(modal, updatedCue)
         selectRating(allRatings)
-        updateTracks(updatedCue, cues)
+        updateTracks(updatedCue, tracks)
       }
     } else {
       updatedCue.cue_rating = newRating.value;
@@ -665,7 +665,7 @@ const RightColumn = (props) => {
       }
       updateData(modal, updatedCue)
       selectRating(allRatings)
-      updateTracks(updatedCue, cues)
+      updateTracks(updatedCue, tracks)
     }
   }
   // **********************************************************************************************************
@@ -785,7 +785,6 @@ const RightColumn = (props) => {
 // -------------------------------------------------------------------------------------------------------------
 const mapStateToProps = (state) => {
   return {
-    cues: state.cues,
     modal: state.modal,
     ratings: state.ratings,
     searchFilter: state.searchFilter,

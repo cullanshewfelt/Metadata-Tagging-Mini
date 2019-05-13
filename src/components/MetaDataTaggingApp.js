@@ -149,8 +149,8 @@ class MetaDataTaggingApp extends React.Component {
 
   render() {
     let { modal, selectedComposers, selectedCueId, selectedLibrary } = this.props;
-    console.log(164, this.props.modal.selectedCue)
-    console.log(165, this.props.selectedKeywords)
+    // console.log(164, this.props.modal.selectedCue)
+    // console.log(165, this.props.selectedKeywords)
     const SelectLoader = () => (
       selectedComposers.length !== 0 && selectedLibrary.library.length === 0
       ? 'This app is stripped down and simplified in order to deployed for free. \
