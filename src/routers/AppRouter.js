@@ -1,5 +1,8 @@
 import React, { lazy, Suspense} from 'react';
 import { BrowserRouter, Link, NavLink, Route, Switch} from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+let history = createBrowserHistory();
+
 import Header from '../components/SubComponents/Header';
 import Footer from '../components/SubComponents/Footer';
 
@@ -11,7 +14,7 @@ import Loader from '../components/SubComponents/Loader';
 
 // the router handles client side rendering of routes
 const AppRouter = () => (
-  <BrowserRouter>
+  <BrowserRouter history={history}>
     <div>
       <Header/>
       <Suspense fallback={<Loader/>}>

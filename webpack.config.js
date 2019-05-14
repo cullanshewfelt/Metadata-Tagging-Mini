@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/app.js',
+  entry: path.join(__dirname, '/src/app.js'),
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
@@ -29,5 +29,5 @@ module.exports = {
     hot: true
   },
   resolve: {
-    modules: [path.resolve(__dirname, "app"), "node_modules"]}
+    modules: [path.resolve(__dirname, 'app'), 'node_modules']}
 };
