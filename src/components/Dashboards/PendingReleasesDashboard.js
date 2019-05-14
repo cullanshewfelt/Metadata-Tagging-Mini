@@ -121,9 +121,9 @@ class PendingReleasesDashboard extends React.Component {
           releasesDropDown, selectedOption, titleSearchQuery } = this.state;
 
     document.title = this.props.selectedLibrary.libraryName === 'background-instrumentals'
-      ? 'DL Music | BI Tagging Portal | '
-      : this.props.selectedLibrary.libraryName === "independent-artists"
-      ? 'DL Music | IA Tagging Portal | '
+      ? 'DL Music | Library | '
+      : this.props.selectedLibrary.libraryName === 'independent-artists'
+      ? 'DL Music | Library | '
       : null;
 
     // -------------------------------------------------------------------------------------------------------------
@@ -206,8 +206,8 @@ class PendingReleasesDashboard extends React.Component {
         {cue.cue_title}
       </div>)
     )
-    if([...setLibrary].length > 10){
-      for(let x = 0; x < 5; x++){ // add some empty rows to force push data into margins
+    if([...setLibrary].length > 5){
+      for(let x = 0; x < 10; x++){ // add some empty rows to force push data into margins
         trackItems.push(<div className='blank-divs' key={`blank-${x}`}>Blank</div>)
       }
     }
@@ -250,6 +250,10 @@ class PendingReleasesDashboard extends React.Component {
               placeholder="Select A Release"
             />
             <br/>
+            <br/>
+            This app is designed to tag metadata of audio files.
+            <br/>
+            Songs <strong><u>WILL AUTOPLAY</u></strong> when clicked.
           </div>
           <div className='dashboard-right-column'>
             <h2 className='dashboard-header'>{libraryHeader()}</h2>

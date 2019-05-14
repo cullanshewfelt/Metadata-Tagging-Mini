@@ -47,6 +47,10 @@ const ModalContent = (props) => {
 
     return (
     <div>
+      <div className='title' id={modal.selectedCueId}>
+        <strong>You Are Editing Metadata For The Cue: </strong>
+        <br/>{modal.selectedCue.cue_title}
+      </div>
       <strong>Cue ID:</strong> {
         modal.selectedCue
           ? modal.selectedCue.cue_id
@@ -63,12 +67,7 @@ const ModalContent = (props) => {
             ? releasesIA.filter(rel => rel.rel_id === modal.selectedCue.rel_id).map(obj => obj.rel_num)
             : null
       }
-      <div className='title' id={modal.selectedCueId}>
-        <strong>You Are Editing Metadata For The Cue: </strong>
-        <br/>
-        {modal.selectedCue.cue_title}
-      </div>
-      <div className='modal-category'><strong >Duration:</strong> {modal.selectedCue.cue_duration}</div>
+      <div><strong >Duration:</strong> {modal.selectedCue.cue_duration}</div>
       <div className='column-wrapper'>
         <LeftColumn/>
         <RightColumn/>

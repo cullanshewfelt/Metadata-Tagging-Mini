@@ -96,7 +96,7 @@ class ExportDashboard extends React.Component {
   }
 
  componentDidMount (){
-   document.title = 'DL Music | Export Portal | ';
+   document.title = 'DL Music | Export Metadata | ';
     this.props.asyncTracksFetch()
     this.props.initializeSelectedCategories(this.props.categoriesIA);
     if(this.props.composersIA.length === 0){

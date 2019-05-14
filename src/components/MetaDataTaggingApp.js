@@ -104,6 +104,7 @@ class MetaDataTaggingApp extends React.Component {
   }
 
   componentDidMount() {
+    document.title = 'DL Music | BETA';
     let { asyncTracksFetch, categoriesIA, initializeSelectedCategories, initializeSelectedInstruments,
           initializeSelectedKeywords, initializeSelectedLibrary, initializeSelectedStyles, instrumentsIA,
           keywordsIA, location, stylesIA, selectedLibrary } = this.props; // destructure props for clarity
@@ -162,21 +163,21 @@ class MetaDataTaggingApp extends React.Component {
     )
     return (
       <div >
-      <div className='dashboard'>
-        {<div className='container'>
-          <div >
-            {/* wait for the selectedLibrary to initialize before showing
-            the dashboard to ensure dropdown menus have been initialized */}
-            {selectedLibrary.library.length === 0 ?
-              <div className='loading'>
-                <SelectLoader/>
-              </div>
-            : <PendingReleasesDashboard handleOpenModal={this.handleOpenModal}/>}
-          </div>
-          <ReactModal
-            isOpen={modal.showModal}
-            contentLabel={selectedCueId}
-            appElement={document.getElementById('root')}
+        <div className='dashboard'>
+          {<div className='container'>
+            <div >
+              {/* wait for the selectedLibrary to initialize before showing
+              the dashboard to ensure dropdown menus have been initialized */}
+              {selectedLibrary.library.length === 0 ?
+                <div className='loading'>
+                  <SelectLoader/>
+                </div>
+              : <PendingReleasesDashboard handleOpenModal={this.handleOpenModal}/>}
+            </div>
+            <ReactModal
+              isOpen={modal.showModal}
+              contentLabel={selectedCueId}
+              appElement={document.getElementById('root')}
             onRequestClose={this.handleCloseModal}
             shouldCloseOnOverlayClick={true}
             className='cue-modal'
