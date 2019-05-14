@@ -1,17 +1,22 @@
 {
-  "name": "metadata-tagging-app",
-  "version": "1.0.1",
+  "name": "metadata-tagging-app-mini",
+  "version": "1.0.2",
   "description": "A Web App To Create, Edit, and Export Metadata for Audio Files",
   "main": "index.js",
+  "engines": {
+    "node": "12.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --hot & nodemon --max-old-space-size=4096 server.js",
+    "start": "node server.js",
     "server": "nodemon server.js",
-    "build": "webpack -w",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "live-server": "live-server public/",
-    "dev-server": "webpack-dev-server --hot & nodemon --max-old-space-size=4096 server.js"
+    "dev-server": "webpack-dev-server --hot & nodemon --max-old-space-size=4096 server.js",
+    "heroku-postbuild": "npm run build:prod"
   },
-  "author": "",
+  "author": "Cullan Shewfelt",
   "license": "ISC",
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",

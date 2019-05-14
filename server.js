@@ -7,10 +7,11 @@ const cors = require('cors');
 const indieDB = require('./indieDBconnection');
 const app = express();
 const util = require('util');
+const port = process.env.PORT || 4000;
+
 util.inspect.defaultOptions.maxArrayLength = null;
 
 app.use(bodyParser.json({ type: 'application/json' }))
-// app.use(app.router);
 app.use(cors({credentials: true, origin: true}));
 app.options('*', cors())
 app.use(express.static(path.join(__dirname, 'public')));
@@ -163,9 +164,10 @@ app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
 // ********************************************************************************************************************************
 
 
-app.listen(4000, () => {
-  console.log('listening on port 4000');
+app.listen(port, () => {
+  console.log('Server is up!', port);
 })
+
 
 
 
