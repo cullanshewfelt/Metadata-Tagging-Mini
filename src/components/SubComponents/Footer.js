@@ -32,13 +32,13 @@ class Footer extends React.Component {
         evt = evt || window.event; // if event is keycode === 32 ('Space') and both search bars aren't in focus, toggle isPlaying
         if(searchBars.length === 2){
           if ((evt.keyCode === 32) && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name))) {
-            this.props.togglePlayback(this.state.isPlaying);
+            this.props.togglePlayback(!this.state.isPlaying);
             this.setState({isPlaying: !this.state.isPlaying});
           }
         } else if (searchBars.length === 3){
           if ((evt.keyCode === 32)
           && ((document.activeElement.name !== searchBars[0].name) && (document.activeElement.name !== searchBars[1].name) && (document.activeElement.name !== searchBars[2].name))) {
-            this.props.togglePlayback(this.state.isPlaying);
+            this.props.togglePlayback(!this.state.isPlaying);
             this.setState({isPlaying: !this.state.isPlaying});
           }
         }
@@ -63,7 +63,7 @@ class Footer extends React.Component {
              ? `http://www.dl-music.com/artist_music/ia_music/mp3/${genre}/${noInstrumentalsubGenre}/IA - ${selectedCue.cue_title}.mp3`
              : ''
      this.setState({url: urlPath.replace(/\s/mg, '%20'), selectedCue: selectedCue, isPlaying: true})
-     this.props.togglePlayback(this.state.isPlaying);
+     this.props.togglePlayback(true);
    }
 
    componentDidUpdate(){
@@ -77,7 +77,7 @@ class Footer extends React.Component {
       : this.setState({currentPath: location.pathname})
 
     currentPath !== location.pathname && location.pathname === '/exports' && this.state.isPlaying
-      ? this.props.togglePlayback({isPlaying: false}) // this is integral to stopping the track from playing if switching back from /exports
+      ? this.props.togglePlayback(false) // this is integral to stopping the track from playing if switching back from /exports
       : null
 
       this.playbackToggle() // always be checking to see if spacebar is being pressed
