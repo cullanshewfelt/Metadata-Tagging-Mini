@@ -17,8 +17,8 @@ app.options('*', cors())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/*', (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.sendFile(path.join(__dirname + '/public/index.html'));
   // res.sendFile(path.resolve(__dirname + '/../dist/index.html'));
   next();
