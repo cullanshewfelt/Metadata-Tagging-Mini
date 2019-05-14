@@ -3,7 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import ReactModal from 'react-modal';
 import Loader from './SubComponents/Loader';
-import ExportDashboard from './MetaDataDashboard/ExportMetaData';
+import ExportDashboard from './MetaDataDashboard/TEST1';
 import PendingReleasesDashboard from './Dashboards/PendingReleasesDashboard';
 const ModalContent = lazy(() => import ('./ModalSubComponents/ModalContent'));
 import {clearSearch, closeModal, save, toggleModal, updateData} from '../actions/modalActions';

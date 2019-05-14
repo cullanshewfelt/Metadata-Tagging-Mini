@@ -6,7 +6,7 @@ import Footer from '../components/SubComponents/Footer';
 import MetaDataTaggingApp from '../components/MetaDataTaggingApp';
 const PendingReleasesDashboard = lazy(() => import ('../components/Dashboards/PendingReleasesDashboard'));
 import IndependentArtistsDashboard from '../components/Dashboards/IndependentArtistsDashboard.js'
-import ExportDashboard from '../components/MetaDataDashboard/ExportMetaData';
+import ExportDashboard from '../components/MetaDataDashboard/TEST1';
 import Loader from '../components/SubComponents/Loader';
 
 // the router handles client side rendering of routes
