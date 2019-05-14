@@ -22,6 +22,8 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
+console.log(25, process.env)
+
 //  i moved the most important fetch calls to the beginning to optimize state initialization loading times
 
   // ****************************************************************************************************
@@ -30,47 +32,47 @@ const store = configureStore();
   // ****************************************************************************************************
   // ****************************************************************************************************
 
-fetch('http://localhost:4000/api/independent-artists/releasesIA/')
+fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/releasesIA/')
   .then(response => response.json())
   .then(response => {
     response.data.unshift({rel_id: 9999, rel_num: "All", rel_num_only: "All"})
     store.dispatch(initializeIAReleases(response.data))})
   .catch(err => console.error(err));
 
-fetch('http://localhost:4000/api/independent-artists/composersIA/')
+fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/composersIA/')
   .then(response => response.json())
   .then(response => {store.dispatch(initializeIAComposers(response.data))})
   .catch(err => console.error(err))
 
 
-fetch('http://localhost:4000/api/independent-artists/categoriesIA/')
+fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/categoriesIA/')
   .then(response => response.json())
   .then(response => {store.dispatch(initializeIACategories(response.data))})
   .catch(err => console.error(err))
 
-fetch('http://localhost:4000/api/independent-artists/instrumentsIA/')
+fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/instrumentsIA/')
   .then(response => response.json())
   .then(response => {
     store.dispatch(initializeIAInstruments(response.data))})
   .catch(err => console.error(err));
 
 
-fetch('http://localhost:4000/api/independent-artists/keywordsIA/')
+fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/keywordsIA/')
   .then(response => response.json())
   .then(response => {store.dispatch(initializeIAKeywords(response.data))})
   .catch(err => console.error(err))
 
-fetch('http://localhost:4000/api/independent-artists/stylesIA/')
+fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/stylesIA/')
   .then(response => response.json())
   .then(response => {store.dispatch(initializeIAStyles(response.data))})
   .catch(err => console.error(err));
 
-// fetch('http://localhost:4000/api/independent-artists/artistsIA/')
+// fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/artistsIA/')
 //   .then(response => response.json())
 //   .then(response => {store.dispatch(initializeArtistsStageName(response.data))})
 //   .catch(err => console.error(err));
 
-fetch('http://localhost:4000/api/independent-artists/temposIA')
+fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/temposIA')
   .then(response => response.json())
   .then(response => {store.dispatch(initializeTempos(response.data))})
   .catch(err => console.error(err));

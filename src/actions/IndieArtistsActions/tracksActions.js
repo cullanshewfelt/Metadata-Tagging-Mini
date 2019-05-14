@@ -5,7 +5,7 @@
 export const asyncTracksFetch = (callback) => {
   return (dispatch) => {
     dispatch(tracksAreLoading(true));
-    fetch('http://localhost:4000/api/independent-artists/tracksIA/')
+    fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/tracksIA/')
       .then(response => {
         !response.ok ? Error(response.statusText) : null ;
         dispatch(tracksAreLoading(false));
