@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 
 import ATempoExport from '../MetaDataExportFunctions/ReleasesFunctions/A-TempoExport';
 import BarakaIAExport from '../MetaDataExportFunctions/IndependentArtistsFunctions/BarakaIAExport';
-import GenericIAExport from '../MetaDataExportFunctions/ReleasesFunctions/GIE';
+import GenericIAExport from '../MetaDataExportFunctions/ReleasesFunctions/GenericIAExport';
 import ModoocomIAExport from '../MetaDataExportFunctions/IndependentArtistsFunctions/ModoocomIAExport';
 import PreludioExport from '../MetaDataExportFunctions/ReleasesFunctions/PreludioExport';
 import RenameExport from '../MetaDataExportFunctions/BatchesFunctions/RenameExport';

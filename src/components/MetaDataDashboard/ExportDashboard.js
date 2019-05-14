@@ -21,7 +21,7 @@ import { resetDownload, updateDownload } from '../../actions/ExportActions/expor
 // ------------------------------------------------------------------------------------------------------------
 // loads some JSON data that I felt was unnecessary to store in SQL / Redux
 let batchesDropDown = require('./MetaDataExportFunctions/dropdownJsonData/batchesDropDown.json');
-let releasesDropDown = require('./MetaDataExportFunctions/dropdownJsonData/RDD.json');
+let releasesDropDown = require('./MetaDataExportFunctions/dropdownJsonData/releasesDropDown.json');
 // ------------------------------------------------------------------------------------------------------------
 // these imports contain all the export/download functions:
 const exportTools = require('./MetaDataExportFunctions/ExportTools.js');

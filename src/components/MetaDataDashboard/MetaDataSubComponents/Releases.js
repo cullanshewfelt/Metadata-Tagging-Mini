@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router";
 
-import AdRevExport from '../MetaDataExportFunctions/ReleasesFunctions/ARE';
+import AdRevExport from '../MetaDataExportFunctions/ReleasesFunctions/AdRevExport';
 import AlterKExport from '../MetaDataExportFunctions/ReleasesFunctions/AlterKExport';
 import ATempoExport from '../MetaDataExportFunctions/ReleasesFunctions/A-TempoExport';
 import BarakaBIExport from '../MetaDataExportFunctions/ReleasesFunctions/BarakaBIExport';
