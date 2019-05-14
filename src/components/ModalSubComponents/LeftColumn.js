@@ -59,19 +59,6 @@ const LeftColumn = (props) => {
 
   return(
     <div className='modal-left-column'>
-      <strong>Cue ID:</strong> {
-        modal.selectedCue
-          ? modal.selectedCue.cue_id
-          : null
-      }
-      <br/><strong>Release: </strong> {
-        modal.selectedCue && selectedLibrary.libraryName === 'background-instrumentals'
-          ? batchesBI.filter(rel => rel.rel_id === modal.selectedCue.rel_id).map(obj => obj.rel_num)
-          : modal.selectedCue && selectedLibrary.libraryName === 'independent-artists'
-            ? releasesIA.filter(rel => rel.rel_id === modal.selectedCue.rel_id).map(obj => obj.rel_num)
-            : null
-      }
-      <div className='modal-category'><strong >Duration:</strong> {modal.selectedCue.cue_duration}</div>
       <div className='modal-category'><strong>Catalog Name:</strong> {
         selectedLibrary.libraryName === 'background-instrumentals'
           ? 'Background Instrumentals'
