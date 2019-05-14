@@ -22,8 +22,6 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-console.log(25, process.env)
-
 //  i moved the most important fetch calls to the beginning to optimize state initialization loading times
 
   // ****************************************************************************************************
@@ -31,6 +29,9 @@ console.log(25, process.env)
   // IA STATE INITIALIZATION
   // ****************************************************************************************************
   // ****************************************************************************************************
+
+  // endpoints: https://react-metadata-beta.herokuapp.com/
+  // https://localhost:4000/
 
 fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/releasesIA/')
   .then(response => response.json())

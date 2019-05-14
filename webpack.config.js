@@ -25,7 +25,8 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true
   },
   resolve: {
     modules: [path.resolve(__dirname, "app"), "node_modules"]}
