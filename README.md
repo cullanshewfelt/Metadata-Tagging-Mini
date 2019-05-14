@@ -1,8 +1,7 @@
 # Metadata-Tagging-Mini
-ONLY HAS IA for deployment purposes.
-Work in progress.
+This is a reduced version of [my audio metadata tagging app](https://github.com/cullanshewfelt/Metadata-Tagging-With-Redux) for deployment purposes which [can be found here.](https://react-metadata-beta.herokuapp.com)
 
-This is application that creates, tags, edits, and exports audio metadata.
+The application that creates, tags, edits, and exports audio metadata.
 
 It is a redesigned, modernized version of [the website my company currently uses](http://www.dl-music.com) (written in PHP).
 
