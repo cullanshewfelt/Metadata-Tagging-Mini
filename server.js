@@ -10,16 +10,16 @@ const port = process.env.PORT || 4000;
 
 util.inspect.defaultOptions.maxArrayLength = null;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors({credentials: true, origin: true}));
-app.options('*', cors())
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cors({credentials: true, origin: true}));
+// app.options('*', cors())
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res, next) => {
+app.get('/*', (req, res, next) => {
   // console.log(20, req)
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.sendFile(path.join(__dirname + '/public/index.html'));
   // res.sendFile(path.resolve(__dirname + '/../dist/index.html'));
   next();

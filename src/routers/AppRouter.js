@@ -14,7 +14,7 @@ import Loader from '../components/SubComponents/Loader';
 
 // the router handles client side rendering of routes
 const AppRouter = () => (
-  <BrowserRouter history={history}>
+  <BrowserRouter>
     <div>
       <Header/>
       <Suspense fallback={<Loader/>}>
