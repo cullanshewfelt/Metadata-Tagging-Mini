@@ -9,7 +9,7 @@ import { initializeIAComposers } from './actions/IndieArtistsActions/artistsActi
 import { initializeIAReleases } from './actions/IndieArtistsActions/releasesActions';
 import { initializeIACategories } from './actions/IndieArtistsActions/categoriesActions';
 
-import { initializeIAInstruments } from './actions/IndieArtistsActions/instrumentsIAActions';
+import { initializeIAInstruments } from './actions/IndieArtistsActions/instrumentsActionsIA';
 import { initializeIAKeywords } from './actions/IndieArtistsActions/keywordsActionsIA';
 
 import { initializeIAStyles } from './actions/IndieArtistsActions/stylesActions';
