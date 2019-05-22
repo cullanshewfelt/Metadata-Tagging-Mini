@@ -81,7 +81,6 @@ class MetaDataTaggingApp extends React.Component {
 
     // make this a dispatch ????
     fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/tracksIA/update/${modal.selectedCue.cue_id}`, {
-      crossDomain: true,
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -89,7 +88,7 @@ class MetaDataTaggingApp extends React.Component {
       },
       body: JSON.stringify({updatedCue: modal.selectedCue})
     })
-    .then(response => response)
+    .then(response => {console.log(91, response)} return response)
     .then(json => {console.log(92, json)
     })
     .catch( error =>
