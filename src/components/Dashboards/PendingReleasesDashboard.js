@@ -302,7 +302,7 @@ class PendingReleasesDashboard extends React.Component {
             Songs <strong><u>WILL AUTOPLAY</u></strong> when clicked.
           </div>
           <div className='dashboard-right-column'>
-            <h2 className='dashboard-header'>{libraryHeader()}</h2>
+            <h2 className='dashboard-header'>Cues Found: {[...setLibrary].length}</h2>
             {/* if the titleSearchQuery does find results, display them */
               [...setLibrary].length !== 0
                 ?
@@ -343,6 +343,7 @@ const mapStateToProps = (state) => {
    releasesIA: state.releasesIA,
    selectedCategories: state.selectedCategories,
    selectedComposers: state.selectedComposers,
+   selectedKeywords: state.selectedKeywords,
    selectedLibrary: state.selectedLibrary,
    selectedStyles: state.selectedStyles,
    stylesBI: state.stylesBI,

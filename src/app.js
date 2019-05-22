@@ -31,7 +31,7 @@ const store = configureStore();
   // ****************************************************************************************************
 
   // endpoints: https://react-metadata-beta.herokuapp.com/
-  // https://localhost:4000/
+  // http://localhost:4000/
 
 fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/releasesIA/')
   .then(response => response.json())

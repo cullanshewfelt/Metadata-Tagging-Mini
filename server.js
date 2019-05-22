@@ -2,6 +2,7 @@ const express = require('express');
 const moment = require('moment');
 const mysql = require('mysql');
 const path = require('path');
+const bodyParser = require('body-parser')
 const cors = require('cors');
 const indieDB = require('./connection');
 const app = express();
@@ -9,6 +10,26 @@ const util = require('util');
 const port = process.env.PORT || 4000;
 
 util.inspect.defaultOptions.maxArrayLength = null;
+
+
+// *****************************************************************************************
+// use this for development builds (prod at bottom) :
+// *****************************************************************************************
+
+app.use(bodyParser.json({ type: 'application/json' }))
+// app.use(app.router);
+app.use(cors({credentials: true, origin: true}));
+app.options('*', cors())
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.sendFile(path.join(__dirname + '/public/index.html'));
+  next();
+})
+  // *****************************************************************************************
+
 
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
@@ -183,11 +204,19 @@ app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
 })
 // ********************************************************************************************************************************
 
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/*', (req, res, next) => {
-  res.sendFile(path.join(__dirname + '/public/index.html'));
-})
+// *****************************************************************************************
+// use for production builds :
+// *****************************************************************************************
+
+// app.use(express.static(path.join(__dirname, 'public')));
+//
+// app.get('/*', (req, res, next) => {
+//   res.sendFile(path.join(__dirname + '/public/index.html'));
+// })
+
+
+// *****************************************************************************************
 
 app.listen(port, () => {
   console.log('Server is up!', port);

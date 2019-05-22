@@ -80,7 +80,7 @@ class MetaDataTaggingApp extends React.Component {
     console.log(89, modal.selectedCue)
 
     // make this a dispatch ????
-    fetch(`http://localhost:4000/api/independent-artists/tracksIA/update/${modal.selectedCue.cue_id}`, {
+    fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/tracksIA/update/${modal.selectedCue.cue_id}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
