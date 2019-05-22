@@ -30,7 +30,6 @@ util.inspect.defaultOptions.maxArrayLength = null;
 // })
   // *****************************************************************************************
 
-
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 // app.use(cors({credentials: true, origin: true}));
@@ -194,11 +193,11 @@ app.get('/api/independent-artists/temposIA/', (req, res) => {
 })
 
 app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
-  let updatedCue = req.body.updatedCue;
+  console.log(197, req)
   indieDB.query(`UPDATE cues SET cat_id = ?, style_id = ?, cue_title = ?, cue_desc = ?,
     tempo_id = ?, cue_instrus_edit = ?, date_modified = ? WHERE cue_id = ?`,
-    [updatedCue.cat_id, updatedCue.style_id, updatedCue.cue_title, updatedCue.cue_desc, updatedCue.tempo_id,
-    updatedCue.cue_instrus_edit,
+    [req.body.updatedCue.cat_id, req.body.updatedCue.style_id, req.body.updatedCue.cue_title, req.body.updatedCue.cue_desc, req.body.updatedCue.tempo_id,
+    req.body.updatedCue.cue_instrus_edit,
     moment().format('YYYY-MM-DD HH:mm:ss'), req.params.id], (err) => err ? console.log(err) : console.log(`${updatedCue.cue_id} ${updatedCue.cue_title} successfully updated.`)
   )
 })
