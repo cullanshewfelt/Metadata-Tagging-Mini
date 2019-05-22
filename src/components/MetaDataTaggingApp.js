@@ -77,7 +77,7 @@ class MetaDataTaggingApp extends React.Component {
   // make sure both also update, key_cnt, inst_cnt, and tracks.
   handleSave = (callback) => { // takes the selectedCue and pushes it to the props with the update information
     let { keywordsBI, modal, save, saveBIKeyword, selectedKeywords, updateTracks } = this.props;
-    console.log(89, modal.selectedCue)
+    console.log(80, modal.selectedCue)
 
     // make this a dispatch ????
     fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/tracksIA/update/${modal.selectedCue.cue_id}`, {
@@ -89,14 +89,14 @@ class MetaDataTaggingApp extends React.Component {
       body: JSON.stringify({updatedCue: modal.selectedCue})
     })
     .then(response => response)
-    .then(json => {console.log(83, json)
+    .then(json => {console.log(92, json)
     })
     .catch( error =>
       !error
       ? save(modal, modal.selectedCue) &
         updateTracks(modal.selectedCue, tracks) &
         console.log('done')
-      : console.log(85, error)
+      : console.log(99, error)
     )
 
 
