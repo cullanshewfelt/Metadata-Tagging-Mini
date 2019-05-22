@@ -11,7 +11,11 @@ const port = process.env.PORT || 4000;
 
 util.inspect.defaultOptions.maxArrayLength = null;
 
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
 // *****************************************************************************************
 // use this for development builds (prod at bottom) :
 // *****************************************************************************************
@@ -23,10 +27,10 @@ util.inspect.defaultOptions.maxArrayLength = null;
 // app.use(express.static(path.join(__dirname, 'public')));
 //
 // app.get('/', (req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   res.sendFile(path.join(__dirname + '/public/index.html'));
-//   next();
+  // next();
 // })
   // *****************************************************************************************
 
