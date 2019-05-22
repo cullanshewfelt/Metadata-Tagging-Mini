@@ -12,16 +12,16 @@ body {
   overflow: hidden;
 }
 
-h1 {
-  // font-size: 1rem;
+.header__title{
+  margin: 0 auto;
 }
 
 h2.navlink-header{
-  margin: 20px 0 20px 0;
+  margin: 0 0 20px 0;
 }
 
 h2.dashboard-header{
-  margin: 20px 0 30px 0;
+  margin: 0 0 20px 0;
 }
 
 button {

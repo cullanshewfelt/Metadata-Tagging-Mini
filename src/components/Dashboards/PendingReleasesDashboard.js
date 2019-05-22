@@ -92,9 +92,10 @@ class PendingReleasesDashboard extends React.Component {
     // is the name of the selected library, and then we render the
     // releasesDropDown from that library accodringly
     if(this.state.selectedOption !== selectedLibrary.libraryName){
+      this.scrollToTop(); // scrolls to top when we switch libraries
       switch(selectedLibrary.libraryName){
         case 'background-instrumentals':
-          this.setState({releasesDropDown: batchesBI.map(rel => {
+          this.setState({keywordSearchQuery: '', titleSearchQuery: '', limitTo: 14, releasesDropDown: batchesBI.map(rel => {
             return {value: rel.rel_id, label: rel.rel_num}
           }), selectedOption: 'background-instrumentals', releaseFilter: 147,})
           initializeSelectedCategories(categoriesBI);
@@ -103,7 +104,7 @@ class PendingReleasesDashboard extends React.Component {
           initializeSelectedStyles(stylesBI);
           break;
         case 'independent-artists':
-          this.setState({releasesDropDown: releasesIA.map(rel => {
+          this.setState({keywordSearchQuery: '', titleSearchQuery: '', limitTo: 14, releasesDropDown: releasesIA.map(rel => {
             return {value: rel.rel_id, label: rel.rel_num}
           }), selectedOption: 'independent-artists', releaseFilter: 147,})
           initializeSelectedCategories(categoriesIA);
@@ -119,11 +120,15 @@ class PendingReleasesDashboard extends React.Component {
   render(){
     let { hasMore, keywordSearchQuery, limitTo, releaseFilter,
           releasesDropDown, selectedOption, titleSearchQuery } = this.state;
+    let { selectedKeywords } = this.props;
+
+    let keywordSearchArray = keywordSearchQuery.split(' ');
+    let titleSearchArray = titleSearchQuery.split(' ');
 
     document.title = this.props.selectedLibrary.libraryName === 'background-instrumentals'
-      ? 'DL Music | Library | '
-      : this.props.selectedLibrary.libraryName === 'independent-artists'
-      ? 'DL Music | Library | '
+      ? 'DL Music | BI Tagging Portal | '
+      : this.props.selectedLibrary.libraryName === "independent-artists"
+      ? 'DL Music | IA Tagging Portal | '
       : null;
 
     // -------------------------------------------------------------------------------------------------------------
@@ -164,33 +169,74 @@ class PendingReleasesDashboard extends React.Component {
         : cue.cue_status !== 'Pulled')
 
     // ---------------------------------------------------------------------------------------------------------------------------------
+    let regexExclude = /(^|\s)?!{1}\w+($|\s)/; // removed global and multiline modifiers
+    let titleExclusions = [];
+    let titleMatches = [];
 
-    filteredLibrary = filteredLibrary.filter(cue => // this filter checks the titleSearchQuery against cue_titles for matches
-      cue.cue_title.toLowerCase().includes(titleSearchQuery.toLowerCase().trim()));
+    titleSearchQuery.includes('!')
+    ? titleSearchArray.forEach((query) => {
+        query !== '' & query.length > 2 &&
+          regexExclude.test(query) // if query contains ! (exclude)
+          ? titleExclusions.push(query.trim().substring(1))
+          : titleMatches.push(query.trim())
+      })
+    // this filter checks the titleSearchQuery against cue_titles for matches
+    : filteredLibrary = filteredLibrary.filter(cue =>
+        cue.cue_title.toLowerCase().includes(titleSearchQuery.toLowerCase().trim()));
+
+    let titleFilteredLibrary = [];
+
+    (titleMatches.length !== 0 || titleExclusions.length !== 0) // this filter takes titleMatches & searches through the key_id_arry
+    &&  titleFilteredLibrary.push(filteredLibrary.filter(cue => {
+          return titleMatches.every(match => { // as of now, will only return results if ALL keywords match
+            return match !== undefined &&
+            cue.cue_title.toLowerCase().trim().includes(match.toLowerCase().trim());
+          })
+        }).filter(cue => {
+          return titleExclusions.every(match => { // follow logic above, filter library through EXCLUSIVE keywords
+            return match !== undefined &&
+            !cue.cue_title.toLowerCase().trim().includes(match.toLowerCase().trim());
+          })
+        }))
+
+    // if titleFilter has matches, set filteredLibrary to them, otherwise just use filteredLibrary
+    filteredLibrary = titleFilteredLibrary.length !== 0 ? titleFilteredLibrary.flat() : filteredLibrary;
+
+    let keywordMatches = [];
+    let excludedKeywords = [];
+
+    keywordSearchArray.forEach((query) => {
+      // setting condition of query.length > 2 so that it doesn't hide all the results immeadiately when the user begins typing something
+      !query.includes('!') // if the query doesn't contain !
+      ? query !== '' & query.length > 2  &&
+        keywordMatches.push(selectedKeywords.find(keywords => {
+          return keywords.key_name.toLowerCase() === query.toLowerCase()
+        }))
+      : query !== '' & query.length > 2  && // else if the query contains a !
+        excludedKeywords.push(selectedKeywords.find(keywords => { // push into excludedKeywords
+          return keywords.key_name.toLowerCase() === query.substring(1).toLowerCase() // substring to remove !
+        }))
+    })
+
+    let tempLibrary = [];
+
+    (keywordMatches.length !== 0 || excludedKeywords.length !== 0) // this filter takes keywordMatches & searches through the key_id_arry
+    &&  tempLibrary.push(filteredLibrary.filter(cue => {
+          return keywordMatches.every(match => { // as of now, will only return results if ALL keywords match
+            return match !== undefined &&
+            cue.key_id_arry.includes(`${match.key_id}`)})
+        }).filter(cue => {
+          return excludedKeywords.every(match => { // follow logic above, filter library through EXCLUSIVE keywords
+            return match !== undefined &&
+            !cue.key_id_arry.includes(`${match.key_id}`)})
+        }))
 
     // ---------------------------------------------------------------------------------------------------------------------------------
-    // creates a set of the filtered library searchQuery in cue_desc, sounds like, since they might return the same song more than once
-    let setLibrary = new Set( keywordSearchQuery !== '' // if there is a search query
-      ? filteredLibrary.filter(cue => // this filter takes the users input & searches through the cue descriptions
-          cue.cue_desc.toLowerCase().includes(keywordSearchQuery.toLowerCase().trim())
-        ).concat(filteredLibrary.filter(cue => // this filter takes the users input & searches through the cue's sounds_like_composer_edit
-            cue.sounds_like_composer_edit
-              ? cue.sounds_like_composer_edit.toLowerCase().includes(keywordSearchQuery.toLowerCase().trim())
-              : null
-            )
-          ).concat(filteredLibrary.filter(cue => // this filter takes the users input & searches through the cue's sounds_like_film_edit
-              cue.sounds_like_film_edit
-                ? cue.sounds_like_film_edit.toLowerCase().includes(keywordSearchQuery.toLowerCase().trim())
-                : null
-              )
-            ).concat(filteredLibrary.filter(cue => // this filter takes the users input & searches through the cue's sounds_like_band_edit
-                cue.sounds_like_band_edit
-                  ? cue.sounds_like_band_edit.toLowerCase().includes(keywordSearchQuery.toLowerCase().trim())
-                  : null
-                )
-              ).sort((x, y) => // this filter will make the higher rated tracks appear first
+    // creates a set of the filtered library searchQuery in key_id_arry since they might return the same song more than once
+    let setLibrary = new Set( (keywordMatches.length !== 0 || excludedKeywords.length !== 0) // if there is a search query
+      ? [].concat(...tempLibrary).sort((x, y) => // this filter will make the higher rated tracks appear first
             x.cue_rating > y.cue_rating ? -1 : x.cue_rating < y.cue_rating ? 1 : 0
-        ) // if there is no search query just return the full filtered library
+          ) // if there is no search query just return the full filtered library
       : filteredLibrary);
     // ---------------------------------------------------------------------------------------------------------------------------------
     let trackItems = [];

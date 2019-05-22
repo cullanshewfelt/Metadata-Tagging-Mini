@@ -32,7 +32,7 @@ const Header = (props) => {
   return(
     <div className='header'>
       <div className='container'>
-        <h1 className='header__title'><NavLink to ='/' onClick={(e) => {handleChooseLibrary(e)}}>DL Music Admin Portal</NavLink></h1>
+      <h1 className='header__title'><NavLink to ='/' onClick={(e) => {handleChooseLibrary(e)}}><img src='./images/DLM.png' height='100' alt='DL MUSIC'/></NavLink></h1>
         {/* conditionally render NavBar once selectedComposers finishes loading from our API,
         because it data structure in our state with the most data in it */}
         { props.selectedComposers.length === 0 && props.selectedLibrary.library.length === 0
