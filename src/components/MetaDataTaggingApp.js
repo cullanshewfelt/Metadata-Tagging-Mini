@@ -88,7 +88,7 @@ class MetaDataTaggingApp extends React.Component {
       },
       body: JSON.stringify({updatedCue: modal.selectedCue})
     })
-    .then(response => {console.log(91, response)} return response)
+    .then(response => response)
     .then(json => {console.log(92, json)
     })
     .catch( error =>
