@@ -11,44 +11,16 @@ const port = process.env.PORT || 4000;
 
 util.inspect.defaultOptions.maxArrayLength = null;
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// })
-
 // *****************************************************************************************
 // use this for development builds (prod at bottom) :
 // *****************************************************************************************
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-// app.use(bodyParser.json({ type: 'application/json' })) // switched out for above two lines
+app.use(express.urlencoded({extended: true})); // extended true means you can use nested objects in post requests
+// app.use(bodyParser.json({ type: 'application/json' })) // !!switched out for above two lines!!
 app.use(cors({credentials: true, origin: true}));
 app.options('*', cors())
-// app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/', (req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.sendFile(path.join(__dirname + '/public/index.html'));
-//   next();
-// })
   // *****************************************************************************************
-
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cors({credentials: true, origin: true}));
-// app.options('*', cors())
-// app.use(express.static(path.join(__dirname, 'public')));
-//
-// app.get('/*', (req, res, next) => {
-//   // console.log(20, req)
-//   // res.header("Access-Control-Allow-Origin", "*");
-//   // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.sendFile(path.join(__dirname + '/public/index.html'));
-//   // res.sendFile(path.resolve(__dirname + '/../dist/index.html'));
-//   // next();
-// })
 
 app.get('/independent-artists', (req, res, next) => {
   // console.log(20, req)
@@ -217,7 +189,7 @@ app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
 // *****************************************************************************************
 
 app.use(express.static(path.join(__dirname, 'public')));
-//
+
 app.get('/*', (req, res, next) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 })
