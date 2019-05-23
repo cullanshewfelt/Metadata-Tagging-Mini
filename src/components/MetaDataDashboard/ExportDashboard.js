@@ -166,7 +166,7 @@ class ExportDashboard extends React.Component {
         </div>
         : <div className='column-wrapper'>
           <div className='dashboard-left-column'>
-            <h2>Meta Data Dashboard</h2>
+            <h2 className='dashboard-header'>Meta Data Dashboard</h2>
             <h3>Filter Options: </h3>
             <label className='radio'>
               <input
@@ -231,10 +231,17 @@ class ExportDashboard extends React.Component {
             (checking this will include all releases before the one that's selected)
             <br/>
             <br/>
+            <hr/>
+            <br/>
+            Use this page to export metadata in different formats.
+            <br/>
+            <br/>
+            First choose a release form the dropdown.
+            <br/>Then click on the metadata type form the list on the right that you'd like to export.
           </div>
           {/****************************************** RIGHT COLUMN - DOWNLOAD LINKS ******************************************/}
           <div className='dashboard-right-column'>
-            <h2>Metadata Export Download Links:</h2>
+            <h2 className='dashboard-header'>Metadata Export Download Links</h2>
             <div style={{overflowY: 'hidden', height: '550px'}}>
               <InfiniteScroll
                 dataLength={this.state.limitTo}

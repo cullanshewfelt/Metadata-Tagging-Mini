@@ -50,6 +50,10 @@ class PendingReleasesDashboard extends React.Component {
     div ? div.scrollTop = 0 : null;
   }
 
+  searchFilter = () => {
+
+  }
+
   componentDidMount(){
       let { batchesBI, categoriesBI, categoriesIA, initializeSelectedCategories, initializeSelectedInstruments,
             initializeSelectedKeywords, initializeSelectedStyles, instrumentsBI, instrumentsIA, keywordsBI, keywordsIA,
@@ -300,6 +304,14 @@ class PendingReleasesDashboard extends React.Component {
             This app is designed to tag metadata of audio files.
             <br/>
             Songs <strong><u>WILL AUTOPLAY</u></strong> when clicked.
+            <br/>
+            <br/>
+            Both search bars support boolean values.
+            <br/>
+            For example type <strong>'!insturmental'</strong> in the title search bar to hide insturmental tracks.
+            <br/>
+            <br/>
+            Also try typing <strong>'pop !synth'</strong> in the keyword search bar to show pop tracks, but exclude tracks that have synths in them.
           </div>
           <div className='dashboard-right-column'>
             <h2 className='dashboard-header'>Cues Found: {[...setLibrary].length}</h2>

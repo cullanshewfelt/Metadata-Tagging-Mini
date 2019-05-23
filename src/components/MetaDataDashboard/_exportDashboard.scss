@@ -23,7 +23,7 @@ a.download-links {
   height: $m-size;
   display:inline-block;
   width: 85%;
-  padding: $xs-size 0 $xs-size $s-size;
+  padding: $xs-size 0 $xs-size 5%;
   border-radius: 10px 10px 10px 10px;
 }
 
@@ -32,7 +32,7 @@ a.strikethrough {
   text-decoration: line-through;
   display:inline-block;
   width: 85%;
-  padding: $xs-size 0 $xs-size $s-size;
+  padding: $xs-size 0 $xs-size 5%;
   border-radius: 10px 10px 10px 10px;
 }
 
