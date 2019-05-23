@@ -197,15 +197,16 @@ app.get('/api/independent-artists/temposIA/', (req, res) => {
 })
 
 app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // res.header("Access-Control-Allow-Origin", "*"); // didn't work
+  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); // didn't work
   console.log(196, res)
   console.log(197, req.body)
   indieDB.query(`UPDATE cues SET cat_id = ?, style_id = ?, cue_title = ?, cue_desc = ?,
     tempo_id = ?, cue_instrus_edit = ?, date_modified = ? WHERE cue_id = ?`,
-    [req.body.updatedCue.cat_id, req.body.updatedCue.style_id, req.body.updatedCue.cue_title, req.body.updatedCue.cue_desc, req.body.updatedCue.tempo_id,
-    req.body.updatedCue.cue_instrus_edit,
-    moment().format('YYYY-MM-DD HH:mm:ss'), req.params.id], (err) => err ? console.log(err) : console.log(`${updatedCue.cue_id} ${updatedCue.cue_title} successfully updated.`)
+    [req.body.updatedCue.cat_id, req.body.updatedCue.style_id, req.body.updatedCue.cue_title,
+    req.body.updatedCue.cue_desc, req.body.updatedCue.tempo_id,
+    req.body.updatedCue.cue_instrus_edit, moment().format('YYYY-MM-DD HH:mm:ss'), req.params.id],
+    err) => err ? console.log(209, err) : console.log(`${updatedCue.cue_id} ${updatedCue.cue_title} successfully updated.`)
   )
 })
 // ********************************************************************************************************************************
