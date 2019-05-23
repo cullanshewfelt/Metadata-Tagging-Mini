@@ -82,7 +82,14 @@ class PendingReleasesDashboard extends React.Component {
           initializeSelectedStyles(stylesIA);
           break;
         default:
-          null
+          this.setState({releasesDropDown: releasesIA.map(rel => {
+            return {value: rel.rel_id, label: rel.rel_num}
+          }), selectedOption: 'independent-artists', releaseFilter: 147})
+          initializeSelectedCategories(categoriesIA);
+          initializeSelectedInstruments(instrumentsIA);
+          initializeSelectedKeywords(keywordsIA);
+          initializeSelectedStyles(stylesIA);
+          break;
       }
     }
 
