@@ -73,19 +73,19 @@ app.get('/exports', (req, res, next) => {
 
 app.get('/api/independent-artists/composersIA/', (req, res) => {
   indieDB.query(`SELECT cues.cue_id, cues.cue_title, composers.composer_name, composers.composer_id, publishers.publisher_name, publishers.ipi, publishers.publisher_pro,
-pref_rights_org.pro_name, pref_rights_org.pro_id, cue_2_composer.composer_split, composers.cae, composers.first, composers.middle, composers.last, composers.composer_status, composers.suffix
-FROM composers
-JOIN cue_2_composer
-ON cue_2_composer.composer_id = composers.composer_id
-JOIN pref_rights_org
-ON pref_rights_org.pro_id = composers.pro_id
-JOIN publishers
-ON publishers.publisher_id = composers.publisher_id
-JOIN cues
-ON cue_2_composer.cue_id = cues.cue_id
-ORDER BY composer_id
-DESC;
-`, (err, results) => {
+    pref_rights_org.pro_name, pref_rights_org.pro_id, cue_2_composer.composer_split, composers.cae, composers.first, composers.middle, composers.last, composers.composer_status, composers.suffix
+    FROM composers
+    JOIN cue_2_composer
+    ON cue_2_composer.composer_id = composers.composer_id
+    JOIN pref_rights_org
+    ON pref_rights_org.pro_id = composers.pro_id
+    JOIN publishers
+    ON publishers.publisher_id = composers.publisher_id
+    JOIN cues
+    ON cue_2_composer.cue_id = cues.cue_id
+    ORDER BY composer_id
+    DESC;
+    `, (err, results) => {
   // console.log(results)
     return err ? res.send(err) : res.json({
       data: results
@@ -197,16 +197,13 @@ app.get('/api/independent-artists/temposIA/', (req, res) => {
 })
 
 app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
-  // res.header("Access-Control-Allow-Origin", "*"); // didn't work
-  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); // didn't work
   console.log(196, res)
   console.log(197, req.body)
   indieDB.query(`UPDATE cues SET cat_id = ?, style_id = ?, cue_title = ?, cue_desc = ?,
     tempo_id = ?, cue_instrus_edit = ?, date_modified = ? WHERE cue_id = ?`,
-    [req.body.updatedCue.cat_id, req.body.updatedCue.style_id, req.body.updatedCue.cue_title,
-    req.body.updatedCue.cue_desc, req.body.updatedCue.tempo_id,
-    req.body.updatedCue.cue_instrus_edit, moment().format('YYYY-MM-DD HH:mm:ss'), req.params.id],
-    err) => err ? console.log(209, err) : console.log(`${updatedCue.cue_id} ${updatedCue.cue_title} successfully updated.`)
+    [req.body.updatedCue.cat_id, req.body.updatedCue.style_id, req.body.updatedCue.cue_title, req.body.updatedCue.cue_desc, req.body.updatedCue.tempo_id,
+    req.body.updatedCue.cue_instrus_edit,
+    moment().format('YYYY-MM-DD HH:mm:ss'), req.params.id], (err) => err ? console.log(err) : console.log(`${updatedCue.cue_id} ${updatedCue.cue_title} successfully updated.`)
   )
 })
 // ********************************************************************************************************************************
