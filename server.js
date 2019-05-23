@@ -16,6 +16,7 @@ util.inspect.defaultOptions.maxArrayLength = null;
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   next();
 // })
+>>>>>>> 0cc362d996575104d74fba3831d3edfa14e59ed7
 // *****************************************************************************************
 // use this for development builds (prod at bottom) :
 // *****************************************************************************************
@@ -73,19 +74,19 @@ app.get('/exports', (req, res, next) => {
 
 app.get('/api/independent-artists/composersIA/', (req, res) => {
   indieDB.query(`SELECT cues.cue_id, cues.cue_title, composers.composer_name, composers.composer_id, publishers.publisher_name, publishers.ipi, publishers.publisher_pro,
-pref_rights_org.pro_name, pref_rights_org.pro_id, cue_2_composer.composer_split, composers.cae, composers.first, composers.middle, composers.last, composers.composer_status, composers.suffix
-FROM composers
-JOIN cue_2_composer
-ON cue_2_composer.composer_id = composers.composer_id
-JOIN pref_rights_org
-ON pref_rights_org.pro_id = composers.pro_id
-JOIN publishers
-ON publishers.publisher_id = composers.publisher_id
-JOIN cues
-ON cue_2_composer.cue_id = cues.cue_id
-ORDER BY composer_id
-DESC;
-`, (err, results) => {
+    pref_rights_org.pro_name, pref_rights_org.pro_id, cue_2_composer.composer_split, composers.cae, composers.first, composers.middle, composers.last, composers.composer_status, composers.suffix
+    FROM composers
+    JOIN cue_2_composer
+    ON cue_2_composer.composer_id = composers.composer_id
+    JOIN pref_rights_org
+    ON pref_rights_org.pro_id = composers.pro_id
+    JOIN publishers
+    ON publishers.publisher_id = composers.publisher_id
+    JOIN cues
+    ON cue_2_composer.cue_id = cues.cue_id
+    ORDER BY composer_id
+    DESC;
+    `, (err, results) => {
   // console.log(results)
     return err ? res.send(err) : res.json({
       data: results
