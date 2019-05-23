@@ -11,26 +11,26 @@ const port = process.env.PORT || 4000;
 
 util.inspect.defaultOptions.maxArrayLength = null;
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-})
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// })
 // *****************************************************************************************
 // use this for development builds (prod at bottom) :
 // *****************************************************************************************
-
-// app.use(bodyParser.json({ type: 'application/json' }))
-// // app.use(app.router);
-// app.use(cors({credentials: true, origin: true}));
-// app.options('*', cors())
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+// app.use(bodyParser.json({ type: 'application/json' })) // switched out for above two lines
+app.use(cors({credentials: true, origin: true}));
+app.options('*', cors())
 // app.use(express.static(path.join(__dirname, 'public')));
-//
+
 // app.get('/', (req, res, next) => {
-  // res.header("Access-Control-Allow-Origin", "*");
-  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   res.sendFile(path.join(__dirname + '/public/index.html'));
-  // next();
+//   next();
 // })
   // *****************************************************************************************
 
@@ -197,13 +197,15 @@ app.get('/api/independent-artists/temposIA/', (req, res) => {
 })
 
 app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
-  console.log(196, res)
-  console.log(197, req.body)
+  // res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // console.log(196, res)
+  // console.log(197, req.body)
   indieDB.query(`UPDATE cues SET cat_id = ?, style_id = ?, cue_title = ?, cue_desc = ?,
     tempo_id = ?, cue_instrus_edit = ?, date_modified = ? WHERE cue_id = ?`,
     [req.body.updatedCue.cat_id, req.body.updatedCue.style_id, req.body.updatedCue.cue_title, req.body.updatedCue.cue_desc, req.body.updatedCue.tempo_id,
     req.body.updatedCue.cue_instrus_edit,
-    moment().format('YYYY-MM-DD HH:mm:ss'), req.params.id], (err) => err ? console.log(err) : console.log(`${updatedCue.cue_id} ${updatedCue.cue_title} successfully updated.`)
+    moment().format('YYYY-MM-DD HH:mm:ss'), req.params.id], (err) => err ? console.log(err) : console.log(`${req.body.updatedCue.cue_id} ${req.body.updatedCue.cue_title} successfully updated.`)
   )
 })
 // ********************************************************************************************************************************
@@ -214,7 +216,7 @@ app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
 // *****************************************************************************************
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+//
 app.get('/*', (req, res, next) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 })
