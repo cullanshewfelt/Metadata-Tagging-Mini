@@ -140,7 +140,7 @@ class PendingReleasesDashboard extends React.Component {
       ? 'DL Music | BI Tagging Portal | '
       : this.props.selectedLibrary.libraryName === "independent-artists"
       ? 'DL Music | IA Tagging Portal | '
-      : null;
+      : 'DL Music | Alpha | ';
 
     // -------------------------------------------------------------------------------------------------------------
 

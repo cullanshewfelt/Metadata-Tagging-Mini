@@ -102,7 +102,7 @@ class MetaDataTaggingApp extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'DL Music | BETA';
+    document.title = 'DL Music | Alpha | ';
     let { asyncTracksFetch, categoriesIA, initializeSelectedCategories, initializeSelectedInstruments,
           initializeSelectedKeywords, initializeSelectedLibrary, initializeSelectedStyles, instrumentsIA,
           keywordsIA, location, stylesIA, selectedLibrary } = this.props; // destructure props for clarity
@@ -114,7 +114,7 @@ class MetaDataTaggingApp extends React.Component {
             initializeSelectedCategories(categoriesIA);
             initializeSelectedInstruments(instrumentsIA);
             initializeSelectedKeywords(keywordsIA);
-            initializedSelectedLibrary(tracks, 'independent-artists');
+            initializeSelectedLibrary(tracks, 'independent-artists');
             initializeSelectedStyles(stylesIA);
           });
           break;
@@ -125,14 +125,9 @@ class MetaDataTaggingApp extends React.Component {
           initializeSelectedLibrary(tracks, 'independent-artists');
           initializeSelectedStyles(stylesIA);
           break;
-        default:
-          asyncTracksFetch(tracks => {
-            initializeSelectedCategories(categoriesIA);
-            initializeSelectedInstruments(instrumentsIA);
-            initializeSelectedKeywords(keywordsIA);
-            initializedSelectedLibrary(tracks, 'independent-artists');
-            initializeSelectedStyles(stylesIA);
-          });
+        case '/':
+          initializeSelectedLibrary([], '');
+          initializeSelectedComposer([]);
           break;
       }
     }
