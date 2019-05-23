@@ -197,6 +197,8 @@ app.get('/api/independent-artists/temposIA/', (req, res) => {
 })
 
 app.post('/api/independent-artists/tracksIA/update/:id', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   console.log(196, res)
   console.log(197, req.body)
   indieDB.query(`UPDATE cues SET cat_id = ?, style_id = ?, cue_title = ?, cue_desc = ?,
