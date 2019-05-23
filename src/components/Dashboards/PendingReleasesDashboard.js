@@ -308,7 +308,7 @@ class PendingReleasesDashboard extends React.Component {
             <br/>
             Both search bars support boolean values.
             <br/>
-            For example type <strong>'!insturmental'</strong> in the title search bar to hide insturmental tracks.
+            For example type <strong>'!instrumental'</strong> in the title search bar to hide instrumental tracks.
             <br/>
             <br/>
             Also try typing <strong>'pop !synth'</strong> in the keyword search bar to show pop tracks, but exclude tracks that have synths in them.
