@@ -16,7 +16,7 @@ util.inspect.defaultOptions.maxArrayLength = null;
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   next();
 // })
->>>>>>> 0cc362d996575104d74fba3831d3edfa14e59ed7
+
 // *****************************************************************************************
 // use this for development builds (prod at bottom) :
 // *****************************************************************************************
