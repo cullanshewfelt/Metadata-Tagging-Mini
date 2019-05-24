@@ -130,6 +130,9 @@ class MetaDataTaggingApp extends React.Component {
           initializeSelectedComposer([]);
           break;
       }
+    } else {
+      location.pathname === '/'
+      && initializeSelectedLibrary([], '') & initializeSelectedComposer([]);
     }
   }
 
