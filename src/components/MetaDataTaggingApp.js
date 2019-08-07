@@ -83,10 +83,7 @@ const MetaDataTaggingApp = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    cues: state.cues,
-    instrumentsBI: state.instrumentsBI,
     instrumentsIA: state.instrumentsIA,
-    keywordsBI: state.keywordsBI,
     keywordsIA: state.keywordsIA,
     modal: state.modal,
     selectedInstruments: state.selectedInstruments,

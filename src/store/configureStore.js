@@ -31,7 +31,13 @@ import exportReducers from '../reducers/ExportReducers/exportReducers';
 import { catLink, styleLink } from '../reducers/linkReducers';
 
 const reducer = {
+  categoriesIA: categoriesIAReducers,
+  catLink: catLink,
+  composersIA: composersIAReducers,
   downloadProgress: exportReducers,
+  instrumentsIA: instrumentsIAReducers,
+  masterKeywordsIA: masterKeywordsReducersIA,
+  keywordsIA: keywordsReducersIA,
   modal: modalReducers,
   ratings: ratingsReducers,
   releasesIA: releasesIAReducers,
@@ -44,6 +50,7 @@ const reducer = {
   selectedStyles: selectedStylesReducers,
   selectedReleases: selectedReleasesReducers,
   statuses: statusReducers,
+  stylesIA: stylesIAReducers,
   styleLink: styleLink,
   tempos: temposReducers,
   tracks: tracks,

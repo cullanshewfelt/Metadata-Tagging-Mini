@@ -130,7 +130,7 @@ class PendingReleasesDashboard extends React.Component {
     let { hasMore, keywordSearchQuery, limitTo, releaseFilter,
           releasesDropDown, selectedOption, titleSearchQuery } = this.state;
 
-    let { cueFetchIsLoading, selectedKeywords, selectedLibrary, selectedMasterKeywords } = this.props;
+    let { cueFetchIsLoading, selectedKeywords, selectedLibrary, selectedMasterKeywords, trackFetchIsLoading } = this.props;
 
     let keywordSearchArray = keywordSearchQuery.split(' ');
     let titleSearchArray = titleSearchQuery.split(' ');
@@ -282,7 +282,7 @@ class PendingReleasesDashboard extends React.Component {
     )
 
     const cuesFound = setLibraryArray.length;
-    const nonActive = setLibraryArray.filter(cues => cues.cue_status !== 'Active').length;
+    const nonActive = setLibraryArray.filter(cues => cues.cue_status !== 'Active' && cues.cue_status !== 'Instrumental_Active').length;
     const activeCuesFound = cuesFound - nonActive;
 
     return(
@@ -330,6 +330,7 @@ class PendingReleasesDashboard extends React.Component {
               { (setLibraryArray.length === 0 && releaseFilter === 147)
                 || (setLibraryArray.length === 0 && isQuery === true)
                 || (cueFetchIsLoading === false && setLibraryArray.length !== 0)
+                || (trackFetchIsLoading === false && setLibraryArray.length !== 0)
                   ? ` ${cuesFound} (${activeCuesFound ? activeCuesFound + ' Active' : '-'})`
                   : ' Loading...'}
             </h2>
@@ -353,7 +354,7 @@ class PendingReleasesDashboard extends React.Component {
                     {trackItems}
                   </InfiniteScroll>
                 : (setLibraryArray.length === 0 && isQuery === false && releaseFilter !== 147)
-                  || cueFetchIsLoading
+                  || cueFetchIsLoading || trackFetchIsLoading
                 ? <Loader/>
                 : <ResultsMessage/>
             }
@@ -365,15 +366,10 @@ class PendingReleasesDashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   batchesBI: state.batchesBI,
-   categoriesBI: state.categoriesBI,
    categoriesIA: state.categoriesIA,
    cueFetchIsLoading: state.cueFetchIsLoading,
-   instrumentsBI: state.instrumentsBI,
    instrumentsIA: state.instrumentsIA,
-   keywordsBI: state.keywordsBI,
    keywordsIA: state.keywordsIA,
-   masterKeywordsBI: state.masterKeywordsBI,
    masterKeywordsIA: state.masterKeywordsIA,
    releasesIA: state.releasesIA,
    selectedCategories: state.selectedCategories,
@@ -382,8 +378,8 @@ const mapStateToProps = (state) => ({
    selectedLibrary: state.selectedLibrary,
    selectedMasterKeywords: state.selectedMasterKeywords,
    selectedStyles: state.selectedStyles,
-   stylesBI: state.stylesBI,
-   stylesIA: state.stylesIA
+   stylesIA: state.stylesIA,
+   trackFetchIsLoading: state.trackFetchIsLoading
 })
 
 const mapDispatchToProps = {

@@ -97,14 +97,14 @@ const Footer = (props) => {
     let urlPath =
       selectedCue.cue_id === 19 || selectedCue.style_id === 147
         ? selectedLibrary === 'background-instrumentals'
-           ? `/proc_music/mp3/DLM - ${selectedCue.cue_title}.mp3`
+           ? `http://www.dl-music.com/proc_music/mp3/DLM - ${selectedCue.cue_title}.mp3`
            : selectedLibrary === 'independent-artists'
-           ? `/proc_music/mp3/IA - ${selectedCue.cue_title}.mp3`
+           ? `http://www.dl-music.com/proc_music/mp3/IA - ${selectedCue.cue_title}.mp3`
            : ''
         : selectedLibrary === 'background-instrumentals'
-           ? `/bi_music/mp3/${genre}/${subGenre}/DLM - ${selectedCue.cue_title}.mp3`
+           ? `http://www.dl-music.com/mp3/${genre}/${subGenre}/DLM - ${selectedCue.cue_title}.mp3`
            : selectedLibrary === 'independent-artists'
-           ? `/ia_music/mp3/${genre}/${noInstrumentalsubGenre}/IA - ${selectedCue.cue_title}.mp3`
+           ? `http://www.dl-music.com/artist_music/ia_music/mp3/${genre}/${noInstrumentalsubGenre}/IA - ${selectedCue.cue_title}.mp3`
            : ''
 
     // console.log(111, urlPath)

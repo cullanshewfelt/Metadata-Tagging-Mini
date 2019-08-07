@@ -17,10 +17,10 @@ export const handleSelectCategory = (newCategory) => {
 
     switch(getState().selectedLibrary.libraryName){
       case 'background-instrumentals':
-        return dispatch(handleUpdateModal(updatedCue))
-        & dispatch(selectCategory(newCatId))
-        & dispatch(handleCategoryToMasterKey(newCategory, oldCatId))
-        & dispatch(handleCategoryChange(newCategory));
+        // return dispatch(handleUpdateModal(updatedCue))
+        // & dispatch(selectCategory(newCatId))
+        // & dispatch(handleCategoryToMasterKey(newCategory, oldCatId))
+        // & dispatch(handleCategoryChange(newCategory));
       case 'independent-artists':
         return dispatch(handleUpdateModal(updatedCue))
         & dispatch(selectCategory(newCatId))
