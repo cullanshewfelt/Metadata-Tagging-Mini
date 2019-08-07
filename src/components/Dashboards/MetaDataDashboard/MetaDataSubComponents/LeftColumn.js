@@ -216,26 +216,16 @@ const LeftColumn = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    batchesBI: state.batchesBI,
-    BImasterIDs: state.BImasterIDs,
-    categoriesBI: state.categoriesBI,
     categoriesIA: state.categoriesIA,
     clients: state.clients,
-    composersBI: state.composersBI,
     composersIA: state.composersIA,
-    cues: state.cues,
     downloadProgress: state.downloadProgress,
-    instrumentsBI: state.instrumentsBI,
-    keywordsBI: state.keywordsBI,
-    monitoring: state.monitoring,
     releasesIA: state.releasesIA,
-    searches: state.searches,
     selectedCategories: state.selectedCategories,
     selectedComposers: state.selectedComposers,
     selectedLibrary: state.selectedLibrary,
     selectedReleases: state.selectedReleases,
     selectedStyles: state.selectedStyles,
-    stylesBI: state.stylesBI,
     stylesIA: state.stylesIA,
     tempos: state.tempos,
     tracks: state.tracks,
@@ -243,8 +233,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  asyncSearchFetch,
-  asyncTracksFetch,
   handleFetchCuesForExport,
   initializeSelectedCategories,
   initializeSelectedComposer,

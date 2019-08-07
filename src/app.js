@@ -48,11 +48,6 @@ fetch('http://localhost:4000/api/independent-artists/instrumentsIA/')
     store.dispatch(initializeIAInstruments(response.data))})
   .catch(err => console.error(err));
 
-fetch('http://localhost:4000/api/background-instrumentals/keywordsBI/')
-  .then(response => response.json())
-  .then(response => {store.dispatch(initializeKeywordsBI(response.data))})
-  .catch(err => console.error(err))
-
 fetch('http://localhost:4000/api/independent-artists/masterKeywordsIA/')
   .then(response => response.json())
   .then(response => {store.dispatch(initializeMasterKeywordsIA(response.data))})
@@ -72,11 +67,6 @@ fetch('http://localhost:4000/api/independent-artists/temposIA')
   .then(response => response.json())
   .then(response => {store.dispatch(initializeTempos(response.data))})
   .catch(err => console.error(err));
-
-// fetch('http://localhost:4000/api/independent-artists/artists')
-//   .then(response => response.json())
-//   .then(response => {store.dispatch(initializeArtistsStageName(response.data))})
-//   .catch(err => console.error(err));
 
 const modalReducerDeafultState = {
   selectedComposer: [],

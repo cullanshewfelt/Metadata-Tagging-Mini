@@ -167,11 +167,6 @@ const LeftColumn = (props) => {
 const mapStateToProps = (state) => {
   // include ALL props which would cause LeftColumn to rerender
   return {
-    batchesBI: state.batchesBI,
-    composersBI: state.composersBI,
-    cues: state.cues,
-    instrumentsBI: state.instrumentsBI,
-    keywordsBI: state.keywordsBI,
     modal: state.modal,
     ratings: state.ratings,
     releasesIA: state.releasesIA,
@@ -179,7 +174,6 @@ const mapStateToProps = (state) => {
     selectedKeywords: state.selectedKeywords,
     selectedLibrary: state.selectedLibrary,
     selectedStyles: state.selectedStyles,
-    stylesBI: state.stylesBI,
     stylesIA: state.stylesIA,
     tempos: state.tempos
   }
