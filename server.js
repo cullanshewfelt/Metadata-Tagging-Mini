@@ -22,13 +22,14 @@ app.use(express.urlencoded({extended: true})); // extended true means you can us
 app.use(cors({credentials: true, origin: true}));
 app.options('*', cors())
 app.use(compression());
-app.use(express.static(path.join(__dirname, 'public/build')));
 
 // app.use('/api/background-instrumentals/', backgroundInstrumentalsRouter);
 app.use('/api/independent-artists/', independentArtistsRouter);
 app.use('/api/exports/', exportsRouter);
 app.use('/upload/', uploadsRouter);
 app.use('/move/', linksRouter);
+
+app.use(express.static(path.join(__dirname, 'public/build')));
 
 app.get('/*', (req, res, next) => {
   // res.header("Access-Control-Allow-Origin", "*");
