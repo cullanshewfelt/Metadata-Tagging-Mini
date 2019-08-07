@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true})); // extended true means you can use nested objects in post requests
 app.use(cors({credentials: true, origin: true}));
 app.options('*', cors())
-app.use(compression());
+// app.use(compression());
 
 // *****************************************************************************************
 
@@ -41,7 +41,7 @@ app.get('/*', (req, res) => {
 // ********************************************************************************************************************************
 
 app.listen(port, () => {
-  console.log('listening on port 4000');
+  console.log('listening on port ', port);
 })
 
 // ********************************************************************************************************************************
