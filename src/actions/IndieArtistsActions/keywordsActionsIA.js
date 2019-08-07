@@ -1,39 +1,35 @@
 // INITIALIZE_KEYWORDS
-export const initializeIAKeywords = (data) => ({
-    type: 'INITIALIZE_IA_KEYWORDS',
-    keywordsIA: data
-});
+export const initializeKeywordsIA = (keywordsIA) => ({ type: 'INITIALIZE_IA_KEYWORDS', keywordsIA });
 
-export const selectKeywords = (keywords) => ({
-  type: 'SELECT_IA_KEYWORDS',
-  keywordsIA: keywords
-})
+export const selectKeywordsIA = (keywordsIA) => ({ type: 'SELECT_IA_KEYWORDS', keywordsIA });
 
-export const clearIAKeywords = (keywords) => ({
-  type: 'CLEAR_IA_KEYWORDS',
-  keywordsIA: keywords
-})
+export const clearIAKeywords = (keywordsIA) => ({ type: 'CLEAR_IA_KEYWORDS', keywordsIA });
 
+export const updateKeywordIA = (updatedKeyword) => ({ type: 'UPDATE_KEYWORD_IA', updatedKeyword });
 
-export const saveIAKeyword = (keywordObject, keywords) => {
-  fetch(`http://localhost:4000/api/independent-artists/keywordsIA/update/${keywordObject.key_id}`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({keyword: keywordObject})
-  })
-  .then(response => response)
-  .then(json => {console.log(27, json)
-  })
-  .catch( error =>
-    !error
-    ? console.log('done')
-    : console.log(33, error)
-  )
-  return({
-    type: 'SAVE_IA_KEYWORDS',
-    keywordsIA: keywords
-  })
+export const handleUpdateKeywordsIA = (updatedKeyword) => {
+  return (dispatch, getState) => dispatch(saveKeywordIA(updatedKeyword))
+}
+
+export const saveKeywordIA = (updatedKeyword) => {
+  return (dispatch) => {
+    fetch(`http://localhost:4000/api/independent-artists/keywordsIA/update/${updatedKeyword.keyword_id}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ keyword: updatedKeyword })
+    })
+    .then(response => response)
+    .then(json => {
+     // console.log(25, json);
+     dispatch(updateKeywordIA(updatedKeyword))
+    })
+    .catch(error =>
+     !error ?
+     console.log('done') :
+     console.log(31, error)
+    )
+  }
 }

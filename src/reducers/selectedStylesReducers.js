@@ -10,9 +10,15 @@ export default (state = selectedStylesDefaultState, action) => {
    case 'INITIALIZE_SELECTED_STYLES':
      return action.selectedStyles;
    case 'SELECT_STYLE':
-     return action.selectedStyles;
+     return [...state].map(style => {
+       return action.newSelectedStyleId === style.style_id
+         ? { ...style, selected: true }
+         : { ...style, selected: false }
+     });
    case 'CLEAR_SELECTED_STYLES':
-     return action.selectedStyles;
+     return [...state].map(styles => {
+       return { ...styles, selected: false }
+     });
    default:
      return state;
    }

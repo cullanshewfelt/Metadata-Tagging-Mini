@@ -7,11 +7,26 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+public/build/
+
+*.mp3
+*.wav
+
+public/temp
+
+public/bundle.js
+public/bundle.js.map
+public/styles.css
+public/styles.css.map
+
+
 *.sql
 catalogDBconnection.js
 indieDBconnection.js
 dbconnection.js
 clientDBconnection.js
+
+Resources/data_for_master_track_ids/
 
 # Runtime data
 pids

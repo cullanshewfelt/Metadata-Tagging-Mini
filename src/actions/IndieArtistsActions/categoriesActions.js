@@ -10,7 +10,9 @@ export const initializeIACategories = (data) => ({
 
 });
 
-export const selectIACategory = (data) => ({
-  type: 'SELECT_IA_CATEGORY',
-  categoriesIA: data
-})
+export const handleUpdateCategoriesIA = (newCatId) => {
+  return {
+    type: 'UPDATE_CATEGORIES_IA',
+    newCatId: newCatId
+  }
+}

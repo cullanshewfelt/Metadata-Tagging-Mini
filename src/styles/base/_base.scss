@@ -1,15 +1,16 @@
 html {
   // font-size: 62.5%;
   height: 100%;
-  // overflow: hidden;
+  overflow: hidden;
+  line-height: normal;
 }
 
 body {
   font-family: Helvetica, Arial, sans-serif;
   background-color: $outrun-blue;
-  // line-height: $m-size;
+  line-height: normal;
   height: 100%;
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 .header__title{

@@ -7,14 +7,17 @@ let keywordsReducersDefaultState = []
 export default (state = keywordsReducersDefaultState, action) => {
   switch(action.type){
     case 'INITIALIZE_IA_KEYWORDS':
-   // array spreading, we are adding the new cue to the previous cue state without changing the original state
       return action.keywordsIA;
     case 'SELECT_IA_KEYWORDS':
       return action.keywordsIA;
     case 'CLEAR_IA_KEYWORDS':
       return action.keywordsIA;
-    case 'SAVE_IA_KEYWORDS':
-      return action.keywordsIA;
+    case 'UPDATE_KEYWORD_IA':
+      return [...state].map(keyword => {
+        return action.updatedKeyword.keyword_id === keyword.keyword_id
+          ? { ...keyword, key_cnt: action.updatedKeyword.key_cnt }
+          : { ...keyword }
+      });
    default:
      return state;
    }

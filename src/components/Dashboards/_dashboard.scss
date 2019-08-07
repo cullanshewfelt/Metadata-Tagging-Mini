@@ -6,23 +6,13 @@
   text-align: center;
 }
 
-.dashboard-header{
-  text-align: center;
-}
-
 ::-webkit-scrollbar { // MAKES SCROLLBAR TRANSPARENT
     // width: 0px;
     // background: transparent; /* make scrollbar transparent */
 }
 
 .scrollableDiv {
-   // overflowY: hidden; // controls
-}
-
-
-
-.selected{
-  background: $hover-gray;
+   overflowY: hidden;
 }
 
 .cue-titles{
@@ -62,7 +52,6 @@
   width: 80%;
 }
 
-
 .dashboard-left-column{
     flex: 50%;
     float: left;
@@ -70,6 +59,7 @@
     width: 50%;
     padding: 10px;
     word-wrap: break-word;
+    // overflow-y: auto;
 }
 
 .dashboard-right-column{
@@ -77,7 +67,14 @@
     flex: 50%;
     float: left;
     max-height: 80%;
+    // height: 80%;
     width: 50%;
     padding: 10px;
     word-wrap: break-word;
+    overflow-y:auto;
+    // overflow-y: auto;
+}
+
+.selected{
+  background: $hover-gray;
 }

@@ -18,6 +18,7 @@ The data in the database is not necessarily sensitive, but I do not feel comfort
 1.  [Documentation](#documentation)
     1.  [Installation](#installation)
     2.  [Running the Program](#runningtheprogram)
+    3.  [Deploying](#deploying)
 2.  [Built With](#builtwith)
 3.  [Contributors](#contributors)
 4.  [License](#license)
@@ -36,6 +37,12 @@ Just install required npm dependencies
 
     npm run start
     open localhost:8080 in your browser
+
+### [Deploying](#deploying)
+
+To deploy to Heroku, do the following
+
+    git push heroku master
 
 ## [Built With](#builtwith)
 

@@ -1,0 +1,73 @@
+
+.cue-modal {
+  border-radius: 10px 10px 10px 10px;
+  background: $outrun-blue;
+  color: black;
+  height: 80%;
+  line-height: 1;
+  max-height: 80%;
+  padding: $m-size;
+  outline: none;
+  overflow: hidden;
+  width: 80%;
+}
+
+.title {
+  text-align: center;
+  margin-top: -$m-size;
+}
+
+.save-button{
+  float: right;
+}
+
+.column-wrapper {
+  display: flex;
+  // overflow-y: auto;
+}
+
+.scrollable{
+  height: auto;
+  width: auto;
+  overflow-y: scroll;
+  overflow-x:hidden;
+}
+
+.modal-category-select:hover {
+  background: $hover-gray;
+  -webkit-transition: $hover-transition;
+  -moz-transition: $hover-transition;
+  -o-transition: $hover-transition;
+  transition: $hover-transition;
+}
+
+.modal-select{
+  // border-radius: 10px 10px 10px 10px;
+  height: $s-size;
+  padding: $xs-size 0 $xs-size;
+  text-align: center;
+}
+
+.modal-select:hover {
+  background: $hover-gray;
+  -webkit-transition: $hover-transition;
+  -moz-transition: $hover-transition;
+  -o-transition: $hover-transition;
+  transition: $hover-transition;
+}
+
+.modal-selected{
+  background: $hover-gray;
+  // border-radius: 10px 10px 10px 10px;
+  height: $s-size;
+  padding: $xs-size 0 $xs-size;
+  text-align: center;
+}
+
+.modal-selected:hover {
+  background: $outrun-blue;
+  -webkit-transition: $hover-transition;
+  -moz-transition: $hover-transition;
+  -o-transition: $hover-transition;
+  transition: $hover-transition;
+}
