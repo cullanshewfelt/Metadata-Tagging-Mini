@@ -17,13 +17,14 @@ util.inspect.defaultOptions.maxArrayLength = null;
 // use this for development builds (prod at bottom) :
 // *****************************************************************************************
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true})); // extended true means you can use nested objects in post requests
-app.use(cors({credentials: true, origin: true}));
-app.options('*', cors())
-app.use(compression());
+// app.use(express.json());
+// app.use(express.urlencoded({extended: true})); // extended true means you can use nested objects in post requests
+// app.use(cors({credentials: true, origin: true}));
+// app.options('*', cors())
+// app.use(compression());
 
-// app.use('/api/background-instrumentals/', backgroundInstrumentalsRouter);
+// *****************************************************************************************
+
 app.use('/api/independent-artists/', independentArtistsRouter);
 app.use('/api/exports/', exportsRouter);
 app.use('/upload/', uploadsRouter);
