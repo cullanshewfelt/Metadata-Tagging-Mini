@@ -9,6 +9,14 @@ const linksRouter = require('./routes/linkRoutes');
 const compression = require('compression');
 const app = express();
 const util = require('util');
+//
+// const ENV = process.env.NODE_ENV;
+//
+// if (ENV === 'development') {
+//   console.log('Loading .env');
+//   require('dotenv').config();
+// }
+
 const port = process.env.PORT || 4000;
 
 util.inspect.defaultOptions.maxArrayLength = null;
