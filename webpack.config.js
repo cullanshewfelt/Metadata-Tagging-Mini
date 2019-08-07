@@ -34,7 +34,6 @@ module.exports = (env) => {
                 if (process.env.NODE_ENV === 'development') {
                   return '[path][name].[ext]';
                 }
-
                 return '[hash].[ext]';
               },
             }
