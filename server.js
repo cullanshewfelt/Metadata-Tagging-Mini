@@ -2,14 +2,13 @@ const express = require('express');
 var bodyParser = require('body-parser')
 const path = require('path');
 const cors = require('cors');
-// const backgroundInstrumentalsRouter = require('./routes/backgroundInstrumentalsRoutes');
 const independentArtistsRouter = require('./routes/independent-artists-routes');
 const exportsRouter = require('./routes/exports-routes');
 const uploadsRouter = require('./routes/uploads');
 const linksRouter = require('./routes/linkRoutes');
 const compression = require('compression');
 const app = express();
-
+const util = require('util');
 const port = process.env.PORT || 4000;
 
 util.inspect.defaultOptions.maxArrayLength = null;
@@ -37,7 +36,6 @@ app.get('/*', (req, res, next) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
   next();
 })
-
 
 // ********************************************************************************************************************************
 
