@@ -32,11 +32,10 @@ app.use('/move/', linksRouter);
 
 app.use(express.static(path.join(__dirname, 'public/build')));
 
-app.get('/*', (req, res, next) => {
+app.get('/*', (req, res) => {
   // res.header("Access-Control-Allow-Origin", "*");
   // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.sendFile(path.join(__dirname + '/public/index.html'));
-  next();
 })
 
 // ********************************************************************************************************************************
