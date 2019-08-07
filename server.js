@@ -30,7 +30,7 @@ app.use('/api/exports/', exportsRouter);
 app.use('/upload/', uploadsRouter);
 app.use('/move/', linksRouter);
 
-app.get('/*', (req, res, next) => {
+app.get('/', (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.sendFile(path.join(__dirname + '/public/index.html'));
