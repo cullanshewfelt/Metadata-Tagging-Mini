@@ -1,6 +1,6 @@
 const moment = require('moment');
 const express = require('express');
-const indieDB = require('../indieDBconnection');
+const indieDB = require('../connection');
 let router = express.Router()
 
 // ********************************************************************************************************************************

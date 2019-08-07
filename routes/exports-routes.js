@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // const catalogDB = require('../catalogDBconnection');
-const indieDB = require('../indieDBconnection');
+const indieDB = require('../connection');
 
 // handles all express routes for the exports page
 
