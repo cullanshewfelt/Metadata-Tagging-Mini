@@ -8,7 +8,7 @@ const exportTools = require('../ExportTools.js');
 // ******************************************************************************************
 //  ADREV EXPORT FUNCTION
 // ******************************************************************************************
-
+//
 // working needs to be diff checked
 
 const AdRevExport = (props) => {
