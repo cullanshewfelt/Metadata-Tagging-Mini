@@ -152,6 +152,7 @@ const LeftColumn = (props) => {
           type='radio'
           name='react-tips'
           value='background-instrumentals'
+          disabled={true}
           checked={selectedOption === 'background-instrumentals'}
           className='form-check-input'
           onChange={handleRadio}

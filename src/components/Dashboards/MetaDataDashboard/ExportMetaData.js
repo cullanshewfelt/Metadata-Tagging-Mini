@@ -41,7 +41,7 @@ const ExportDashboard = (props) => {
   const [monitoring, setMonitoring] = useState(props.monitoring);
   const [releaseFilter, setReleaseFilter] = useState(147);
   const [releasesDropDown, setReleasesDropDown] = useState(releasesDropDownJSON);
-  const [selectedOption, setSelectedOption] = useState('background-instrumentals');
+  const [selectedOption, setSelectedOption] = useState('independent-artists');
   const [startDate, setStartDate] = useState(moment().toDate());
   // ------------------------------------------------------------------------------------------------------------
   document.title = 'DL Music | Export Portal | ';
@@ -49,21 +49,21 @@ const ExportDashboard = (props) => {
   const downloadCompletedChecker =  () => { setDownloadFinished(!downloadFinished) }
 
   useEffect(() => {
-    setBatchesDropDown(batchesBI.map(rel => {
+    setBatchesDropDown(releasesIA.map(rel => {
       return { value: rel.rel_id, label: rel.rel_num }
     }))
-  }, [batchesBI])
+  }, [releasesIA])
 
   useEffect(() => {
-    initializeSelectedCategories(categoriesBI)
-  }, [categoriesBI])
+    initializeSelectedCategories(categoriesIA)
+  }, [categoriesIA])
 
   useEffect(() => {
-    initializeSelectedStyles(stylesBI)
-  }, [stylesBI])
+    initializeSelectedStyles(stylesIA)
+  }, [stylesIA])
 
   useEffect(() => {
-    initializeSelectedLibrary([], 'background-instrumentals')
+    initializeSelectedLibrary([], 'independent-artists')
   }, [])
   // ------------------------------------------------------------------------------------------------------------
 
