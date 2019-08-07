@@ -13,7 +13,7 @@ export const handleUpdateKeywordsIA = (updatedKeyword) => {
 
 export const saveKeywordIA = (updatedKeyword) => {
   return (dispatch) => {
-    fetch(`http://localhost:4000/api/independent-artists/keywordsIA/update/${updatedKeyword.keyword_id}`, {
+    fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/keywordsIA/update/${updatedKeyword.keyword_id}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

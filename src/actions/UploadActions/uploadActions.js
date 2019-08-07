@@ -11,7 +11,7 @@ export const uploadAudio = (files) => {
     formData.append(`file${i}`, file)
   });
 
-  fetch(`http://localhost:4000/upload/proc_music/`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/upload/proc_music/`, {
     method: 'POST',
     body: formData
   })
@@ -31,7 +31,7 @@ export const uploadMetadataBI = (files) => {
     formData.append(`file${i}`, file)
   });
 
-  fetch(`http://localhost:4000/upload/bi/metadata/`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/upload/bi/metadata/`, {
     method: 'POST',
     body: formData
   })

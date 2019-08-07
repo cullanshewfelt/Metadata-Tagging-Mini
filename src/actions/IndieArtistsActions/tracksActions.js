@@ -10,7 +10,7 @@ export const asyncTracksFetch = () => {
   console.log(`fetching all IA cues`);
   return (dispatch) => {
     dispatch(tracksAreLoading(true));
-    fetch('http://localhost:4000/api/independent-artists/tracksIA/')
+    fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/tracksIA/')
       .then(response => {
         !response.ok ? Error(response.statusText) : null ;
         dispatch(tracksAreLoading(false));
@@ -50,7 +50,7 @@ export const fetchIATracksFromRelease = (releaseID) => {
   console.log(`fetching IA tracks for release ${releaseID}`);
   return (dispatch) => {
     dispatch(tracksAreLoading(true));
-    fetch(`http://localhost:4000/api/independent-artists/tracksIA/rel/${releaseID}/`)
+    fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/tracksIA/rel/${releaseID}/`)
       .then(response => {
         !response.ok ? Error(response.statusText) : null ;
         dispatch(tracksAreLoading(false));
@@ -67,7 +67,7 @@ export const fetchIATracksFromRelease = (releaseID) => {
 
 export const fetchIAcue = (selectedCueId) => {
   return function (dispatch) {
-    fetch(`http://localhost:4000/api/independent-artists/tracksIA/${selectedCueId}`)
+    fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/tracksIA/${selectedCueId}`)
     .then(response => response.json())
     .then(res => {
       const cue = res.data[0];
@@ -104,7 +104,7 @@ export const updateTacksIA = (updatedCue, updatedCueIndex) => {
 }
 
 export const saveIAcue = (selectedCue) => {
-  fetch(`http://localhost:4000/api/independent-artists/tracksIA/update/${selectedCue.cue_id}`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/tracksIA/update/${selectedCue.cue_id}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -139,7 +139,7 @@ export const clearIAcues = () => ({ type: 'CLEAR_IA_CUES' });
 export const tracksExportIA = () => {
   return (dispatch) => {
     dispatch(tracksAreLoading(true));
-    fetch('http://localhost:4000/api/exports/tracksIA/')
+    fetch('https://react-metadata-beta.herokuapp.com/api/exports/tracksIA/')
       .then(response => {
         !response.ok ? Error(response.statusText) : null ;
         dispatch(tracksAreLoading(false));
@@ -158,7 +158,7 @@ export const fetchIAExportsFromRelease = (releaseID) => {
   // console.log(158, 'releaseID', releaseID);
   return (dispatch) => {
     dispatch(tracksAreLoading(true));
-    fetch(`http://localhost:4000/api/exports/tracksIA/rel/${releaseID}`)
+    fetch(`https://react-metadata-beta.herokuapp.com/api/exports/tracksIA/rel/${releaseID}`)
       .then(response => {
         !response.ok ? Error(response.statusText) : null ;
         dispatch(tracksAreLoading(false));

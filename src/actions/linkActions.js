@@ -64,7 +64,7 @@ export const handleSaveBILinks = () => (dispatch, getState) => {
 export const saveBINewLinks = () => (dispatch, getState) => {
   const { catLink, modal, styleLink } = getState();
   const { selectedCue } = modal;
-  fetch(`http://localhost:4000/move/init-BI/${catLink.newCategoryLink}/${styleLink.newStyleLink}`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/move/init-BI/${catLink.newCategoryLink}/${styleLink.newStyleLink}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -90,7 +90,7 @@ export const moveBILinks = () => (dispatch, getState) => {
   const { selectedCue } = modal;
   const catURI = `${catLink.oldCategoryLink}+${catLink.newCategoryLink}`;
   const styleURI = `${styleLink.oldStyleLink}+${styleLink.newStyleLink}`;
-  fetch(`http://localhost:4000/move/BI/${catURI}/${styleURI}`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/move/BI/${catURI}/${styleURI}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -129,7 +129,7 @@ export const handleSaveIALinks = () => (dispatch, getState) => {
 export const saveIANewLinks = () => (dispatch, getState) => {
   const { catLink, modal, styleLink } = getState();
   const { selectedCue } = modal;
-  fetch(`http://localhost:4000/move/init-IA/${catLink.newCategoryLink}/${styleLink.newStyleLink}`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/move/init-IA/${catLink.newCategoryLink}/${styleLink.newStyleLink}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -155,7 +155,7 @@ export const moveIALinks = () => (dispatch, getState) => {
   const { selectedCue } = modal;
   const catURI = `${catLink.oldCategoryLink}+${catLink.newCategoryLink}`;
   const styleURI = `${styleLink.oldStyleLink}+${styleLink.newStyleLink}`;
-  fetch(`http://localhost:4000/move/IA/${catURI}/${styleURI}`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/move/IA/${catURI}/${styleURI}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

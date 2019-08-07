@@ -9,7 +9,7 @@ export const initializeIAComposers = (composersIA) => ({ type: 'INITIALIZE_IA_CO
 export const fetchIAcomposer = (selectedCueId) => {
   return function (dispatch, getState) {
     // console.log(14, selectedCueId);
-    fetch(`http://localhost:4000/api/independent-artists/composersIA/${selectedCueId}`)
+    fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/composersIA/${selectedCueId}`)
     .then(response => response.json())
     .then(composer => {
       // console.log(18, composer.data) // DO SOMETHING
@@ -28,7 +28,7 @@ export const fetchIAcomposer = (selectedCueId) => {
 // ==============================================================================================================
 export const fetchIAcomposersExport = () => (dispatch) => {
   // console.log('fetching all IA compsosers')
-  fetch('http://localhost:4000/api/exports/composersIA/')
+  fetch('https://react-metadata-beta.herokuapp.com/api/exports/composersIA/')
     .then(response => response.json())
     .then(response => {
       console.log(`fetched ${response.data.length} composers`)
@@ -39,7 +39,7 @@ export const fetchIAcomposersExport = () => (dispatch) => {
 
 export const fetchIAcomposersReleaseExport = (releaseID) => (dispatch) => {
   // console.log(41, releaseID)
-  fetch(`http://localhost:4000/api/exports/composersIA/rel/${releaseID}`)
+  fetch(`https://react-metadata-beta.herokuapp.com/api/exports/composersIA/rel/${releaseID}`)
     .then(response => response.json())
     .then(response => {
       console.log(`fetched ${response.data.length} composers`)

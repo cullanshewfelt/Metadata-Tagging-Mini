@@ -7,7 +7,7 @@ export const clearMasterKeywordsIA = (masterKeywordsIA) => ({ type: 'CLEAR_IA_MA
 
 export const updateMasterKeywordIA = (updatedMasterKeyword) => {
   // console.log(20, updatedMasterKeyword)
-  fetch(`http://localhost:4000/api/independent-artists/masterKeywordsIA/update/${updatedMasterKeyword.key_id}`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/masterKeywordsIA/update/${updatedMasterKeyword.key_id}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -32,7 +32,7 @@ export const updateMasterKeywordIA = (updatedMasterKeyword) => {
 
 export const addMasterKeywordIA = (keywordQuery, keywords, cb) => {
   let newKeyword;
-  fetch(`http://localhost:4000/api/independent-artists/masterKeywordsIA/new`, {
+  fetch(`https://react-metadata-beta.herokuapp.com/api/independent-artists/masterKeywordsIA/new`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
