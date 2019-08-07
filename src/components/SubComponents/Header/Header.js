@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import { initializeSelectedLibrary } from '../../../actions/selectedLibraryActions';
-
+import Logo from './images/DLM.png';
 const Header = (props) => {
   let { initializeSelectedLibrary, selectedLibrary } = props;
 
@@ -36,7 +36,7 @@ const Header = (props) => {
       <div className='container'>
         <h1 className='header__title'>
           <NavLink to ='/' onClick={(e) => {handleChooseLibrary(e)}}>
-            <img src='/images/DLM.png' height='100' alt='DL MUSIC'/>
+            <img src={Logo} height='100' alt='DL MUSIC'/>
           </NavLink>
         </h1>
           <NavBar/>
