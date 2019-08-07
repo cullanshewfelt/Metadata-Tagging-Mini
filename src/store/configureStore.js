@@ -64,7 +64,7 @@ const reducer = {
 
 let middleware = process.env.NODE_ENV !== 'production'
     ? [thunk] // require('redux-immutable-state-invariant').default(), logger
-    : [thunk, logger] //
+    : [thunk] //
 
 export default () => {
   // using configureStore for extra error logging // createStore

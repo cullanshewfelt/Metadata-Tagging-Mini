@@ -36,7 +36,7 @@ const Header = (props) => {
       <div className='container'>
         <h1 className='header__title'>
           <NavLink to ='/' onClick={(e) => {handleChooseLibrary(e)}}>
-            <img src='./images/DLM.png' height='100' alt='DL MUSIC'/>
+            <img src='/images/DLM.png' height='100' alt='DL MUSIC'/>
           </NavLink>
         </h1>
           <NavBar/>
