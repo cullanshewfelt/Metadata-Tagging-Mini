@@ -1,6 +1,6 @@
 {
   "name": "metadata-tagging-app-mini",
-  "version": "1.0.2",
+  "version": "0.0.3",
   "description": "A Web App To Create, Edit, and Export Metadata for Audio Files",
   "main": "index.js",
   "engines": {
@@ -13,7 +13,7 @@
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "live-server": "live-server public/",
-    "dev-server": "NODE_ENV=development webpack-dev-server --hot & nodemon --max-old-space-size=4096 server.js",
+    "dev-server": "webpack-dev-server --hot & nodemon --max-old-space-size=4096 server.js",
     "heroku-postbuild": "npm run build:prod"
   },
   "author": "Cullan Shewfelt",
@@ -69,6 +69,10 @@
     "@babel/runtime": "^7.5.5",
     "@types/react": "^16.8.24",
     "csv-parse": "^4.4.4",
+    "eslint": "^6.1.0",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-watch": "^6.0.0",
     "file-loader": "^4.2.0",
     "react-datepicker": "^2.8.0",
     "react-player": "^1.11.1",
