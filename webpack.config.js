@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports = (env) => {
   const isProduction = env === "production";
-  console.log("env", env)
+  console.log("env", env);
   return {
     entry: path.join(__dirname, "/src/app.js"),
     output: {
@@ -19,18 +19,14 @@ module.exports = (env) => {
         exclude: /node_modules/
       },{
         test: /\.s?css$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader"
-        ]
+        use: ["style-loader", "css-loader", "sass-loader"]
       },{
         test: /\.(png|jpe?g|gif)$/,
         use: [
           {
             loader: "file-loader",
             options: {
-              name(file) {
+              name(file) { // eslint-disable-line
                 if (process.env.NODE_ENV === "development") {
                   return "[path][name].[ext]";
                 }
@@ -40,12 +36,12 @@ module.exports = (env) => {
           }
         ]
       },{
-       test: /\.js$/,
-       exclude: /node_modules/,
-       loader: "eslint-loader",
-       options: {
-         // eslint options (if necessary)
-       }
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: {
+          // eslint options (if necessary)
+        }
       }]
     },
     devtool: isProduction ? "source-map" : "cheap-module-source-map",
@@ -60,5 +56,5 @@ module.exports = (env) => {
     optimization: {
       minimizer: [new UglifyJsPlugin()]
     }
-  }
+  };
 };

@@ -12,7 +12,6 @@
     "server": "nodemon server.js",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
-    "live-server": "live-server public/",
     "dev-server": "webpack-dev-server --hot & nodemon --max-old-space-size=4096 server.js",
     "heroku-postbuild": "npm run build:prod"
   },
@@ -32,7 +31,6 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "ffmetadata": "^1.5.0",
-    "live-server": "^1.2.1",
     "moment": "^2.24.0",
     "multer": "^1.4.2",
     "mysql": "^2.17.1",
