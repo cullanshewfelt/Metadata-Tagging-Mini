@@ -8,18 +8,18 @@ export const uploadAudio = (files) => {
   const formData = new FormData();
 
   files.map((file, i) => {
-    formData.append(`file${i}`, file)
+    formData.append(`file${i}`, file);
   });
 
-  fetch(`https://react-metadata-beta.herokuapp.com/upload/proc_music/`, {
-    method: 'POST',
+  fetch("https://react-metadata-beta.herokuapp.com/upload/proc_music/", {
+    method: "POST",
     body: formData
   })
-  .then(response => response)
-  .then(json => {
-    console.log(20, json)
-  })
-  .catch(error => console.log(error))
+    .then(response => response)
+    .then(json => {
+      console.log(20, json);
+    })
+    .catch(error => console.log(error));
 };
 
 export const uploadMetadataBI = (files) => {
@@ -28,16 +28,16 @@ export const uploadMetadataBI = (files) => {
   const formData = new FormData();
 
   files.map((file, i) => {
-    formData.append(`file${i}`, file)
+    formData.append(`file${i}`, file);
   });
 
-  fetch(`https://react-metadata-beta.herokuapp.com/upload/bi/metadata/`, {
-    method: 'POST',
+  fetch("https://react-metadata-beta.herokuapp.com/upload/bi/metadata/", {
+    method: "POST",
     body: formData
   })
-  .then(response => response)
-  .then(json => {
+    .then(response => response)
+    .then(json => {
     // console.log(40, json.status)
-  })
-  .catch(error => console.log(error))
-}
+    })
+    .catch(error => console.log(error));
+};

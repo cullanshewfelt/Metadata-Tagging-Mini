@@ -11,8 +11,8 @@ import { fetchIAcomposersExport, fetchIAcomposersReleaseExport } from "../IndieA
 export const resetDownload = () => ({ type: "RESET_DL_PROGRESS", downloadProgress: (0).toFixed(2) });
 
 export const updateDownload = (downloadProgress) => ({
-    type: "UPDATE_DL_PROGRESS",
-    downloadProgress: (downloadProgress * 100).toFixed(2)
+  type: "UPDATE_DL_PROGRESS",
+  downloadProgress: (downloadProgress * 100).toFixed(2)
 });
 // ==============================================================================================================
 // Handle Fetch Cues From Releases
@@ -20,14 +20,14 @@ export const updateDownload = (downloadProgress) => ({
 export const handleFetchCuesForExport = (releaseID) => (dispatch) => {
   console.log("requesting cues from", releaseID);
   if (releaseID === 9999){ // if user is selecting "ALL" (value === 9999), dispatch a different fetch
-    return dispatch(handleFetchAllCues())
+    return dispatch(handleFetchAllCues());
   } else if (typeof releaseID === "string" && releaseID.includes("-")) {
     // release IDs including a slash "-" will always be BI
-    return dispatch(fetchBIExportsFromRelease(releaseID)) & dispatch(fetchBIcomposersReleaseExport(releaseID));
+    // return dispatch(fetchBIExportsFromRelease(releaseID)) & dispatch(fetchBIcomposersReleaseExport(releaseID));
   } else {
-    return dispatch(handleFetchCuesFromBatch(releaseID)) & dispatch(handleFetchComposersFromRelease(releaseID))
+    return dispatch(handleFetchCuesFromBatch(releaseID)) & dispatch(handleFetchComposersFromRelease(releaseID));
   }
-}
+};
 // ==============================================================================================================
 // Handle Fetch All Cues
 // ==============================================================================================================
@@ -35,15 +35,14 @@ export const handleFetchAllCues = () => {
   return (dispatch, getState) => {
     console.log(`from ${getState().selectedLibrary.libraryName}`);
     switch(getState().selectedLibrary.libraryName){
-      // case "background-instrumentals":
-      //   return dispatch(cuesExportBI()) & dispatch(fetchBIcomposersExport())
-      //   break;
-      case "independent-artists":
-        return dispatch(tracksExportIA()) & dispatch(fetchIAcomposersExport())
-        break;
+    // case "background-instrumentals":
+    //   return dispatch(cuesExportBI()) & dispatch(fetchBIcomposersExport())
+    //   break;
+    case "independent-artists":
+      return dispatch(tracksExportIA()) & dispatch(fetchIAcomposersExport());
     }
-  }
-}
+  };
+};
 // ==============================================================================================================
 // Handle Fetch All Batch
 // ==============================================================================================================
@@ -51,15 +50,13 @@ export const handleFetchCuesFromBatch = (releaseID) => {
   return (dispatch, getState) => {
     console.log(`from ${getState().selectedLibrary.libraryName}`);
     switch(getState().selectedLibrary.libraryName){
-      // case "background-instrumentals":
-      //   return dispatch(fetchBIExportsFromBatch(releaseID));
-      //   break;
-      case "independent-artists":
-        return dispatch(fetchIAExportsFromRelease(releaseID));
-        break;
+    // case "background-instrumentals":
+    //   return dispatch(fetchBIExportsFromBatch(releaseID));
+    case "independent-artists":
+      return dispatch(fetchIAExportsFromRelease(releaseID));
     }
-  }
-}
+  };
+};
 // ==============================================================================================================
 // Handle Fetch All Composers
 // ==============================================================================================================
@@ -67,26 +64,22 @@ export const handleFetchAllComposers = () => {
   return (dispatch, getState) => {
     console.log(`from ${getState().selectedLibrary.libraryName}`);
     switch(getState().selectedLibrary.libraryName){
-      // case "background-instrumentals":
-      //   return dispatch(cuesExportBI());
-      //   break;
-      case "independent-artists":
-        return dispatch(tracksExportIA());
-        break;
+    // case "background-instrumentals":
+    //   return dispatch(cuesExportBI());
+    case "independent-artists":
+      return dispatch(tracksExportIA());
     }
-  }
-}
+  };
+};
 // ==============================================================================================================
 export const handleFetchComposersFromRelease = (releaseID) => {
   return (dispatch, getState) => {
     // console.log(`from ${getState().selectedLibrary.libraryName}`);
     switch(getState().selectedLibrary.libraryName){
-      // case "background-instrumentals":
-      //   return dispatch(fetchBIcomposersReleaseExport(releaseID));
-      //   break;
-      case "independent-artists":
-        return dispatch(fetchIAcomposersReleaseExport(releaseID));
-        break;
+    // case "background-instrumentals":
+    //   return dispatch(fetchBIcomposersReleaseExport(releaseID));
+    case "independent-artists":
+      return dispatch(fetchIAcomposersReleaseExport(releaseID));
     }
-  }
-}
+  };
+};

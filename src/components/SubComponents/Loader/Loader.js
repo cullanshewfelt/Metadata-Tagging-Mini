@@ -1,6 +1,6 @@
-import React from 'react';
-import { css } from '@emotion/core';
-import { BeatLoader } from 'react-spinners';
+import React from "react";
+import { css } from "@emotion/core";
+import { BeatLoader } from "react-spinners";
 
 export default () => {
   return (
@@ -8,7 +8,7 @@ export default () => {
       <BeatLoader
         sizeUnit={"px"}
         size={15}
-        color={'red'}
+        color={"red"}
       />
-  </div>
-)}
+    </div>
+  );};

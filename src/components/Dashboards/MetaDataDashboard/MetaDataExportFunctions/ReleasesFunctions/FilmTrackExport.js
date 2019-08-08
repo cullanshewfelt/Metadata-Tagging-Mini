@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router";
-import moment from 'moment';
-import { connect } from 'react-redux';
-import { resetDownload, updateDownload } from '../../../../../actions/ExportActions/exportActions';
-const exportTools = require('../ExportTools.js');
+import moment from "moment";
+import { connect } from "react-redux";
+import { resetDownload, updateDownload } from "../../../../../actions/ExportActions/exportActions";
+const exportTools = require("../ExportTools.js");
 
 // ******************************************************************************************
 //  FILM TRACK RELEASE EXPORT FUNCTION
@@ -12,81 +12,81 @@ const exportTools = require('../ExportTools.js');
 // ******************************************************************************************
 
 const FilmTrackExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
-         selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
-       } = props;
+  const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
+    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, updateDownload
+  } = props;
 
   const [xlsData, setXlsData] = useState([]);
   const [newRowData, setRowData] = useState([]);
   const [progress, setProgress] = useState(0.00);
 
   useEffect(() => {
-    let downloadLink = `DLM_${releaseFilter.label + "_"}FILM_TRACK_EXPORT_${moment().format('YYYY.MM.DD-HH_mm_ss')}.xls`;
-    updateDownload(progress)
-    progress === 1 && exportTools.generateDownload(xlsData.join('\n'), downloadLink);
-  }, [progress])
+    let downloadLink = `DLM_${releaseFilter.label + "_"}FILM_TRACK_EXPORT_${moment().format("YYYY.MM.DD-HH_mm_ss")}.xls`;
+    updateDownload(progress);
+    progress === 1 && exportTools.generateDownload(xlsData.join("\n"), downloadLink);
+  }, [progress]);
 
   useEffect(() => {
-    (progress !== 1 && newRowData.length !== 0 && xlsData.indexOf(newRowData.join('\t')) === -1) && setXlsData([...xlsData, newRowData.join('\t')])
-  }, [newRowData, progress])
+    (progress !== 1 && newRowData.length !== 0 && xlsData.indexOf(newRowData.join("\t")) === -1) && setXlsData([...xlsData, newRowData.join("\t")]);
+  }, [newRowData, progress]);
 
-   const filmTrackExport = () => {
-   resetDownload();
-   downloadCompletedChecker();
-   let progressCount = 0;
-   let headersRow = [
-     'LibraryName',	'CDTitle', 'CDnum',	'CDDescription',	'ReleaseDate',	'TrackTitle',	'TrackDescription',	'Tracknum',
-     'Tracksubnum',	'Pathname',	'Filename',	'BPM',	'composer1',	'Composer1affiliation',	'Composer1CAENumIPI',	'Composer1split',
-     'Composer1Type',	'Composer2',	'Composer2affiliation',	'Composer2CAENumIPI',	'Composer2split',	'Composer2Type',
-     'composer3',	'Composer3affiliation',	'Composer3CAENumIPI',	'Composer3split',	'Composer3Type',	'composer4',
-     'Composer4affiliation',	'Composer4CAENumIPI',	'Composer4split',	'Composer4Type',	'composer5',	'Composer5affiliation',
-     'Composer5CAENumIPI',	'Composer5split',	'Composer5Type',	'composer6',	'Composer6affiliation',	'Composer6CAENumIPI',
-     'Composer6split',	'Composer6Type',	'Publisher1',	'Publisher1Type',	'Publisher1Affiliation',	'Publisher1Split',
-     'Publisher1CAENumIPI',	'Publisher2',	'Publisher2Type',	'Publisher2Affiliation',	'Publisher2Split',	'Publisher2CAENumIPI',
-     'Publisher3',	'Publisher3Type',	'Publisher3Affiliation',	'Publisher3Split',	'Publisher3CAENumIPI', 'LibraryTrackID',
-     'Version',	'Instruments',	'Tempo',	'Genre',	'Categories',	'keyword',	'keyword',	'keyword',	'keyword',	'keyword',
-     'keyword',	'keyword',	'keyword',	'keyword',	'keyword',	'keyword',	'keyword',	'keyword',	'keyword',	'keyword',
-     'ISWC_Main',	'ISRC_Main',	'ISRC_All',	'ASCAP_Main',	'ASCAP_All',	'BMI_Main',	'BMI_All',	'SESAC_Main',	'SESAC_All',
-     'SOCAN_Main', 'SOCAN_All'
+  const filmTrackExport = () => {
+    resetDownload();
+    downloadCompletedChecker();
+    let progressCount = 0;
+    let headersRow = [
+      "LibraryName",	"CDTitle", "CDnum",	"CDDescription",	"ReleaseDate",	"TrackTitle",	"TrackDescription",	"Tracknum",
+      "Tracksubnum",	"Pathname",	"Filename",	"BPM",	"composer1",	"Composer1affiliation",	"Composer1CAENumIPI",	"Composer1split",
+      "Composer1Type",	"Composer2",	"Composer2affiliation",	"Composer2CAENumIPI",	"Composer2split",	"Composer2Type",
+      "composer3",	"Composer3affiliation",	"Composer3CAENumIPI",	"Composer3split",	"Composer3Type",	"composer4",
+      "Composer4affiliation",	"Composer4CAENumIPI",	"Composer4split",	"Composer4Type",	"composer5",	"Composer5affiliation",
+      "Composer5CAENumIPI",	"Composer5split",	"Composer5Type",	"composer6",	"Composer6affiliation",	"Composer6CAENumIPI",
+      "Composer6split",	"Composer6Type",	"Publisher1",	"Publisher1Type",	"Publisher1Affiliation",	"Publisher1Split",
+      "Publisher1CAENumIPI",	"Publisher2",	"Publisher2Type",	"Publisher2Affiliation",	"Publisher2Split",	"Publisher2CAENumIPI",
+      "Publisher3",	"Publisher3Type",	"Publisher3Affiliation",	"Publisher3Split",	"Publisher3CAENumIPI", "LibraryTrackID",
+      "Version",	"Instruments",	"Tempo",	"Genre",	"Categories",	"keyword",	"keyword",	"keyword",	"keyword",	"keyword",
+      "keyword",	"keyword",	"keyword",	"keyword",	"keyword",	"keyword",	"keyword",	"keyword",	"keyword",	"keyword",
+      "ISWC_Main",	"ISRC_Main",	"ISRC_All",	"ASCAP_Main",	"ASCAP_All",	"BMI_Main",	"BMI_All",	"SESAC_Main",	"SESAC_All",
+      "SOCAN_Main", "SOCAN_All"
     ];
-    setXlsData([headersRow.join('\t')]);
-    let releasesArray = isNaN(releaseFilter.value) && releaseFilter.value.includes('-') ? releaseFilter.value.split('-') : [];
+    setXlsData([headersRow.join("\t")]);
+    let releasesArray = isNaN(releaseFilter.value) && releaseFilter.value.includes("-") ? releaseFilter.value.split("-") : [];
     let filteredLibrary = selectedLibrary.library.filter(cue =>
       releasesArray.length !== 0
-        ? cue.rel_id >= releasesArray[releasesArray.length - 1] && cue.rel_id <= releasesArray[0] && (cue.cue_status === 'Active')
+        ? cue.rel_id >= releasesArray[releasesArray.length - 1] && cue.rel_id <= releasesArray[0] && (cue.cue_status === "Active")
         : null
-      ).sort((e, f) => // this export demands we order things alphabetically by cue_title
-          e.cue_title - f.cue_title).sort((c, d) => //  then by category name alphabetically....
-            (selectedStyles.filter(as => as.style_id === c.style_id)[0].style_name < selectedStyles.filter(bs => bs.style_id === d.style_id)[0].style_name)
-            ? -1
-            : (selectedStyles.filter(as => as.style_id === c.style_id)[0].style_name > selectedStyles.filter(bs => bs.style_id === d.style_id)[0].style_name)
-            ? 1
-            : 0).sort((a, b) => // and then style name alphabetically...
-              (selectedStyles.filter(ac => ac.cat_id === a.cat_id)[0].cat_name < selectedStyles.filter(bc => bc.cat_id === b.cat_id)[0].cat_name)
-              ? -1
-              : (selectedStyles.filter(ac => ac.cat_id === a.cat_id)[0].cat_name > selectedStyles.filter(bc => bc.cat_id === b.cat_id)[0].cat_name)
-              ? 1
-              : 0)
+    ).sort((e, f) => // this export demands we order things alphabetically by cue_title
+      e.cue_title - f.cue_title).sort((c, d) => //  then by category name alphabetically....
+      (selectedStyles.filter(as => as.style_id === c.style_id)[0].style_name < selectedStyles.filter(bs => bs.style_id === d.style_id)[0].style_name)
+        ? -1
+        : (selectedStyles.filter(as => as.style_id === c.style_id)[0].style_name > selectedStyles.filter(bs => bs.style_id === d.style_id)[0].style_name)
+          ? 1
+          : 0).sort((a, b) => // and then style name alphabetically...
+      (selectedStyles.filter(ac => ac.cat_id === a.cat_id)[0].cat_name < selectedStyles.filter(bc => bc.cat_id === b.cat_id)[0].cat_name)
+        ? -1
+        : (selectedStyles.filter(ac => ac.cat_id === a.cat_id)[0].cat_name > selectedStyles.filter(bc => bc.cat_id === b.cat_id)[0].cat_name)
+          ? 1
+          : 0);
 
     exportTools.asyncExport(filteredLibrary, filteredLibrary.length, (row) => {
     // --------------------------------------------------------------------------------------------------
     // these little functions parse data to Title Case formatting
     // and remove empty keywords/instruments and tailing commas
     // --------------------------------------------------------------------------------------------------
-      let descriptionString = exportTools.parseData(keywordParse(row.cue_desc).join(', ')).join(', ');
-      let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(', ');
+      let descriptionString = exportTools.parseData(keywordParse(row.cue_desc).join(", ")).join(", ");
+      let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(", ");
       let genre = selectedCategories.filter(categories =>
-         categories.cat_id === row.cat_id).map(cat =>
-           cat.cat_name);
+        categories.cat_id === row.cat_id).map(cat =>
+        cat.cat_name);
 
       let subGenre = selectedStyles.filter(styles =>
-             styles.style_id === row.style_id).map(style =>
-               style.style_name);
-     let releaseParse = releaseFilter.label.split('R')[1];
-    // --------------------------------------------------------------------------------------------------
+        styles.style_id === row.style_id).map(style =>
+        style.style_name);
+      let releaseParse = releaseFilter.label.split("R")[1];
+      // --------------------------------------------------------------------------------------------------
       let composerArray = selectedComposers.filter(composer =>
         composer.cue_id === row.cue_id).sort((a, b) =>
-          b.composer_split - a.composer_split);
+        b.composer_split - a.composer_split);
       // --------------------------------------------------------------------------------------------------
       //  these functions seperate publishers and add their splits up
       let pubMergeArray = [];
@@ -104,23 +104,23 @@ const FilmTrackExport = (props) => {
         } else {
           pubMergeArray.filter(pub =>
             pub.publisher_name === element.publisher_name).map(x =>
-              x.composer_split += element.composer_split
-          )
+            x.composer_split += element.composer_split
+          );
         }
       };
 
-      composerArray.forEach((composer, i) => {
-        let newPub = {publisher_name: composer.publisher_name.split(' (')[0], composer_split: composer.composer_split, ipi: composer.ipi, pro_name: composer.pro_name}
+      composerArray.forEach((composer) => {
+        let newPub = {publisher_name: composer.publisher_name.split(" (")[0], composer_split: composer.composer_split, ipi: composer.ipi, pro_name: composer.pro_name};
         pubMergeArray.pushIfNotExist(newPub, (c) => {
           return c.publisher_name === newPub.publisher_name;
         });
-      })
+      });
 
-    // --------------------------------------------------------------------------------------------------
+      // --------------------------------------------------------------------------------------------------
 
       let newRow = [
         // LibraryName
-        'DL Music - Background Instrumentals',
+        "DL Music - Background Instrumentals",
         // CDTitle
         `${genre}, ${subGenre} Vol. ${releaseParse}`,
         // CDnum
@@ -128,24 +128,24 @@ const FilmTrackExport = (props) => {
         // CDDescription
         `${genre}, ${subGenre} Vol. ${releaseParse}`,
         // ReleaseDate
-        moment(row.cue_reldate_h).format('MM/DD/YYYY'),
+        moment(row.cue_reldate_h).format("MM/DD/YYYY"),
         // TrackTitle
         row.cue_title,
         // TrackDescription
-        exportTools.parseData(row.cue_desc).join(', '),
+        exportTools.parseData(row.cue_desc).join(", "),
         // Tracknum
         row.cue_id,
         // Tracksubnum
         selectedLibrary.library.filter(cues => row.cue_title.includes(cues.cue_title.split(/v\d{1,2}/)[0])).map(x => {
-          return x.cue_id !== row.cue_id ?  x.cue_id : null})[0],
+          return x.cue_id !== row.cue_id ?  x.cue_id : null;})[0],
         // Pathname
         `\\${genre}\\${subGenre}\\`,
         // Filename
         `DLM - ${row.cue_title}.wav`,
         // BPM
-        '',
+        "",
         // composer1
-        `${composerArray[0].first}${composerArray[0].middle ? " " + composerArray[0].middle : ''} ${composerArray[0].last}`,
+        `${composerArray[0].first}${composerArray[0].middle ? " " + composerArray[0].middle : ""} ${composerArray[0].last}`,
         // Composer1affiliation
         composerArray[0].pro_name,
         // Composer1CAENumIPI
@@ -156,68 +156,68 @@ const FilmTrackExport = (props) => {
         composerOrArrangerParse(row),
         // Composer2
         composerArray[1]
-          ? `${composerArray[1].first}${composerArray[1].middle ? " " + composerArray[1].middle : ''} ${composerArray[1].last}`
-          : '',
+          ? `${composerArray[1].first}${composerArray[1].middle ? " " + composerArray[1].middle : ""} ${composerArray[1].last}`
+          : "",
         // Composer2affiliation
-        composerArray[1] ? composerArray[1].pro_name : '',
+        composerArray[1] ? composerArray[1].pro_name : "",
         // Composer2CAENumIPI
-        composerArray[1] ? composerArray[1].cae : '',
+        composerArray[1] ? composerArray[1].cae : "",
         // Composer2split
-        composerArray[1] ? composerArray[1].composer_split : '',
+        composerArray[1] ? composerArray[1].composer_split : "",
         // Composer2Type
-        composerArray[1] ? composerOrArrangerParse(row) : '',
+        composerArray[1] ? composerOrArrangerParse(row) : "",
         // composer3
         composerArray[2]
-          ? `${composerArray[2].first}${composerArray[2].middle ? " " + composerArray[2].middle : ''} ${composerArray[2].last}`
-          : '',
+          ? `${composerArray[2].first}${composerArray[2].middle ? " " + composerArray[2].middle : ""} ${composerArray[2].last}`
+          : "",
         // Composer3affiliation
-        composerArray[2] ? composerArray[2].pro_name : '',
+        composerArray[2] ? composerArray[2].pro_name : "",
         // Composer3CAENumIPI
-        composerArray[2] ? composerArray[2].cae : '',
+        composerArray[2] ? composerArray[2].cae : "",
         // Composer3split
-        composerArray[2] ? composerArray[2].composer_split : '',
+        composerArray[2] ? composerArray[2].composer_split : "",
         // Composer3Type
-        composerArray[2] ? composerOrArrangerParse(row) : '',
+        composerArray[2] ? composerOrArrangerParse(row) : "",
         // composer4
         composerArray[3]
-          ? `${composerArray[3].first}${composerArray[3].middle ? " " + composerArray[3].middle : ''} ${composerArray[3].last}`
-          : '',
+          ? `${composerArray[3].first}${composerArray[3].middle ? " " + composerArray[3].middle : ""} ${composerArray[3].last}`
+          : "",
         // Composer4affiliation
-        composerArray[3] ? composerArray[3].pro_name : '',
+        composerArray[3] ? composerArray[3].pro_name : "",
         // Composer4CAENumIPI
-        composerArray[3] ? composerArray[3].cae : '',
+        composerArray[3] ? composerArray[3].cae : "",
         // Composer4split
-        composerArray[3] ? composerArray[3].composer_split : '',
+        composerArray[3] ? composerArray[3].composer_split : "",
         // Composer4Type
-        composerArray[3] ? composerOrArrangerParse(row) : '',
+        composerArray[3] ? composerOrArrangerParse(row) : "",
         // composer5
         composerArray[4]
-          ? `${composerArray[4].first}${composerArray[4].middle ? " " + composerArray[4].middle : ''} ${composerArray[4].last}`
-          : '',
+          ? `${composerArray[4].first}${composerArray[4].middle ? " " + composerArray[4].middle : ""} ${composerArray[4].last}`
+          : "",
         // Composer5affiliation
-        composerArray[4] ? composerArray[4].pro_name : '',
+        composerArray[4] ? composerArray[4].pro_name : "",
         // Composer5CAENumIPI
-        composerArray[4] ? composerArray[4].cae : '',
+        composerArray[4] ? composerArray[4].cae : "",
         // Composer5split
-        composerArray[4] ? composerArray[4].composer_split : '',
+        composerArray[4] ? composerArray[4].composer_split : "",
         // Composer5Type
-        composerArray[4] ? composerOrArrangerParse(row) : '',
+        composerArray[4] ? composerOrArrangerParse(row) : "",
         // composer6
         composerArray[5]
-          ? `${composerArray[5].first}${composerArray[5].middle ? " " + composerArray[5].middle : ''} ${composerArray[5].last}`
-          : '',
+          ? `${composerArray[5].first}${composerArray[5].middle ? " " + composerArray[5].middle : ""} ${composerArray[5].last}`
+          : "",
         // Composer6affiliation
-        composerArray[5] ? composerArray[5].pro_name : '',
+        composerArray[5] ? composerArray[5].pro_name : "",
         // Composer6CAENumIPI
-        composerArray[5] ? composerArray[5].cae : '',
+        composerArray[5] ? composerArray[5].cae : "",
         // Composer6split
-        composerArray[5] ? composerArray[5].composer_split : '',
+        composerArray[5] ? composerArray[5].composer_split : "",
         // Composer6Type
-        composerArray[5] ? composerOrArrangerParse(row) : '',
+        composerArray[5] ? composerOrArrangerParse(row) : "",
         // Publisher1
         pubMergeArray[0].publisher_name,
         // Publisher1Type
-        'Publisher',
+        "Publisher",
         // Publisher1Affiliation
         publisherProParse(pubMergeArray[0].publisher_name),
         // Publisher1Split
@@ -225,25 +225,25 @@ const FilmTrackExport = (props) => {
         // Publisher1CAENumIPI
         pubMergeArray[0].ipi,
         // Publisher2
-        pubMergeArray[1] ? pubMergeArray[1].publisher_name : '',
+        pubMergeArray[1] ? pubMergeArray[1].publisher_name : "",
         // Publisher2Type
-        pubMergeArray[1] ? 'Publisher' : '',
+        pubMergeArray[1] ? "Publisher" : "",
         // Publisher2Affiliation
-        pubMergeArray[1] ? publisherProParse(pubMergeArray[1].publisher_name) : '',
+        pubMergeArray[1] ? publisherProParse(pubMergeArray[1].publisher_name) : "",
         // Publisher2Split
-        pubMergeArray[1] ? pubMergeArray[1].composer_split : '',
+        pubMergeArray[1] ? pubMergeArray[1].composer_split : "",
         // Publisher2CAENumIPI
-        pubMergeArray[1] ? pubMergeArray[1].ipi : '',
+        pubMergeArray[1] ? pubMergeArray[1].ipi : "",
         // Publisher3
-        pubMergeArray[2] ? pubMergeArray[2].publisher_name : '',
+        pubMergeArray[2] ? pubMergeArray[2].publisher_name : "",
         // Publisher3Type
-        pubMergeArray[2] ? 'Publisher' : '',
+        pubMergeArray[2] ? "Publisher" : "",
         // Publisher3Affiliation
-        pubMergeArray[2] ? publisherProParse(pubMergeArray[2].publisher_name) : '',
+        pubMergeArray[2] ? publisherProParse(pubMergeArray[2].publisher_name) : "",
         // Publisher3Split
-        pubMergeArray[2] ? pubMergeArray[2].composer_split : '',
+        pubMergeArray[2] ? pubMergeArray[2].composer_split : "",
         // Publisher3CAENumIPI
-        pubMergeArray[2] ? pubMergeArray[2].ipi : '',
+        pubMergeArray[2] ? pubMergeArray[2].ipi : "",
         // LibraryTrackID
         `DLM-${row.style_id.toString().padStart(3, 0)}-${row.cue_id}`,
         // Version
@@ -257,70 +257,70 @@ const FilmTrackExport = (props) => {
         // Categories
         catParse(row),
         // keyword
-        descriptionString.split(', ')[0] ? descriptionString.split(', ')[0].toLowerCase() : '',
+        descriptionString.split(", ")[0] ? descriptionString.split(", ")[0].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[1] ? descriptionString.split(', ')[1].toLowerCase() : '',
+        descriptionString.split(", ")[1] ? descriptionString.split(", ")[1].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[2] ? descriptionString.split(', ')[2].toLowerCase() : '',
+        descriptionString.split(", ")[2] ? descriptionString.split(", ")[2].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[3] ? descriptionString.split(', ')[3].toLowerCase() : '',
+        descriptionString.split(", ")[3] ? descriptionString.split(", ")[3].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[4] ? descriptionString.split(', ')[4].toLowerCase() : '',
+        descriptionString.split(", ")[4] ? descriptionString.split(", ")[4].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[5] ? descriptionString.split(', ')[5].toLowerCase() : '',
+        descriptionString.split(", ")[5] ? descriptionString.split(", ")[5].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[6] ? descriptionString.split(', ')[6].toLowerCase() : '',
+        descriptionString.split(", ")[6] ? descriptionString.split(", ")[6].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[7] ? descriptionString.split(', ')[7].toLowerCase() : '',
+        descriptionString.split(", ")[7] ? descriptionString.split(", ")[7].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[8] ? descriptionString.split(', ')[8].toLowerCase() : '',
+        descriptionString.split(", ")[8] ? descriptionString.split(", ")[8].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[9] ? descriptionString.split(', ')[9].toLowerCase() : '',
+        descriptionString.split(", ")[9] ? descriptionString.split(", ")[9].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[10] ? descriptionString.split(', ')[10].toLowerCase() : '',
+        descriptionString.split(", ")[10] ? descriptionString.split(", ")[10].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[11] ? descriptionString.split(', ')[11].toLowerCase() : '',
+        descriptionString.split(", ")[11] ? descriptionString.split(", ")[11].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[12] ? descriptionString.split(', ')[12].toLowerCase() : '',
+        descriptionString.split(", ")[12] ? descriptionString.split(", ")[12].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[13] ? descriptionString.split(', ')[13].toLowerCase() : '',
+        descriptionString.split(", ")[13] ? descriptionString.split(", ")[13].toLowerCase() : "",
         // keyword
-        descriptionString.split(', ')[14] ? descriptionString.split(', ')[14].toLowerCase() : '',
+        descriptionString.split(", ")[14] ? descriptionString.split(", ")[14].toLowerCase() : "",
         // ISWC_Main
-        '',
+        "",
         // ISRC_Main
         `US-RRD-${row.cue_reldate_h.substring(2, 4)}-${row.cue_id.toString().slice(1)}`,
         // ISRC_All
         `US-RRD-${row.cue_reldate_h.substring(2, 4)}-${row.cue_id.toString().slice(1)}`,
         // ASCAP_Main
-        '',
+        "",
         // ASCAP_All
-        '',
+        "",
         // BMI_Main
-        '',
+        "",
         // BMI_All
-        '',
+        "",
         // SESAC_Main
-        '',
+        "",
         // SESAC_All
-        '',
+        "",
         // SOCAN_Main
-        '',
+        "",
         // SOCAN_All
-        ''
-      ]
+        ""
+      ];
       progressCount ++;
-      let progress = (progressCount/filteredLibrary.length)
+      let progress = (progressCount/filteredLibrary.length);
       setRowData(newRow);
       setProgress(progress);
     }, () => { // inProgress()
       // updateDownload(progress)
     },
     () => { // done()
-      updateDownload(1)
+      updateDownload(1);
       downloadCompletedChecker();
-    })
-  }
+    });
+  };
 
   const composerOrArrangerParse = (row) => {
     // PUBLIC DOMAIN CODE
@@ -329,59 +329,59 @@ const FilmTrackExport = (props) => {
     } else {
       return "Composer";
     }
-  }
+  };
 
   const catParse = (row) => {
     switch(row.cat_id){
-      case 1:
-        return "Bumpers, Transitions, Stingers";
-        break;
-      case 2:
-        return "Bumpers, Transitions, Stingers"; // BUMPERS
-        break;
-      case 3:
-        return "Drama"; // DRAMA
-        break;
-      case 4:
-        return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-        break;
-      case 5:
-        return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-        break;
-      case 6:
-        return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-        break;
-      case 7:
-        return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-        break;
-      case 8:
-        return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-        break;
-      case 9:
-        return 'Retro TV'; // RETRO TV LAND
-        break;
-      case 10:
-        return 'Retro TV'; // RETRO TV LAND
-        break;
-      case 11:
-        return "Score Tools"; // SCORE TOOLS
-        break;
-      case 12:
-        return "Score Tools"; // SCORE TOOLS
-        break;
-      case 13:
-        return "Score Tools"; // SCORE TOOLS
-        break;
-      case 14:
-        return "Score Tools"; // SCORE TOOLS
-        break;
-      case 15:
-        return 'Score Tools';
-        break;
-      default:
-        return '';
+    case 1:
+      return "Bumpers, Transitions, Stingers";
+      break;
+    case 2:
+      return "Bumpers, Transitions, Stingers"; // BUMPERS
+      break;
+    case 3:
+      return "Drama"; // DRAMA
+      break;
+    case 4:
+      return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
+      break;
+    case 5:
+      return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
+      break;
+    case 6:
+      return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
+      break;
+    case 7:
+      return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
+      break;
+    case 8:
+      return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
+      break;
+    case 9:
+      return "Retro TV"; // RETRO TV LAND
+      break;
+    case 10:
+      return "Retro TV"; // RETRO TV LAND
+      break;
+    case 11:
+      return "Score Tools"; // SCORE TOOLS
+      break;
+    case 12:
+      return "Score Tools"; // SCORE TOOLS
+      break;
+    case 13:
+      return "Score Tools"; // SCORE TOOLS
+      break;
+    case 14:
+      return "Score Tools"; // SCORE TOOLS
+      break;
+    case 15:
+      return "Score Tools";
+      break;
+    default:
+      return "";
     }
-  }
+  };
 
   const genreParse = (row) => {
     if (row.style_id === 4){
@@ -543,61 +543,61 @@ const FilmTrackExport = (props) => {
     } else if (row.style_id === 130){
       return "African"; 	// WORLD POP - AFRICAN
     } else {
-      return '';
+      return "";
     }
-  }
+  };
 
   const keywordParse = (cue_desc) => {
-    let keywords = cue_desc.replace(/ - /gm, ' ');
-		keywords = keywords.replace(/r&amp;b/gm, 'r&b');
-		keywords = keywords.replace(/r & b/gm, "r&b");
-		keywords = keywords.replace(/rnb/gm, "r&b");
-		keywords = keywords.replace(/-/gm, " ");
-		keywords = keywords.replace(/\(/gm, " ");
-		keywords = keywords.replace(/\)/gm, " ");
-		keywords = keywords.replace(/\./gm, " ");
-		keywords = keywords.replace(/ the /gm, " ");
-		keywords = keywords.replace(/bumpers/gm, "bumper");
-		keywords = keywords.replace(/transitions/gm, "transition");
-		keywords = keywords.replace(/, /gm, " ");
-		keywords = keywords.replace(/'/gm, "");
-		keywords = keywords.replace(/ with /gm, " ");
-		keywords = keywords.replace(/ a /gm, " ");
-		keywords = keywords.replace(/ of /gm, " ");
-		keywords = keywords.replace(/,/gm, " ");
-		keywords = keywords.replace(/ at /gm, " ");
-		keywords = keywords.replace(/ and /gm, " ");
-		keywords = keywords.replace(/ to /gm, " ");
-		keywords = keywords.replace(/ this /gm, " ");
-		keywords = keywords.replace(/ mix /gm, " ");
-		keywords = keywords.replace(/ in /gm, " ");
-		keywords = keywords.replace(/ is /gm, " ");
-		keywords = keywords.replace(/ it /gm, " ");
-		keywords = keywords.replace(/nrg/gm, "energy");
-		keywords = keywords.replace(/ & /gm, " ");
-		keywords = keywords.replace(/ n /gm, " ");
-		let keywordsArray = keywords.split(" ");
-		keywordsArray = keywordsArray.map(keywords => keywords.trim());
+    let keywords = cue_desc.replace(/ - /gm, " ");
+    keywords = keywords.replace(/r&amp;b/gm, "r&b");
+    keywords = keywords.replace(/r & b/gm, "r&b");
+    keywords = keywords.replace(/rnb/gm, "r&b");
+    keywords = keywords.replace(/-/gm, " ");
+    keywords = keywords.replace(/\(/gm, " ");
+    keywords = keywords.replace(/\)/gm, " ");
+    keywords = keywords.replace(/\./gm, " ");
+    keywords = keywords.replace(/ the /gm, " ");
+    keywords = keywords.replace(/bumpers/gm, "bumper");
+    keywords = keywords.replace(/transitions/gm, "transition");
+    keywords = keywords.replace(/, /gm, " ");
+    keywords = keywords.replace(/'/gm, "");
+    keywords = keywords.replace(/ with /gm, " ");
+    keywords = keywords.replace(/ a /gm, " ");
+    keywords = keywords.replace(/ of /gm, " ");
+    keywords = keywords.replace(/,/gm, " ");
+    keywords = keywords.replace(/ at /gm, " ");
+    keywords = keywords.replace(/ and /gm, " ");
+    keywords = keywords.replace(/ to /gm, " ");
+    keywords = keywords.replace(/ this /gm, " ");
+    keywords = keywords.replace(/ mix /gm, " ");
+    keywords = keywords.replace(/ in /gm, " ");
+    keywords = keywords.replace(/ is /gm, " ");
+    keywords = keywords.replace(/ it /gm, " ");
+    keywords = keywords.replace(/nrg/gm, "energy");
+    keywords = keywords.replace(/ & /gm, " ");
+    keywords = keywords.replace(/ n /gm, " ");
+    let keywordsArray = keywords.split(" ");
+    keywordsArray = keywordsArray.map(keywords => keywords.trim());
     keywordsArray = [...new Set(keywordsArray)];
     return keywordsArray;
-  }
+  };
 
   const publisherProParse = (publisher_name) => {
     switch(publisher_name){
-      case 'Derek Luff Music, Inc.':
-        return 'ASCAP';
-        break;
-      case 'Dewmarc Music':
-        return 'BMI';
-        break;
-      case 'Ridek Music':
-        return 'SESAC';
-        break;
-      default:
-        return '';
-        break;
+    case "Derek Luff Music, Inc.":
+      return "ASCAP";
+      break;
+    case "Dewmarc Music":
+      return "BMI";
+      break;
+    case "Ridek Music":
+      return "SESAC";
+      break;
+    default:
+      return "";
+      break;
     }
-  }
+  };
 
   const tempoParse = (tempo_id) => {
     if (tempo_id == 1){
@@ -611,79 +611,78 @@ const FilmTrackExport = (props) => {
     } else if (tempo_id === 8){
       return "Varied";
     }
-  }
+  };
 
   const versionParse = (row) => {
-		if (row.cue_duration === '0:28') {
-			return '30';
-		} else if (row.cue_duration === '0:29') {
-			return '30';
-		} else if (row.cue_duration === '0:30') {
-			return '30';
-		} else if (row.cue_duration === '0:31') {
-			return '30';
-		} else if (row.cue_duration === '0:58') {
-			return '60';
-		} else if (row.cue_duration === '0:59') {
-			return '60';
-		} else if (row.cue_duration === '1:00') {
-			return '60';
-		} else if (row.cue_duration === '1:01') {
-			return '60';
-		} else if (row.cat_id === 13){
-    	return 'Vocal';
-	  } else if (row.cue_title.includes('v1' || '(Full')){
-    	return 'Instrumental';
-		} else {
-			return 'Instrumental';
-		}
-  }
+    if (row.cue_duration === "0:28") {
+      return "30";
+    } else if (row.cue_duration === "0:29") {
+      return "30";
+    } else if (row.cue_duration === "0:30") {
+      return "30";
+    } else if (row.cue_duration === "0:31") {
+      return "30";
+    } else if (row.cue_duration === "0:58") {
+      return "60";
+    } else if (row.cue_duration === "0:59") {
+      return "60";
+    } else if (row.cue_duration === "1:00") {
+      return "60";
+    } else if (row.cue_duration === "1:01") {
+      return "60";
+    } else if (row.cat_id === 13){
+    	return "Vocal";
+	  } else if (row.cue_title.includes("v1" || "(Full")){
+    	return "Instrumental";
+    } else {
+      return "Instrumental";
+    }
+  };
 
   return (
     <a onClick={(() =>
       releaseFilter === 147 || cuesLoading
         ? exportTools.exportError()
-        : !releaseFilter.value.toString().includes('-')
-        ? exportTools.exportError('We Typically Only Send Film Track Releases. Please Select A Release.')
-        :  selectedLibrary.libraryName === 'independent-artists'
-        ? exportTools.exportError('We Don\'t Send Our Independent Artists Catalog To Film Track')
-        : inclusive || releaseFilter.label === 'All'
-          ? exportTools.exportError('We Typically Only Send Film Track One Release At A Time. Please Unselect Inclusive.')
-          : filmTrackExport())
+        : !releaseFilter.value.toString().includes("-")
+          ? exportTools.exportError("We Typically Only Send Film Track Releases. Please Select A Release.")
+          :  selectedLibrary.libraryName === "independent-artists"
+            ? exportTools.exportError("We Don't Send Our Independent Artists Catalog To Film Track")
+            : inclusive || releaseFilter.label === "All"
+              ? exportTools.exportError("We Typically Only Send Film Track One Release At A Time. Please Unselect Inclusive.")
+              : filmTrackExport())
     } className={
       inclusive || cuesLoading
-        ? 'strikethrough'
+        ? "strikethrough"
         : (releaseFilter.value
-        && typeof releaseFilter.value === 'string')
-        && releaseFilter.label !== 'All'
-        ? 'download-links'
-        : 'strikethrough'
-      }>
+        && typeof releaseFilter.value === "string")
+        && releaseFilter.label !== "All"
+          ? "download-links"
+          : "strikethrough"
+    }>
       {`Film Track Release Export ${
         (releaseFilter.value
-        && typeof releaseFilter.value === 'string')
-        && releaseFilter.label !== 'All'
-        ? releaseFilter.label
-        : ''
+        && typeof releaseFilter.value === "string")
+        && releaseFilter.label !== "All"
+          ? releaseFilter.label
+          : ""
       }`
-    }
+      }
     </a>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   downloadProgress: state.downloadProgress,
   selectedCategories: state.selectedCategories,
   selectedComposers: state.selectedComposers,
   selectedLibrary: state.selectedLibrary,
-  selectedStyles: state.selectedStyles,
-  tempos: state.tempos
-})
+  selectedStyles: state.selectedStyles
+});
 
 const mapDispatchToProps = {
   resetDownload,
   updateDownload
-}
+};
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FilmTrackExport));

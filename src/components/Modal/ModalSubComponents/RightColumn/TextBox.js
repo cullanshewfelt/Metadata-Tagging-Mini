@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const TextBox = (props) => {
   return(
@@ -11,6 +11,6 @@ const TextBox = (props) => {
         onSubmit={props.onSubmit}>
       </textarea >
     </div>
-)};
+  );};
 
 export default TextBox;

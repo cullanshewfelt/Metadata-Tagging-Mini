@@ -4,37 +4,37 @@
 // reducers take our state, an action, and return a new state
 let statusReducersDefaultState = [
   {
-    label: 'Active',
+    label: "Active",
     selected: false,
-    value: 'Active'
+    value: "Active"
   }, {
-    label: 'Pulled',
+    label: "Pulled",
     selected: false,
-    value: 'Pulled'
+    value: "Pulled"
   }, {
-    label: 'Pending',
+    label: "Pending",
     selected: false,
-    value: 'Pending'
+    value: "Pending"
   }, {
-    label: 'Instrumental Active',
+    label: "Instrumental Active",
     selected: false,
-    value: 'Instrumental_Active'
+    value: "Instrumental_Active"
   }
-]
+];
 
 export default (state = statusReducersDefaultState, action) => {
   switch (action.type) {
-    case 'SET_STATUS':
-      return [...state].map(status =>
-        status.value === action.newStatus
-          ? { ...status, selected: true }
-          : { ...status, selected: false }
-      );
-    case 'CLEAR_STATUS':
-      return [...state].map(status => (
-          { ...status, selected: false }
-        ));
-    default:
-      return state;
+  case "SET_STATUS":
+    return [...state].map(status =>
+      status.value === action.newStatus
+        ? { ...status, selected: true }
+        : { ...status, selected: false }
+    );
+  case "CLEAR_STATUS":
+    return [...state].map(status => (
+      { ...status, selected: false }
+    ));
+  default:
+    return state;
   }
 };

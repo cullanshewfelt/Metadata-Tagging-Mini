@@ -2,7 +2,7 @@
 // CUES REDUCER
 // ==============================================================================================================
 // reducers take our state, an action, and return a new state
-let trackReducerDefaultState = []
+let trackReducerDefaultState = [];
 
 // export default (state = trackReducerDefaultState, action) => {
 //  switch(action.type){
@@ -17,30 +17,30 @@ let trackReducerDefaultState = []
 // };
 
 export function trackFetchError(state = false, action) {
-    switch (action.type) {
-        case 'TRACK_FETCH_HAS_ERRORED':
-            return action.hasErrored;
-        default:
-            return state;
-    }
+  switch (action.type) {
+  case "TRACK_FETCH_HAS_ERRORED":
+    return action.hasErrored;
+  default:
+    return state;
+  }
 }
 
 export function trackFetchIsLoading(state = false, action) {
-    switch (action.type) {
-        case 'TRACK_FETCH_IS_LOADING':
-            return action.isLoading;
-        default:
-            return state;
-    }
+  switch (action.type) {
+  case "TRACK_FETCH_IS_LOADING":
+    return action.isLoading;
+  default:
+    return state;
+  }
 }
 
 export function tracks(state = [], action) {
   switch (action.type) {
-    case 'TRACK_FETCH_DATA_SUCCESS':
-      return action.items;
-    case 'CLEAR_IA_CUES':
-      return [];
-    default:
-      return [...state];
+  case "TRACK_FETCH_DATA_SUCCESS":
+    return action.items;
+  case "CLEAR_IA_CUES":
+    return [];
+  default:
+    return [...state];
   }
 }

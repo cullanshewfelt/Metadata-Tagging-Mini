@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import {connect} from 'react-redux';
-import { showCategories, selectHeader, showInstruments, showKeywords, showRatings  } from '../../../../actions/modalActions';
-import { showStatus, showStyles, showTempos, showTextBox, updateData } from '../../../../actions/modalActions';
+import React, { useEffect, useRef } from "react";
+import {connect} from "react-redux";
+import { showCategories, selectHeader, showInstruments, showKeywords, showRatings  } from "../../../../actions/modalActions";
+import { showStatus, showStyles, showTempos, showTextBox, updateData } from "../../../../actions/modalActions";
 
 const LeftColumn = (props) => {
   let { batchesBI, modal, ratings, releasesIA, selectedCategories, selectedKeywords, selectedLibrary, selectedStyles,
-        showCategories, showInstruments, showKeywords, showRatings, showStatus, showStyles, showTempos,
-        showTextBox, stylesBI, stylesIA, tempos
-      } = props;
+    showCategories, showInstruments, showKeywords, showRatings, showStatus, showStyles, showTempos,
+    showTextBox, stylesBI, stylesIA, tempos
+  } = props;
 
   let { selectedCue } = modal;
 
@@ -19,7 +19,7 @@ const LeftColumn = (props) => {
     { publisher_name: publisher.publisher_name,
       publisher_pro: publisher.publisher_pro,
       composer_split: publisher.composer_split }
-    ))
+  ));
 
   // console.log(24, selectedComposer)
 
@@ -30,7 +30,7 @@ const LeftColumn = (props) => {
       accumulator[currentValue.publisher_name] = currentValue;
     }
     return accumulator;
-  }, {}))
+  }, {}));
 
   // console.log(35, publisherArray)
   // **********************************************************************************************************
@@ -38,75 +38,75 @@ const LeftColumn = (props) => {
   // **********************************************************************************************************
   const handleShowStatus = () => {
     showStatus();
-  }
+  };
   // **********************************************************************************************************
   // CATEGORIES FUNCTIONS
   // **********************************************************************************************************
   const handleShowCategories = () => {
     showCategories();
-  }
+  };
   // **********************************************************************************************************
   // STYLES FUNCTIONS
   // **********************************************************************************************************
   const handleShowStyles = () => {
     showStyles();
     clearSearchFilter();
-  }
+  };
   // **********************************************************************************************************
   // INSTRUMENTS FUNCTIONS
   // **********************************************************************************************************
   const handleShowInstruments = () => {
     showInstruments();
     clearSearchFilter();
-  }
+  };
   // **********************************************************************************************************
   // KEYWORDS FUNCTIONS
   // **********************************************************************************************************
   const handleShowKeywords = () => {
     showKeywords();
     clearSearchFilter();
-  }
+  };
   // **********************************************************************************************************
   // TEMPOS FUNCTIONS
   // **********************************************************************************************************
   const handleShowTempos = () => {
     showTempos();
-  }
+  };
   // **********************************************************************************************************
   // RATINGS FUNCTIONS
   // **********************************************************************************************************
   const handleShowRating = () => {
     showRatings();
-  }
+  };
   // **********************************************************************************************************
   // TEXTBOX FUNCTIONS
   // **********************************************************************************************************
   const handleShowTextBox = () => {
-    showTextBox(event.target.getAttribute('texttype'))
-  }
+    showTextBox(event.target.getAttribute("texttype"));
+  };
 
   const clearSearchFilter = () => {
-    if(document.getElementById('search-filter')){
-      document.getElementById('search-filter').value = '';
+    if(document.getElementById("search-filter")){
+      document.getElementById("search-filter").value = "";
     }
-  }
+  };
 
   return (
     <div className='modal-left-column'>
       <strong>Catalog Name:</strong> {
-        selectedLibrary.libraryName === 'background-instrumentals'
-          ? 'Background Instrumentals'
-          : selectedLibrary.libraryName === 'independent-artists'
-            ? 'Independent Artists'
+        selectedLibrary.libraryName === "background-instrumentals"
+          ? "Background Instrumentals"
+          : selectedLibrary.libraryName === "independent-artists"
+            ? "Independent Artists"
             : null
       }
       <br/>
       <strong>Cue ID:</strong> { selectedCue.cue_id }
       <br/>
       <strong>Release: </strong> {
-        selectedCue && selectedLibrary.libraryName === 'background-instrumentals'
+        selectedCue && selectedLibrary.libraryName === "background-instrumentals"
           ? batchesBI.filter(rel => rel.rel_id === selectedCue.rel_id).map(obj => obj.rel_num)
-          : selectedCue && selectedLibrary.libraryName === 'independent-artists'
+          : selectedCue && selectedLibrary.libraryName === "independent-artists"
             ? releasesIA.filter(rel => rel.rel_id === selectedCue.rel_id).map(obj => obj.rel_num)
             : null
       }
@@ -126,11 +126,11 @@ const LeftColumn = (props) => {
           selectedStyles.filter(style => style.style_id === selectedCue.style_id).map(obj => obj.style_name)}
       </div>
       <br/>
-      <strong>Composer{modal.selectedComposer.length > 1 ? 's' : null}: </strong> {
+      <strong>Composer{modal.selectedComposer.length > 1 ? "s" : null}: </strong> {
         modal.selectedComposer.map((composer, i) =>
           <div key={i}>{composer.composer_name} ({composer.pro_name}) {composer.composer_split}%  {String.fromCodePoint(183)} </div>)}
       <br/>
-      <strong>Publisher{publisherArray.length > 1 ? 's' : null}: </strong> {
+      <strong>Publisher{publisherArray.length > 1 ? "s" : null}: </strong> {
         publisherArray.map((composer, i) =>
           <div key={i}>{composer.publisher_name}  {composer.composer_split}% {String.fromCodePoint(183)}</div>)}
       <br/>
@@ -162,7 +162,7 @@ const LeftColumn = (props) => {
         <strong texttype='sounds_like_composer_edit'>Sounds Like Composer: </strong> {selectedCue.sounds_like_composer_edit}
       </div>
     </div>
-  )}
+  );};
 
 const mapStateToProps = (state) => {
   // include ALL props which would cause LeftColumn to rerender
@@ -176,8 +176,8 @@ const mapStateToProps = (state) => {
     selectedStyles: state.selectedStyles,
     stylesIA: state.stylesIA,
     tempos: state.tempos
-  }
-}
+  };
+};
 
 const mapDispatchToProps = {
   selectHeader,
@@ -189,7 +189,7 @@ const mapDispatchToProps = {
   showStyles,
   showTempos,
   showTextBox
-}
+};
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeftColumn);
