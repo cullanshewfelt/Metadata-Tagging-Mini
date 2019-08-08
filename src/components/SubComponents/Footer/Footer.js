@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Loader from "../Loader/Loader";
-import { NavLink } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { withRouter } from "react-router";
 

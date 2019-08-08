@@ -335,49 +335,34 @@ const FilmTrackExport = (props) => {
     switch(row.cat_id){
     case 1:
       return "Bumpers, Transitions, Stingers";
-      break;
     case 2:
       return "Bumpers, Transitions, Stingers"; // BUMPERS
-      break;
     case 3:
       return "Drama"; // DRAMA
-      break;
     case 4:
       return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-      break;
     case 5:
       return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-      break;
     case 6:
       return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-      break;
     case 7:
       return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-      break;
     case 8:
       return "Drama, Trailer Music"; 	// DRAMA ORCHESTRAL
-      break;
     case 9:
       return "Retro TV"; // RETRO TV LAND
-      break;
     case 10:
       return "Retro TV"; // RETRO TV LAND
-      break;
     case 11:
       return "Score Tools"; // SCORE TOOLS
-      break;
     case 12:
       return "Score Tools"; // SCORE TOOLS
-      break;
     case 13:
       return "Score Tools"; // SCORE TOOLS
-      break;
     case 14:
       return "Score Tools"; // SCORE TOOLS
-      break;
     case 15:
       return "Score Tools";
-      break;
     default:
       return "";
     }
@@ -586,16 +571,12 @@ const FilmTrackExport = (props) => {
     switch(publisher_name){
     case "Derek Luff Music, Inc.":
       return "ASCAP";
-      break;
     case "Dewmarc Music":
       return "BMI";
-      break;
     case "Ridek Music":
       return "SESAC";
-      break;
     default:
       return "";
-      break;
     }
   };
 
@@ -631,9 +612,9 @@ const FilmTrackExport = (props) => {
     } else if (row.cue_duration === "1:01") {
       return "60";
     } else if (row.cat_id === 13){
-    	return "Vocal";
-	  } else if (row.cue_title.includes("v1" || "(Full")){
-    	return "Instrumental";
+      return "Vocal";
+    } else if (row.cue_title.includes("v1" || "(Full")){
+      return "Instrumental";
     } else {
       return "Instrumental";
     }

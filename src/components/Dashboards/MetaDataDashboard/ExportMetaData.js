@@ -25,14 +25,14 @@ import { resetDownload, updateDownload } from "../../../actions/ExportActions/ex
 let releasesDropDownJSON = require("./MetaDataExportFunctions/dropdownJsonData/releasesDropDown.json");
 // ------------------------------------------------------------------------------------------------------------
 const ExportDashboard = (props) => {
-  let { batchesBI, categoriesBI, categoriesIA, composersBI, composersIA, cues,
+  let { categoriesIA, composersBI, composersIA,
     initializeSelectedCategories, initializeSelectedComposer, initializeSelectedLibrary,
     initializeSelectedReleases, initializeSelectedStyles, releasesIA, searches, selectedCategories,
     selectedComposers, selectedLibrary, selectedStyles,
-    stylesBI, stylesIA, tracks, tempos } = props;
+    stylesIA, tracks, tempos } = props;
   // ------------------------------------------------------------------------------------------------------------
   const [batchesDropDown, setBatchesDropDown] = useState([]);
-  const [batchOrRelease, setBatchOrRelease] = useState("Background Instrumental Batch");
+  const [batchOrRelease, setBatchOrRelease] = useState("Indie Artist Release");
   const [clients, setClients] = useState(props.clients);
   const [downloadFinished, setDownloadFinished] = useState(true);
   const [downloadProgress, setDownloadProgress] = useState(props.downloadProgress);

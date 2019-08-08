@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import {NavLink} from "react-router-dom";
-import Loader from "../Loader/Loader";
+import { NavLink } from "react-router-dom";
 import { initializeSelectedLibrary } from "../../../actions/selectedLibraryActions";
 import Logo from "./images/DLM.png";
+
 const Header = (props) => {
-  let { initializeSelectedLibrary, selectedLibrary } = props;
+  let { initializeSelectedLibrary } = props;
 
   const handleChooseLibrary = (event) => {
     // the logic behind whether the user requested the BI or IA library

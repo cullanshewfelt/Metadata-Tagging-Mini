@@ -11,7 +11,7 @@ const exportTools = require("../ExportTools.js");
 //  in progress
 // ******************************************************************************************
 const AlterKExport = (props) => {
-  const { batchesBI, cuesLoading, downloadCompletedChecker, downloadProgress, inclusive, releaseFilter, resetDownload,
+  const { cuesLoading, downloadCompletedChecker, downloadProgress, inclusive, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 

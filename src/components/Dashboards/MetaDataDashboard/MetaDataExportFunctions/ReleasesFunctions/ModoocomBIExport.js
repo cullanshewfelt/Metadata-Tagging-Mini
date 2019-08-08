@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router";
-import moment from 'moment';
-import { connect } from 'react-redux';
-import { resetDownload, updateDownload } from '../../../../../actions/ExportActions/exportActions';
-const exportTools = require('../ExportTools.js');
+import moment from "moment";
+import { connect } from "react-redux";
+import { resetDownload, updateDownload } from "../../../../../actions/ExportActions/exportActions";
+const exportTools = require("../ExportTools.js");
 
 // ******************************************************************************************
 //  MODOOCOM BI EXPORT FUNCTION
@@ -13,48 +13,48 @@ const exportTools = require('../ExportTools.js');
 
 const ModoocomBIExport = (props) => {
   const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
-         selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
-       } = props;
+    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
+  } = props;
 
   const [xlsData, setXlsData] = useState([]);
   const [newRowData, setRowData] = useState([]);
   const [progress, setProgress] = useState(0.00);
 
   useEffect(() => {
-    let downloadLink = `DLM_${releaseFilter.label + "_"}MODOOCOM_BI_EXPORT_${moment().format('YYYY.MM.DD-HH_mm_ss')}.xls`;
-    updateDownload(progress)
-    progress === 1 && exportTools.generateDownload(xlsData.join('\n'), downloadLink);
-  }, [progress])
+    let downloadLink = `DLM_${releaseFilter.label + "_"}MODOOCOM_BI_EXPORT_${moment().format("YYYY.MM.DD-HH_mm_ss")}.xls`;
+    updateDownload(progress);
+    progress === 1 && exportTools.generateDownload(xlsData.join("\n"), downloadLink);
+  }, [progress]);
 
   useEffect(() => {
-    (progress !== 1 && newRowData.length !== 0 && xlsData.indexOf(newRowData.join('\t')) === -1) && setXlsData([...xlsData, newRowData.join('\t')])
-  }, [newRowData, progress])
+    (progress !== 1 && newRowData.length !== 0 && xlsData.indexOf(newRowData.join("\t")) === -1) && setXlsData([...xlsData, newRowData.join("\t")]);
+  }, [newRowData, progress]);
 
   const modoocomBIExport = () => {
-    resetDownload()
+    resetDownload();
     downloadCompletedChecker();
     let progressCount = 0;
     let headersRow = [
-      'Label',	'Number',	'Disc',	'Track',	'Track No. (Modoocom)',	'Title',	'Alternate Title',
-      'Name',	'Type',	'Shares %',	'CAE',	'Society',	'Name',	'Type',	'Shares %',	'CAE',
-      'Society',	'Name',	'Type',	'Shares %',	'CAE',	'Society',	'Name',	'Type',	'Shares %',
-      'CAE',	'Society',	'Name',	'Type',	'Shares %',	'CAE',	'Society',	'Name',	'Type',	'Shares %',
-      'CAE',	'Society',	'Duration',	'Description EN',	'Owners',	'ISRC',	'ISWC',	'Virtual Only',	'Rereleased'
+      "Label",	"Number",	"Disc",	"Track",	"Track No. (Modoocom)",	"Title",	"Alternate Title",
+      "Name",	"Type",	"Shares %",	"CAE",	"Society",	"Name",	"Type",	"Shares %",	"CAE",
+      "Society",	"Name",	"Type",	"Shares %",	"CAE",	"Society",	"Name",	"Type",	"Shares %",
+      "CAE",	"Society",	"Name",	"Type",	"Shares %",	"CAE",	"Society",	"Name",	"Type",	"Shares %",
+      "CAE",	"Society",	"Duration",	"Description EN",	"Owners",	"ISRC",	"ISWC",	"Virtual Only",	"Rereleased"
     ];
-    setXlsData([headersRow.join('\t')]);
-    let releasesArray = isNaN(releaseFilter.value) && releaseFilter.value.includes('-') ? releaseFilter.value.split('-') : [];
+    setXlsData([headersRow.join("\t")]);
+    let releasesArray = isNaN(releaseFilter.value) && releaseFilter.value.includes("-") ? releaseFilter.value.split("-") : [];
     let filteredLibrary = selectedLibrary.library.filter(cue =>
-        inclusive
-          ? cue.rel_id <= releaseFilter.value && cue.cue_status === 'Active'
-          : releaseFilter.label === 'All'
-          ? cue.cue_status === 'Active'
+      inclusive
+        ? cue.rel_id <= releaseFilter.value && cue.cue_status === "Active"
+        : releaseFilter.label === "All"
+          ? cue.cue_status === "Active"
           : releasesArray.length !== 0
-          ? cue.rel_id >= releasesArray[releasesArray.length - 1] && cue.rel_id <= releasesArray[0] && cue.cue_status === 'Active'
-          : inclusive && releasesArray.length !== 0
-          ? cue.rel_id <= releasesArray[releasesArray.length - 1] && cue.cue_status === 'Active'
-          : cue.rel_id === releaseFilter.value && cue.cue_status === 'Active'
-        ).sort((a, b) => a.cat_id - b.cat_id)
-        // this filtered library has an extra sort to sort by category
+            ? cue.rel_id >= releasesArray[releasesArray.length - 1] && cue.rel_id <= releasesArray[0] && cue.cue_status === "Active"
+            : inclusive && releasesArray.length !== 0
+              ? cue.rel_id <= releasesArray[releasesArray.length - 1] && cue.cue_status === "Active"
+              : cue.rel_id === releaseFilter.value && cue.cue_status === "Active"
+    ).sort((a, b) => a.cat_id - b.cat_id);
+    // this filtered library has an extra sort to sort by category
 
     let prevCatId = 0;
     let modoocomTrackNumber = 1;
@@ -65,19 +65,19 @@ const ModoocomBIExport = (props) => {
       // these little functions parse data to Title Case formatting
       // and remove empty keywords/instruments and tailing commas
       // --------------------------------------------------------------------------------------------------
-      let descriptionString = exportTools.parseData(row.cue_desc).join(', ');
-      let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(', ');
-      let releaseParse = releaseFilter.label.split('R')[1];
+      let descriptionString = exportTools.parseData(row.cue_desc).join(", ");
+      let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(", ");
+      let releaseParse = releaseFilter.label.split("R")[1];
       let genre = selectedCategories.filter(categories =>
-            categories.cat_id === row.cat_id).map(cat =>
-              cat.cat_name)[0];
+        categories.cat_id === row.cat_id).map(cat =>
+        cat.cat_name)[0];
       let subGenre = selectedStyles.filter(styles =>
-             styles.style_id === row.style_id).map(style =>
-               style.style_name)[0];
+        styles.style_id === row.style_id).map(style =>
+        style.style_name)[0];
       // --------------------------------------------------------------------------------------------------
       let composerArray = selectedComposers.filter(composer => composer.cue_id === row.cue_id).sort((a, b) => b.composer_split - a.composer_split).sort((c, d) => c.last < d.last ? -1 : c.last > d.last ? 1 : 0);
-      let compString = '';
-      let pubString = '';
+      let compString = "";
+      let pubString = "";
       let temp = [];
       let publisherArray = [];
       let combinedPubSplit = 0;
@@ -92,20 +92,20 @@ const ModoocomBIExport = (props) => {
           ? currentSplit  // else we find the publisher and add the splits up
           : parseFloat(publisherArray.filter(pub => pub.name_only === composerArray[c].name_only).map(x => x.publisher_split)) + parseFloat(currentSplit);
         pubString += (c > 0) && pubDoesntExist
-          ? ';'
-          : '';
+          ? ";"
+          : "";
         pubString += pubDoesntExist
           ? `${composerArray[c].name_only}`
-          : '';
-        compString += `${composerArray[c].last}${composerArray[c].suffix ?  ' ' + composerArray[c].suffix  : ''}, ${composerArray[c].first}${composerArray[c].middle ?  ' ' + composerArray[c].middle : ''}`;
+          : "";
+        compString += `${composerArray[c].last}${composerArray[c].suffix ?  " " + composerArray[c].suffix  : ""}, ${composerArray[c].first}${composerArray[c].middle ?  " " + composerArray[c].middle : ""}`;
         compString += c < composerArray.length - 1
-          ? ' / '
-          : ' ';
+          ? " / "
+          : " ";
         pubDoesntExist // push this publisher's name into an array to keep track of which pubs have been accounted for
           ? temp.push(composerArray[c].name_only)
           : null;
         // create a new publisher object with the combined split data
-        let pub = {publisher_pro: composerArray[c].publisher_pro, publisher_split: parseFloat(combinedPubSplit).toFixed(2), name_only: composerArray[c].name_only, ipi: composerArray[c].ipi}
+        let pub = {publisher_pro: composerArray[c].publisher_pro, publisher_split: parseFloat(combinedPubSplit).toFixed(2), name_only: composerArray[c].name_only, ipi: composerArray[c].ipi};
         // filter through new publisher objects array for the current publisher
         let pubFilter = publisherArray.filter(pub => pub.name_only === composerArray[c].name_only);
         // if one is found, splice it out and replace it the new combined split data publisher object,
@@ -122,7 +122,7 @@ const ModoocomBIExport = (props) => {
 
       let newRow = [
         // Label
-        'DLM',
+        "DLM",
         // Number
         `${albumPrefixParse(row.cat_id)}${releaseParse}01`,
         // Disc
@@ -134,11 +134,11 @@ const ModoocomBIExport = (props) => {
         // Title
         row.cue_title,
         // Alternate Title
-        '',
+        "",
         // Name
-        `${composerArray[0].last}, ${composerArray[0].first}${composerArray[0].middle ? " " + composerArray[0].middle : ''}${composerArray[0].suffix ?  ' ' + composerArray[0].suffix  : ''}`,
+        `${composerArray[0].last}, ${composerArray[0].first}${composerArray[0].middle ? " " + composerArray[0].middle : ""}${composerArray[0].suffix ?  " " + composerArray[0].suffix  : ""}`,
         // Type
-        'Composer',
+        "Composer",
         // Shares %
         composerArray[0].composer_split,
         // CAE
@@ -147,207 +147,192 @@ const ModoocomBIExport = (props) => {
         composerArray[0].pro_name,
         // Name
         composerArray[1]
-          ? `${composerArray[1].last}, ${composerArray[1].first}${composerArray[1].middle ? " " + composerArray[1].middle : ''}${composerArray[1].suffix ?  ' ' + composerArray[1].suffix  : ''}`
-          : '',
+          ? `${composerArray[1].last}, ${composerArray[1].first}${composerArray[1].middle ? " " + composerArray[1].middle : ""}${composerArray[1].suffix ?  " " + composerArray[1].suffix  : ""}`
+          : "",
         // Type
         composerArray[1]
-          ? 'Composer'
-          : '',
+          ? "Composer"
+          : "",
         // Shares %
         composerArray[1]
           ? composerArray[1].composer_split
-          : '',
+          : "",
         // CAE
         composerArray[1]
           ? composerArray[1].cae
-          : '',
+          : "",
         // Society
         composerArray[1]
           ? composerArray[1].pro_name
-          : '',
+          : "",
         // Name
         composerArray[2]
-          ? `${composerArray[2].last}, ${composerArray[2].first}${composerArray[2].middle ? " " + composerArray[2].middle : ''}${composerArray[2].suffix ?  ' ' + composerArray[2].suffix  : ''}`
-          : '',
+          ? `${composerArray[2].last}, ${composerArray[2].first}${composerArray[2].middle ? " " + composerArray[2].middle : ""}${composerArray[2].suffix ?  " " + composerArray[2].suffix  : ""}`
+          : "",
         // Type
         composerArray[2]
-          ? 'Composer'
-          : '',
+          ? "Composer"
+          : "",
         // Shares %
         composerArray[2]
           ? composerArray[2].composer_split
-          : '',
+          : "",
         // CAE
         composerArray[2]
           ? composerArray[2].cae
-          : '',
+          : "",
         // Society
         composerArray[2]
           ? composerArray[2].pro_name
-          : '',
+          : "",
         // Name
         composerArray[3]
-          ? `${composerArray[3].last}, ${composerArray[3].first}${composerArray[3].middle ? " " + composerArray[3].middle : ''}${composerArray[3].suffix ?  ' ' + composerArray[3].suffix  : ''}`
-          : '',
+          ? `${composerArray[3].last}, ${composerArray[3].first}${composerArray[3].middle ? " " + composerArray[3].middle : ""}${composerArray[3].suffix ?  " " + composerArray[3].suffix  : ""}`
+          : "",
         // Type
         composerArray[3]
-          ? 'Composer'
-          : '',
+          ? "Composer"
+          : "",
         // Shares %
         composerArray[3]
           ? composerArray[3].composer_split
-          : '',
+          : "",
         // CAE
         composerArray[3]
           ? composerArray[3].cae
-          : '',
+          : "",
         // Society
         composerArray[3]
           ? composerArray[3].pro_name
-          : '',
+          : "",
         // Name
         composerArray[4]
-          ? `${composerArray[4].last}, ${composerArray[4].first}${composerArray[4].middle ? " " + composerArray[4].middle : ''}${composerArray[4].suffix ?  ' ' + composerArray[4].suffix  : ''}`
-          : '',
+          ? `${composerArray[4].last}, ${composerArray[4].first}${composerArray[4].middle ? " " + composerArray[4].middle : ""}${composerArray[4].suffix ?  " " + composerArray[4].suffix  : ""}`
+          : "",
         // Type
         composerArray[4]
-          ? 'Composer'
-          : '',
+          ? "Composer"
+          : "",
         // Shares %
         composerArray[4]
           ? composerArray[4].composer_split
-          : '',
+          : "",
         // CAE
         composerArray[4]
           ? composerArray[4].cae
-          : '',
+          : "",
         // Society
         composerArray[4]
           ? composerArray[4].pro_name
-          : '',
+          : "",
         // Name
         composerArray[5]
-          ? `${composerArray[5].last}, ${composerArray[5].first}${composerArray[5].middle ? " " + composerArray[5].middle : ''}${composerArray[5].suffix ?  ' ' + composerArray[5].suffix  : ''}`
-          : '',
+          ? `${composerArray[5].last}, ${composerArray[5].first}${composerArray[5].middle ? " " + composerArray[5].middle : ""}${composerArray[5].suffix ?  " " + composerArray[5].suffix  : ""}`
+          : "",
         // Type
         composerArray[5]
-          ? 'Composer'
-          : '',
+          ? "Composer"
+          : "",
         // Shares %
         composerArray[5]
           ? composerArray[5].composer_split
-          : '',
+          : "",
         // CAE
         composerArray[5]
           ? composerArray[5].cae
-          : '',
+          : "",
         // Society
         composerArray[5]
           ? composerArray[5].pro_name
-          : '',
+          : "",
         // Duration
         row.cue_duration,
         // Description EN
         descriptionString.toLowerCase(),
         // Owners
-        'DL Music - Background Instrumentals',
+        "DL Music - Background Instrumentals",
         // ISRC
         `US-RRD-${row.cue_reldate_h.substring(2, 4)}-${row.cue_id.toString().slice(1)}`,
         // ISWC
-        '',
+        "",
         // Virtual Only
-        '',
+        "",
         // Rereleased
-        ''
-      ]
-      let progress = (progressCount/filteredLibrary.length)
+        ""
+      ];
+      let progress = (progressCount/filteredLibrary.length);
       setRowData(newRow);
       setProgress(progress);
-   }, () => { // inProgress()
-   },
-   () => { // done()
-     updateDownload(1)
-     downloadCompletedChecker();
-   })
-  }
+    }, () => { // inProgress()
+    },
+    () => { // done()
+      updateDownload(1);
+      downloadCompletedChecker();
+    });
+  };
 
   const albumPrefixParse = (cat_id) => {
     switch(cat_id){
-      case 1:
-        return 'BMP';
-        break;
-      case 2:
-        return 'DNC';
-        break;
-      case 3:
-        return 'DRA';
-        break;
-      case 4:
-        return 'ORC';
-        break;
-      case 5:
-        return 'HIP';
-        break;
-      case 6:
-        return 'HOL';
-        break;
-      case 7:
-        return 'JAZ';
-        break;
-      case 8:
-        return 'REG';
-        break;
-      case 9:
-        return 'RET';
-        break;
-      case 10:
-        return 'RBF';
-        break;
-      case 11:
-        return 'SCR';
-        break;
-      case 12:
-        return 'SPE';
-        break;
-      case 13:
-        return 'VOX';
-        break;
-      case 14:
-        return 'WLD';
-        break;
-      case 15:
-        return 'WPP';
-        break;
+    case 1:
+      return "BMP";
+    case 2:
+      return "DNC";
+    case 3:
+      return "DRA";
+    case 4:
+      return "ORC";
+    case 5:
+      return "HIP";
+    case 6:
+      return "HOL";
+    case 7:
+      return "JAZ";
+    case 8:
+      return "REG";
+    case 9:
+      return "RET";
+    case 10:
+      return "RBF";
+    case 11:
+      return "SCR";
+    case 12:
+      return "SPE";
+    case 13:
+      return "VOX";
+    case 14:
+      return "WLD";
+    case 15:
+      return "WPP";
     }
-  }
+  };
 
   return (
     <a onClick={(() =>
       releaseFilter === 147 || cuesLoading
         ? exportTools.exportError()
-        : inclusive || releaseFilter.label === 'All'
-        ? exportTools.exportError('Please Unselect All/Inclusive.')
-        : releaseFilter.label.includes('_')
-        ? exportTools.exportError('We Typically Only Send Modoocom Releases. Please Select A Release.')
-        : selectedLibrary.libraryName === 'independent-artists'
-        ? exportTools.exportError('Please Use The Modoocom IA Export')
-        : modoocomBIExport())
+        : inclusive || releaseFilter.label === "All"
+          ? exportTools.exportError("Please Unselect All/Inclusive.")
+          : releaseFilter.label.includes("_")
+            ? exportTools.exportError("We Typically Only Send Modoocom Releases. Please Select A Release.")
+            : selectedLibrary.libraryName === "independent-artists"
+              ? exportTools.exportError("Please Use The Modoocom IA Export")
+              : modoocomBIExport())
     } className={
       cuesLoading || inclusive || releaseFilter === 147 ||
-      (releaseFilter.label && (releaseFilter.label === 'All' || releaseFilter.label.includes('_')))
-        ? 'strikethrough'
-        : 'download-links'
+      (releaseFilter.label && (releaseFilter.label === "All" || releaseFilter.label.includes("_")))
+        ? "strikethrough"
+        : "download-links"
     }>
       {`Modoocom Release Export ${
         inclusive || releaseFilter === 147 ||
-        (releaseFilter.label && (releaseFilter.label === 'All' || releaseFilter.label.includes('_')))
-          ? ''
+        (releaseFilter.label && (releaseFilter.label === "All" || releaseFilter.label.includes("_")))
+          ? ""
           : releaseFilter.label
       }`
-    }
+      }
     </a>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   downloadProgress: state.downloadProgress,
@@ -356,11 +341,11 @@ const mapStateToProps = (state) => ({
   selectedLibrary: state.selectedLibrary,
   selectedStyles: state.selectedStyles,
   tempos: state.tempos
-})
+});
 
 const mapDispatchToProps = {
   resetDownload,
   updateDownload
-}
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ModoocomBIExport));

@@ -1,25 +1,17 @@
-import React, { useState,  useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 // ------------------------------------------------------------------------------------------------------------
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "../../../SubComponents/Loader/Loader";
 // ------------------------------------------------------------------------------------------------------------
 // these imports contain all the export/download functions:
-const exportTools = require("../MetaDataExportFunctions/ExportTools.js");
 import Batches from "./Batches.js";
 import IndependentArtists from "./IndependentArtists.js";
 import Releases from "./Releases.js";
 import UsageReportTimeline from "../MetaDataExportFunctions/AdminFunctions/UsageReportTimeline";
 // ------------------------------------------------------------------------------------------------------------
-// import { asyncClientsFetch } from '../../../../actions/ClientActions/clientActions.js';
-// import { asyncCuesFetch } from '../../../../actions/BackgroundInstrumentalsActions/cuesActions';
-import { asyncTracksFetch } from "../../../../actions/IndieArtistsActions/tracksActions";
-// import { asyncMonitoringFetch } from '../../../../actions/ClientActions/monitoringActions';
-// import { asyncSearchFetch } from '../../../../actions/ClientActions/searchActions';
+// import { asyncTracksFetch } from "../../../../actions/IndieArtistsActions/tracksActions";
 import { handleFetchCuesFromRelease } from "../../../../actions/selectedReleasesActions";
 import { initializeSelectedLibrary } from "../../../../actions/selectedLibraryActions";
 import { initializeSelectedCategories } from "../../../../actions/selectedCategoriesActions";
@@ -28,9 +20,8 @@ import { initializeSelectedReleases } from "../../../../actions/selectedReleases
 import { initializeSelectedStyles } from "../../../../actions/selectedStylesActions";
 // ------------------------------------------------------------------------------------------------------------
 const RightColumn = (props) => {
-  let { batchesBI, batchesDropDown, batchOrRelease, clients, downloadCompletedChecker, endDate, inclusive, cueFetchIsLoading,
-    monitoring, releaseFilter, searches, selectedCategories, selectedComposers, selectedLibrary, selectedStyles,
-    startDate, tempos, trackFetchIsLoading } = props;
+  let { batchesDropDown, batchOrRelease, clients, downloadCompletedChecker, endDate, inclusive,
+    cueFetchIsLoading, monitoring, releaseFilter, searches, startDate, trackFetchIsLoading } = props;
 
   let cuesLoading = cueFetchIsLoading || trackFetchIsLoading;
 
@@ -113,7 +104,6 @@ const mapStateToProps = (state) => {
     selectedReleases: state.selectedReleases,
     selectedStyles: state.selectedStyles,
     stylesIA: state.stylesIA,
-    tempos: state.tempos,
     tracks: state.tracks,
     trackFetchIsLoading: state.trackFetchIsLoading
   };

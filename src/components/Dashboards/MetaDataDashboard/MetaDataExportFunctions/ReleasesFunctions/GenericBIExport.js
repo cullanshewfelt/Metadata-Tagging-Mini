@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router";
-import moment from 'moment';
-import { connect } from 'react-redux';
-import { resetDownload, updateDownload } from '../../../../../actions/ExportActions/exportActions';
-const exportTools = require('../ExportTools.js');
+import moment from "moment";
+import { connect } from "react-redux";
+import { resetDownload, updateDownload } from "../../../../../actions/ExportActions/exportActions";
+const exportTools = require("../ExportTools.js");
 
 // ******************************************************************************************
 //  GENERIC EXPORT FUNCTION
@@ -13,44 +13,44 @@ const exportTools = require('../ExportTools.js');
 
 const GenericBIExport = (props) => {
   const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
-          selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
-        } = props;
+    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
+  } = props;
 
   const [xlsData, setXlsData] = useState([]);
   const [newRowData, setRowData] = useState([]);
   const [progress, setProgress] = useState(0.00);
 
   useEffect(() => {
-    let downloadLink = `DLM_${releaseFilter.label + "_"}BARAKA_EXPORT_${moment().format('YYYY.MM.DD-HH_mm_ss')}.xls`;
-    updateDownload(progress)
-    progress === 1 && exportTools.generateDownload(xlsData.join('\n'), downloadLink);
-  }, [progress])
+    let downloadLink = `DLM_${releaseFilter.label + "_"}BARAKA_EXPORT_${moment().format("YYYY.MM.DD-HH_mm_ss")}.xls`;
+    updateDownload(progress);
+    progress === 1 && exportTools.generateDownload(xlsData.join("\n"), downloadLink);
+  }, [progress]);
 
   useEffect(() => {
-    (progress !== 1 && newRowData.length !== 0 && xlsData.indexOf(newRowData.join('\t')) === -1) && setXlsData([...xlsData, newRowData.join('\t')])
-  }, [newRowData, progress])
+    (progress !== 1 && newRowData.length !== 0 && xlsData.indexOf(newRowData.join("\t")) === -1) && setXlsData([...xlsData, newRowData.join("\t")]);
+  }, [newRowData, progress]);
 
   const genericBIExport = () => {
-  resetDownload()
-  downloadCompletedChecker();
-  let progressCount = 0;
-  let headersRow = [
-     'Category', 'CD #', 'Composer', 'CAE', 'PRO', 'Description', 'Duration', 'Instrumentation',
-     'Publisher', 'Release', 'Composer Split', 'Publisher Split', 'Style', 'Tempo',
-     'Song Title', 'Track #', 'Track ID', 'Cue Rating', 'ISRC', 'Sounds Like Band',
-     'Sounds Like Film'
-   ];
+    resetDownload();
+    downloadCompletedChecker();
+    let progressCount = 0;
+    let headersRow = [
+      "Category", "CD #", "Composer", "CAE", "PRO", "Description", "Duration", "Instrumentation",
+      "Publisher", "Release", "Composer Split", "Publisher Split", "Style", "Tempo",
+      "Song Title", "Track #", "Track ID", "Cue Rating", "ISRC", "Sounds Like Band",
+      "Sounds Like Film"
+    ];
 
-  setXlsData([headersRow.join('\t')]);
-  let releasesArray = isNaN(releaseFilter.value) && releaseFilter.value.includes('-') ? releaseFilter.value.split('-') : [];
-  let filteredLibrary = selectedLibrary.library.filter(cue =>
+    setXlsData([headersRow.join("\t")]);
+    let releasesArray = isNaN(releaseFilter.value) && releaseFilter.value.includes("-") ? releaseFilter.value.split("-") : [];
+    let filteredLibrary = selectedLibrary.library.filter(cue =>
       inclusive
         ? cue.rel_id <= releaseFilter.value
         : releasesArray.length !== 0
-        ? cue.rel_id >= releasesArray[releasesArray.length - 1] && cue.rel_id <= releasesArray[0]
-        : inclusive && releasesArray.length !== 0
-        ? cue.rel_id <= releasesArray[releasesArray.length - 1]
-        : cue.rel_id === releaseFilter.value);
+          ? cue.rel_id >= releasesArray[releasesArray.length - 1] && cue.rel_id <= releasesArray[0]
+          : inclusive && releasesArray.length !== 0
+            ? cue.rel_id <= releasesArray[releasesArray.length - 1]
+            : cue.rel_id === releaseFilter.value);
 
     exportTools.asyncExport(filteredLibrary, filteredLibrary.length, (row) => {
       progressCount ++;
@@ -58,28 +58,28 @@ const GenericBIExport = (props) => {
       // these little functions parse data to Title Case formatting
       // and remove empty keywords/instruments and tailing commas
       // --------------------------------------------------------------------------------------------------
-        let descriptionString = exportTools.parseData(row.cue_desc).join(', ');
-        let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(', ');
+      let descriptionString = exportTools.parseData(row.cue_desc).join(", ");
+      let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(", ");
       // --------------------------------------------------------------------------------------------------
-        let composerArray = selectedComposers.filter(composer => composer.cue_id === row.cue_id).sort((a, b) => b.composer_split - a.composer_split);
+      let composerArray = selectedComposers.filter(composer => composer.cue_id === row.cue_id).sort((a, b) => b.composer_split - a.composer_split);
 
-        let compString = '';
-        let splitString = '';
-        let pubString = '';
-        let caeString = '';
-        let proString = '';
-        for(let c in composerArray){
-          pubString += composerArray[c].name_only;
-          pubString += c < composerArray.length - 1 ? ' / ' : '';
-          compString += `${composerArray[c].first} ${composerArray[c].middle ? composerArray[c].middle + ' ' : ''}${composerArray[c].last}`;
-          compString += c < composerArray.length - 1 ? ' / ' : '';
-          splitString += composerArray[c].composer_split
-          splitString += c < composerArray.length - 1 ? ' / ' : '';
-          caeString += composerArray[c].cae;
-          caeString += c < composerArray.length - 1 ? ' / ' : '';
-          proString += composerArray[c].pro_name;
-          proString += c < composerArray.length - 1 ? ' / ' : '';
-        }
+      let compString = "";
+      let splitString = "";
+      let pubString = "";
+      let caeString = "";
+      let proString = "";
+      for(let c in composerArray){
+        pubString += composerArray[c].name_only;
+        pubString += c < composerArray.length - 1 ? " / " : "";
+        compString += `${composerArray[c].first} ${composerArray[c].middle ? composerArray[c].middle + " " : ""}${composerArray[c].last}`;
+        compString += c < composerArray.length - 1 ? " / " : "";
+        splitString += composerArray[c].composer_split;
+        splitString += c < composerArray.length - 1 ? " / " : "";
+        caeString += composerArray[c].cae;
+        caeString += c < composerArray.length - 1 ? " / " : "";
+        proString += composerArray[c].pro_name;
+        proString += c < composerArray.length - 1 ? " / " : "";
+      }
       let newRow = [
         // 1 Category
         `${selectedCategories.filter(cat => cat.cat_id === row.cat_id).map(cat => cat.cat_name)}`,
@@ -120,45 +120,45 @@ const GenericBIExport = (props) => {
         // 19 ISRC
         `US-RRD-${row.cue_reldate_h.substring(2, 4)}-${row.cue_id.toString().slice(1)}`,
         // 20 Sounds Like Band
-        row.sounds_like_band_edit || 'N/A',
+        row.sounds_like_band_edit || "N/A",
         // 21 Sounds Like Film
-        row.sounds_like_film_edit || 'N/A'
-      ]
-      let progress = (progressCount/filteredLibrary.length)
+        row.sounds_like_film_edit || "N/A"
+      ];
+      let progress = (progressCount/filteredLibrary.length);
       setRowData(newRow);
       setProgress(progress);
-   }, () => { // inProgress()
-     // updateDownload(this.state.progress)
-   },
-   () => { // done()
-     updateDownload(1)
-     downloadCompletedChecker();
-   })
-  }
+    }, () => { // inProgress()
+      // updateDownload(this.state.progress)
+    },
+    () => { // done()
+      updateDownload(1);
+      downloadCompletedChecker();
+    });
+  };
   return (
     <a onClick={(() =>
-      releaseFilter === 147 || selectedLibrary.libraryName === 'independent-artists' || cuesLoading
+      releaseFilter === 147 || selectedLibrary.libraryName === "independent-artists" || cuesLoading
         ? exportTools.exportError()
-        : inclusive || releaseFilter.label === 'All'
-          ? exportTools.exportError('Please Unselect Inclusive.')
+        : inclusive || releaseFilter.label === "All"
+          ? exportTools.exportError("Please Unselect Inclusive.")
           : genericBIExport())
     } className={
-      cuesLoading || inclusive || releaseFilter === 147 || selectedLibrary.libraryName === 'independent-artists' ||
-      (releaseFilter.label && (releaseFilter.label === 'All' || releaseFilter.label.includes('_')))
-        ? 'strikethrough'
-        : 'download-links'
-      }>
+      cuesLoading || inclusive || releaseFilter === 147 || selectedLibrary.libraryName === "independent-artists" ||
+      (releaseFilter.label && (releaseFilter.label === "All" || releaseFilter.label.includes("_")))
+        ? "strikethrough"
+        : "download-links"
+    }>
       {`Generic BI Release Export ${
         (releaseFilter.value
-        && typeof releaseFilter.value === 'string')
-        && releaseFilter.label !== 'All'
-        ? releaseFilter.label
-        : ''
+        && typeof releaseFilter.value === "string")
+        && releaseFilter.label !== "All"
+          ? releaseFilter.label
+          : ""
       }`
-    }
+      }
     </a>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   downloadProgress: state.downloadProgress,
@@ -167,12 +167,12 @@ const mapStateToProps = (state) => ({
   selectedLibrary: state.selectedLibrary,
   selectedStyles: state.selectedStyles,
   tempos: state.tempos
-})
+});
 
 const mapDispatchToProps = {
   resetDownload,
   updateDownload
-}
+};
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GenericBIExport));

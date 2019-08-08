@@ -25,7 +25,6 @@ import selectedReleasesReducers from "../reducers/selectedReleasesReducers";
 import selectedStylesReducers from "../reducers/selectedStylesReducers";
 import stylesIAReducers from "../reducers/IndependentArtistsReducers/stylesReducers";
 import temposReducers from "../reducers/temposReducers";
-import tracksReducers from "../reducers/IndependentArtistsReducers/tracksReducers";
 import exportReducers from "../reducers/ExportReducers/exportReducers";
 
 import { catLink, styleLink } from "../reducers/linkReducers";

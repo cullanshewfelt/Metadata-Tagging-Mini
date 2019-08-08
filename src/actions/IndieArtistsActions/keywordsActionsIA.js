@@ -8,7 +8,7 @@ export const clearIAKeywords = (keywordsIA) => ({ type: "CLEAR_IA_KEYWORDS", key
 export const updateKeywordIA = (updatedKeyword) => ({ type: "UPDATE_KEYWORD_IA", updatedKeyword });
 
 export const handleUpdateKeywordsIA = (updatedKeyword) => {
-  return (dispatch, getState) => dispatch(saveKeywordIA(updatedKeyword));
+  return (dispatch) => dispatch(saveKeywordIA(updatedKeyword));
 };
 
 export const saveKeywordIA = (updatedKeyword) => {

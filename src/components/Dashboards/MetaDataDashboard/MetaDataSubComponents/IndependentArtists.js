@@ -1,16 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-import ATempoExport from '../MetaDataExportFunctions/ReleasesFunctions/A-TempoExport';
-import BarakaIAExport from '../MetaDataExportFunctions/IndependentArtistsFunctions/BarakaIAExport';
-import GenericIAExport from '../MetaDataExportFunctions/ReleasesFunctions/GenericIAExport';
-import ModoocomIAExport from '../MetaDataExportFunctions/IndependentArtistsFunctions/ModoocomIAExport';
-import PreludioExport from '../MetaDataExportFunctions/ReleasesFunctions/PreludioExport';
-import RenameExport from '../MetaDataExportFunctions/BatchesFunctions/RenameExport';
-import SoundMinerExport from '../MetaDataExportFunctions/BatchesFunctions/SoundMinerExport';
-import SourceAudioExport from '../MetaDataExportFunctions/BatchesFunctions/SourceAudioExport';
-import TouchIAExport from '../MetaDataExportFunctions/IndependentArtistsFunctions/TouchIAExport';
+import ATempoExport from "../MetaDataExportFunctions/ReleasesFunctions/A-TempoExport";
+import BarakaIAExport from "../MetaDataExportFunctions/IndependentArtistsFunctions/BarakaIAExport";
+import GenericIAExport from "../MetaDataExportFunctions/ReleasesFunctions/GenericIAExport";
+import ModoocomIAExport from "../MetaDataExportFunctions/IndependentArtistsFunctions/ModoocomIAExport";
+import PreludioExport from "../MetaDataExportFunctions/ReleasesFunctions/PreludioExport";
+import RenameExport from "../MetaDataExportFunctions/BatchesFunctions/RenameExport";
+import SoundMinerExport from "../MetaDataExportFunctions/BatchesFunctions/SoundMinerExport";
+import SourceAudioExport from "../MetaDataExportFunctions/BatchesFunctions/SourceAudioExport";
+import TouchIAExport from "../MetaDataExportFunctions/IndependentArtistsFunctions/TouchIAExport";
 
 const IndependentArtists = (props) => {
   let { batchesBI, batchesDropDown, cuesLoading, downloadCompletedChecker, inclusive, releaseFilter } = props;
@@ -86,8 +86,8 @@ const IndependentArtists = (props) => {
       <br/>
       <br/>
       <br/>
-  </div>
-)}
+    </div>
+  );};
 
 
 export default withRouter(connect()(IndependentArtists));

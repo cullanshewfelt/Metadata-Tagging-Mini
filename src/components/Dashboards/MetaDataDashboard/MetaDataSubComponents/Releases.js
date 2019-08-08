@@ -1,24 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-import AdRevExport from '../MetaDataExportFunctions/ReleasesFunctions/AdRevExport';
-import AlterKExport from '../MetaDataExportFunctions/ReleasesFunctions/AlterKExport';
-import ATempoExport from '../MetaDataExportFunctions/ReleasesFunctions/A-TempoExport';
-import BarakaBIExport from '../MetaDataExportFunctions/ReleasesFunctions/BarakaBIExport';
-import FilmTrackExport from '../MetaDataExportFunctions/ReleasesFunctions/FilmTrackExport';
-import GenericBIExport from '../MetaDataExportFunctions/ReleasesFunctions/GenericBIExport';
-import ModoocomBIExport from '../MetaDataExportFunctions/ReleasesFunctions/ModoocomBIExport';
-import MusicDirectorExport from '../MetaDataExportFunctions/ReleasesFunctions/MusicDirectorExport';
-import NBCSoundMinerExport from '../MetaDataExportFunctions/ReleasesFunctions/NBCSoundMinerExport';
-import PreludioExport from '../MetaDataExportFunctions/ReleasesFunctions/PreludioExport';
-import RenameExport from '../MetaDataExportFunctions/BatchesFunctions/RenameExport';
-import SheerExport from '../MetaDataExportFunctions/ReleasesFunctions/SheerExport';
-import SoundMinerExport from '../MetaDataExportFunctions/BatchesFunctions/SoundMinerExport';
-import SourceAudioExport from '../MetaDataExportFunctions/BatchesFunctions/SourceAudioExport';
-import TouchBIExport from '../MetaDataExportFunctions/ReleasesFunctions/TouchBIExport';
-import ZinkoExport from '../MetaDataExportFunctions/ReleasesFunctions/ZinkoExport';
-import ZinkoSoundMinerExport from '../MetaDataExportFunctions/ReleasesFunctions/ZinkoSoundMinerExport';
+import AdRevExport from "../MetaDataExportFunctions/ReleasesFunctions/AdRevExport";
+import AlterKExport from "../MetaDataExportFunctions/ReleasesFunctions/AlterKExport";
+import ATempoExport from "../MetaDataExportFunctions/ReleasesFunctions/A-TempoExport";
+import BarakaBIExport from "../MetaDataExportFunctions/ReleasesFunctions/BarakaBIExport";
+import FilmTrackExport from "../MetaDataExportFunctions/ReleasesFunctions/FilmTrackExport";
+import GenericBIExport from "../MetaDataExportFunctions/ReleasesFunctions/GenericBIExport";
+import ModoocomBIExport from "../MetaDataExportFunctions/ReleasesFunctions/ModoocomBIExport";
+import MusicDirectorExport from "../MetaDataExportFunctions/ReleasesFunctions/MusicDirectorExport";
+import NBCSoundMinerExport from "../MetaDataExportFunctions/ReleasesFunctions/NBCSoundMinerExport";
+import PreludioExport from "../MetaDataExportFunctions/ReleasesFunctions/PreludioExport";
+import RenameExport from "../MetaDataExportFunctions/BatchesFunctions/RenameExport";
+import SheerExport from "../MetaDataExportFunctions/ReleasesFunctions/SheerExport";
+import SoundMinerExport from "../MetaDataExportFunctions/BatchesFunctions/SoundMinerExport";
+import SourceAudioExport from "../MetaDataExportFunctions/BatchesFunctions/SourceAudioExport";
+import TouchBIExport from "../MetaDataExportFunctions/ReleasesFunctions/TouchBIExport";
+import ZinkoExport from "../MetaDataExportFunctions/ReleasesFunctions/ZinkoExport";
+import ZinkoSoundMinerExport from "../MetaDataExportFunctions/ReleasesFunctions/ZinkoSoundMinerExport";
 
 
 const Releases = (props) => {
@@ -167,8 +167,8 @@ const Releases = (props) => {
       <br/>
       <br/>
       <br/>
-  </div>
-)}
+    </div>
+  );};
 
 const mapStateToProps = (state) => {
   return {
@@ -178,6 +178,6 @@ const mapStateToProps = (state) => {
     selectedStyles: state.selectedStyles,
     tempos: state.tempos,
   };
-}
+};
 
 export default withRouter(connect(mapStateToProps)(Releases));

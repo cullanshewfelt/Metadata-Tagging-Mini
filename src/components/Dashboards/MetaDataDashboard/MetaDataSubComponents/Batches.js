@@ -1,12 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-import BmatExport from '../MetaDataExportFunctions/BatchesFunctions/BmatExport';
-import ProTunesExport from '../MetaDataExportFunctions/BatchesFunctions/ProTunesExport';
-import RenameExport from '../MetaDataExportFunctions/BatchesFunctions/RenameExport';
-import SoundMinerExport from '../MetaDataExportFunctions/BatchesFunctions/SoundMinerExport';
-import SourceAudioExport from '../MetaDataExportFunctions/BatchesFunctions/SourceAudioExport';
+import BmatExport from "../MetaDataExportFunctions/BatchesFunctions/BmatExport";
+import ProTunesExport from "../MetaDataExportFunctions/BatchesFunctions/ProTunesExport";
+import RenameExport from "../MetaDataExportFunctions/BatchesFunctions/RenameExport";
+import SoundMinerExport from "../MetaDataExportFunctions/BatchesFunctions/SoundMinerExport";
+import SourceAudioExport from "../MetaDataExportFunctions/BatchesFunctions/SourceAudioExport";
 
 const Batches = (props) => {
 
@@ -49,7 +49,7 @@ const Batches = (props) => {
         inclusive={inclusive}
         releaseFilter={releaseFilter}
       />
-  </div>
-)}
+    </div>
+  );};
 
 export default withRouter(connect()(Batches));

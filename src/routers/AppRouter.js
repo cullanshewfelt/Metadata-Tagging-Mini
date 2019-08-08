@@ -1,10 +1,9 @@
-import React, { lazy, Suspense} from "react";
-import { BrowserRouter, Link, NavLink, Route, Switch} from "react-router-dom";
+import React, { Suspense } from "react";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 import Header from "../components/SubComponents/Header/Header";
 import Footer from "../components/SubComponents/Footer/Footer";
 
 import MetaDataTaggingApp from "../components/MetaDataTaggingApp";
-import IndependentArtistsDashboard from "../components/Dashboards/PendingReleasesDashboard/IndependentArtistsDashboard.js";
 import ExportDashboard from "../components/Dashboards/MetaDataDashboard/ExportMetaData";
 import UploadAudio from "../components/Dashboards/UploadDashboard/UploadAudio";
 import UploadMetadata from "../components/Dashboards/UploadDashboard/UploadMetadata";

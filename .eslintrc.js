@@ -24,6 +24,7 @@ module.exports = {
 			"error",
 			2
 		],
+		"react/prop-types": 0, // turns off react prop-types errors
 		"linebreak-style": [
 			"error",
 			"unix"

@@ -1,19 +1,11 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {connect} from "react-redux";
 import LeftColumn from "./ModalSubComponents/LeftColumn/LeftColumn";
 import RightColumn from "./ModalSubComponents/RightColumn/RightColumn";
 import { handleSave, handleUpdateModal } from "../../actions/modalActions";
 
 const ModalContent = (props) => {
-  let { catLink, styleLink, handleSave, handleUpdateModal, keywordsBI,
-    modal, saveKeywordBI, searchFilter, selectedCategories,
-    selectCategory, selectedInstruments, selectedLibrary, selectedKeywords,
-    selectedRating, selectRating, selectedStyles, selectStyle, selectTempos,
-    tempos, tracks
-  } = props;
-
-  // console.log(15, catLink)
-  // console.log(16, styleLink)
+  let { handleSave, handleUpdateModal, modal } = props;
 
   const copyFromV1 = () => {
     let selectedCue = props.modal.selectedCue;
@@ -72,8 +64,6 @@ const ModalContent = (props) => {
 const mapStateToProps = (state) => {
   return {
     BImasterIDs: state.BImasterIDs,
-    catLink: state.catLink,
-    styleLink: state.styleLink,
     cues: state.cues,
     modal: state.modal,
     selectedLibrary: state.selectedLibrary
