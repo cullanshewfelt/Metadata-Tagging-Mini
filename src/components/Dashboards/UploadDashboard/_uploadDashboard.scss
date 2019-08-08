@@ -1,0 +1,33 @@
+.dropzone-area{
+  background-color: $light-gray;
+  border-color: $gray-shade;
+  border-style: dashed;
+  border-width: 2px;
+  cursor: grab;
+  margin: auto;
+  text-align: center;
+  width: 50%;
+}
+
+.dropzone-area:hover{
+  background-color: $gray-shade;
+  border-color: $light-gray;
+  border-style: dashed;
+  border-width: 2px;
+  cursor: grab;
+  margin: auto;
+  text-align: center;
+  width: 50%;
+}
+
+.file-upload{
+
+}
+
+.file-upload:hover {
+  background: $hover-gray;
+  -webkit-transition: $hover-transition;
+  -moz-transition: $hover-transition;
+  -o-transition: $hover-transition;
+  transition: $hover-transition;
+}

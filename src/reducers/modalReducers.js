@@ -15,6 +15,7 @@ const modalReducerDeafultState = {
   showKeywords: false,
   showModal: false,
   showRating: false,
+  showStatus: false,
   showStyles: false,
   showTempos: false,
   showText: false,
@@ -22,42 +23,170 @@ const modalReducerDeafultState = {
 }
 
 export default (state = modalReducerDeafultState, action) => {
-  // console.log(21, action)
   switch (action.type) {
     case 'INITIALIZE_MODAL':
       return state;
+      break;
+    case 'MODAL_SELECT_CUE':
+      return { ...state, selectedCue: action.selectedCue }
+      break;
+    case 'MODAL_SELECT_COMPOSER':
+      return { ...state, selectedComposer: action.selectedComposer };
+      break;
     case 'TOGGLE_MODAL':
-      return action.modal;
+      return { ...state, selectedCueId: action.selectedCueId, showModal: action.showModal };
+      break;
     case 'CLOSE_MODAL':
-      return action.modal;
-      case 'SELECT_HEADER':
-      return action.modal;
+      return {
+        ...state,
+        searchFilter: '',
+        showModal: false,
+        selectedCueId: undefined,
+        selectedCue: undefined,
+        selectedComposer: [],
+        showCategories: false,
+        showInstruments: false,
+        showKeywords: false,
+        showRating: false,
+        showStatus: false,
+        showStyles: false,
+        showTempos: false,
+        showText: false
+      }
+      break;
+    case 'SELECT_HEADER':
+      return {
+        ...state,
+        rightColumnHeader: action.rightColumnHeader
+      }
+      break;
     case 'SHOW_CATEGORIES':
-      return action.modal;
+      return {
+        ...state,
+        searchFilter: '',
+        showCategories: true,
+        showInstruments: false,
+        showKeywords: false,
+        showRating: false,
+        showStatus: false,
+        showStyles: false,
+        showTempos: false,
+        showText: false
+      };
+      break;
     case 'SHOW_INSTRUMENTS':
-      return action.modal;
+      return {
+        ...state,
+        searchFilter: '',
+        showCategories: false,
+        showInstruments: true,
+        showKeywords: false,
+        showRating: false,
+        showStatus: false,
+        showStyles: false,
+        showTempos: false,
+        showText: false
+      }
+      break;
     case 'SHOW_KEYWORDS':
-      return action.modal;
+      return {
+        ...state,
+        searchFilter: '',
+        showCategories: false,
+        showInstruments: false,
+        showKeywords: true,
+        showRating: false,
+        showStatus: false,
+        showStyles: false,
+        showTempos: false,
+        showText: false
+      };
+      break;
     case 'SHOW_RATINGS':
-      return action.modal;
+      return {
+        ...state,
+        searchFilter: '',
+        showCategories: false,
+        showInstruments: false,
+        showKeywords: false,
+        showRating: true,
+        showStatus: false,
+        showStyles: false,
+        showTempos: false,
+        showText: false
+      }
+      break;
+    case 'SHOW_STATUS':
+      return {
+          ...state,
+          searchFilter: '',
+          showCategories: false,
+          showInstruments: false,
+          showKeywords: false,
+          showRating: false,
+          showStatus: true,
+          showStyles: false,
+          showTempos: false,
+          showText: false
+        };
+      break;
     case 'SHOW_STYLES':
-      return action.modal;
+      return {
+          ...state,
+          searchFilter: '',
+          showCategories: false,
+          showInstruments: false,
+          showKeywords: false,
+          showRating: false,
+          showStatus: false,
+          showStyles: true,
+          showTempos: false,
+          showText: false
+        }
+      break;
     case 'SHOW_TEMPOS':
-      return action.modal;
+      return {
+        ...state,
+        searchFilter: '',
+        showCategories: false,
+        showInstruments: false,
+        showKeywords: false,
+        showRating: false,
+        showStatus: false,
+        showStyles: false,
+        showTempos: true,
+        showText: false
+      }
+      break;
     case 'SHOW_TEXTBOX':
       return {
-        ...action.modal,
+        ...state,
+        searchFilter: '',
+        showCategories: false,
+        showInstruments: false,
+        showKeywords: false,
+        showRating: false,
+        showStatus: false,
+        showStyles: false,
+        showTempos: false,
+        showText: true,
         textType: action.textType
       };
-    case 'UPDATE_DATA':
-      return action.modal;
+      break;
+    case 'UPDATE_MODAL_DATA':
+      return { ...state, selectedCue: action.updatedCue};
+      break;
     case 'SAVE':
       return action.modal;
+      break;
     case 'SEARCH_FILTER':
-      return action.modal;
+      return { ...state, searchFilter: action.searchFilter }
+      break;
     case 'CLEAR_FILTER':
-      return action.modal;
+      return { ...state, searchFilter: '' };
+      break;
     default:
       return state;
+      break;
   }
 };

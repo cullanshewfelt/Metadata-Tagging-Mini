@@ -1,0 +1,20 @@
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  height: 15%;
+  width: 100%;
+  background-color: dodgerblue;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+audio{
+  // max-width: inherit;
+  // width: 50% !important;
+  height: 66% !important;
+  margin: $s-size;
+  // max-height: inherit;
+  // box-sizing:border-box;
+}

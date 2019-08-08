@@ -1,7 +1,12 @@
 @import './base/settings';
 @import './base/base';
 @import '../components/Dashboards/dashboard';
-@import '../components/ModalSubComponents/modal';
-@import '../components/ModalSubComponents/react_modal';
-@import '../components/ModalSubComponents/left_column';
-@import '../components/ModalSubComponents/right_column';
+@import '../components/Dashboards/MetaDataDashboard/exportDashboard';
+@import '../components/Dashboards/UploadDashboard/uploadDashboard';
+
+@import '../components/Modal/modal';
+@import '../components/Modal/react_modal';
+@import '../components/Modal/ModalSubComponents/LeftColumn/left_column';
+@import '../components/Modal/ModalSubComponents/RightColumn/right_column';
+@import '../components/SubComponents/Footer/footer';
+@import '../components/SubComponents/Loader/loader';

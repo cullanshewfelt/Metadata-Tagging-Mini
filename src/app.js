@@ -5,15 +5,12 @@ import configureStore from './store/configureStore';
 
 import { initializeModal } from './actions/modalActions';
 import { initializeIAComposers } from './actions/IndieArtistsActions/artistsActions';
-
 import { initializeIAReleases } from './actions/IndieArtistsActions/releasesActions';
 import { initializeIACategories } from './actions/IndieArtistsActions/categoriesActions';
-
-import { initializeIAInstruments } from './actions/IndieArtistsActions/instrumentsActionsIA';
-import { initializeIAKeywords } from './actions/IndieArtistsActions/keywordsActionsIA';
-
+import { initializeIAInstruments } from './actions/IndieArtistsActions/instrumentsIAActions';
+import { initializeMasterKeywordsIA } from './actions/IndieArtistsActions/masterKeywordsActions';
+import { initializeKeywordsIA } from './actions/IndieArtistsActions/keywordsActionsIA';
 import { initializeIAStyles } from './actions/IndieArtistsActions/stylesActions';
-
 import { initializeTempos } from './actions/temposActions';
 
 import AppRouter from './routers/AppRouter';
@@ -22,16 +19,11 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-//  i moved the most important fetch calls to the beginning to optimize state initialization loading times
-
-  // ****************************************************************************************************
-  // ****************************************************************************************************
-  // IA STATE INITIALIZATION
-  // ****************************************************************************************************
-  // ****************************************************************************************************
-
-  // endpoints: https://react-metadata-beta.herokuapp.com/
-  // http://localhost:4000/
+// ****************************************************************************************************
+// ****************************************************************************************************
+// IA STATE INITIALIZATION
+// ****************************************************************************************************
+// ****************************************************************************************************
 
 fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/releasesIA/')
   .then(response => response.json())
@@ -39,12 +31,6 @@ fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/release
     response.data.unshift({rel_id: 9999, rel_num: "All", rel_num_only: "All"})
     store.dispatch(initializeIAReleases(response.data))})
   .catch(err => console.error(err));
-
-fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/composersIA/')
-  .then(response => response.json())
-  .then(response => {store.dispatch(initializeIAComposers(response.data))})
-  .catch(err => console.error(err))
-
 
 fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/categoriesIA/')
   .then(response => response.json())
@@ -57,10 +43,14 @@ fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/instrum
     store.dispatch(initializeIAInstruments(response.data))})
   .catch(err => console.error(err));
 
+fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/masterKeywordsIA/')
+  .then(response => response.json())
+  .then(response => {store.dispatch(initializeMasterKeywordsIA(response.data))})
+  .catch(err => console.error(err))
 
 fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/keywordsIA/')
   .then(response => response.json())
-  .then(response => {store.dispatch(initializeIAKeywords(response.data))})
+  .then(response => {store.dispatch(initializeKeywordsIA(response.data))})
   .catch(err => console.error(err))
 
 fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/stylesIA/')
@@ -68,16 +58,10 @@ fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/stylesI
   .then(response => {store.dispatch(initializeIAStyles(response.data))})
   .catch(err => console.error(err));
 
-// fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/artistsIA/')
-//   .then(response => response.json())
-//   .then(response => {store.dispatch(initializeArtistsStageName(response.data))})
-//   .catch(err => console.error(err));
-
 fetch('https://react-metadata-beta.herokuapp.com/api/independent-artists/temposIA')
   .then(response => response.json())
   .then(response => {store.dispatch(initializeTempos(response.data))})
   .catch(err => console.error(err));
-
 
 const modalReducerDeafultState = {
   selectedComposer: [],

@@ -35,10 +35,12 @@ export function trackFetchIsLoading(state = false, action) {
 }
 
 export function tracks(state = [], action) {
-    switch (action.type) {
-        case 'TRACK_FETCH_DATA_SUCCESS':
-            return action.items;
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'TRACK_FETCH_DATA_SUCCESS':
+      return action.items;
+    case 'CLEAR_IA_CUES':
+      return [];
+    default:
+      return [...state];
+  }
 }

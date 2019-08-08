@@ -1,11 +1,8 @@
-
+// import { fetchBIcomposer } from './BackgroundInstrumentalsActions/composersActions';
+import { fetchIAcomposer } from './IndieArtistsActions/artistsActions';
 // ==============================================================================================================
 //  SELECTED COMPOSER ACTIONS
 // ==============================================================================================================
 
-export const initializeSelectedComposer = (data) => {
-    return ({
-    type: 'INITIALIZE_SELECTED_COMPOSER',
-    selectedComposers: data
-    })
-}
+export const initializeSelectedComposer = (selectedComposers) =>
+  ({ type: 'INITIALIZE_SELECTED_COMPOSER', selectedComposers })

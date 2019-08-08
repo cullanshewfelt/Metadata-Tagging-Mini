@@ -40,9 +40,13 @@ export default (state = ratingsReducersDefaultState, action) => {
     case 'INITIALIZE_RATINGS':
       return action.ratings;
     case 'SET_RATING':
-      return action.ratings;
+      return [...state].map(rating =>
+        rating.value === action.newRatingValue
+          ? { ...rating, selected: true }
+          : { ...rating, selected: false }
+      );
     case 'CLEAR_RATING':
-      return action.ratings;
+      return [...state].map(rating => ({ ...rating, selected: false }));
     default:
       return state;
   }

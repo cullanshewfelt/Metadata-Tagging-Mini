@@ -1,3 +1,18 @@
+import { handeleUpdateSelectedLibrary } from './selectedLibraryActions';
+// import { fetchBIcue, saveBIcue } from './BackgroundInstrumentalsActions/cuesActions';
+// import { fetchBIcomposer } from './BackgroundInstrumentalsActions/composersActions';
+import { fetchIAcue, saveIAcue } from './IndieArtistsActions/tracksActions';
+import { fetchIAcomposer } from './IndieArtistsActions/artistsActions';
+import { selectStatus } from './statusActions';
+import { handleSelectMasterKeyword } from './selectedMasterKeysActions';
+import { clearRatings } from './ratingsActions';
+import { clearSelectedCategories } from './selectedCategoriesActions';
+import { clearSelectedInstruments } from './selectedInstrumentsActions';
+import { clearSelectedKeywords } from './selectedKeywordsActions';
+import { clearSelectedStyles } from './selectedStylesActions';
+import { clearTempos } from './temposActions';
+import { clearCatLink, clearStyleLink, handleSaveBILinks, handleSaveIALinks } from './linkActions';
+
 // ==============================================================================================================
 // MODAL ACTIONS
 // ==============================================================================================================
@@ -5,7 +20,6 @@
 export const initializeModal = ({
   rightColumnHeader = '',
   searchFilter = '',
-  selectedCategories = [],
   selectedComposer = [],
   selectedCue = {},
   selectedCueId = 0,
@@ -14,6 +28,7 @@ export const initializeModal = ({
   showKeywords = false,
   showModal = false,
   showRating = false,
+  showStatus = false,
   showStyles = false,
   showTempos = false,
   showText = false,
@@ -23,7 +38,6 @@ export const initializeModal = ({
   modal: {
     rightColumnHeader,
     searchFilter,
-    selectedCategories,
     selectedComposer,
     selectedCue,
     selectedCueId,
@@ -32,6 +46,7 @@ export const initializeModal = ({
     showKeywords,
     showModal,
     showRating,
+    showStatus,
     showStyles,
     showTempos,
     showText,
@@ -39,179 +54,122 @@ export const initializeModal = ({
   }
 });
 
-export const toggleModal = (modal, selectedCueId, selectedCue, selectedCategories, selectedComposer) => ({
-  type: 'TOGGLE_MODAL',
-  modal: {
-    ...modal,
-    showModal: !modal.showModal,
-    selectedCategories: selectedCategories,
-    selectedCueId: selectedCueId,
-    selectedCue: selectedCue,
-    selectedComposer: selectedComposer
+// trigger this from fetchBIcue and fetchIAcue ????
+export const handleToggleModal = (selectedCueId) => {
+  return function (dispatch, getState){
+    return dispatch(toggleModal(selectedCueId));
   }
-});
+};
 
-export const closeModal = (modal) => ({
-  type: 'CLOSE_MODAL',
-  modal: {
-    ...modal,
-    searchFilter: '',
-    showModal: !modal.showModal,
-    selectedCategories: [],
-    selectedCueId: undefined,
-    selectedCue: undefined,
-    selectedComposer: undefined,
-    showCategories: false,
-    showInstruments: false,
-    showKeywords: false,
-    showRating: false,
-    showStyles: false,
-    showTempos: false,
-    showText: false
+const toggleModal = (selectedCueId) => ({
+    type: 'TOGGLE_MODAL',
+    showModal: true,
+    selectedCueId
+})
+
+// handleFetchCue will dispatch actions to fetch the cue data AND composer data for the selected track
+export const handleFetchCue = (selectedCueId) => {
+  // console.log(61, 'modalActions.handleFetchCue.selectedCueId', selectedCueId)
+  return function (dispatch, getState) {
+    switch(getState().selectedLibrary.libraryName){
+      case 'background-instrumentals':
+        // return dispatch(fetchBIcue(selectedCueId)) & dispatch(fetchBIcomposer(selectedCueId));
+      case 'independent-artists':
+        return dispatch(fetchIAcue(selectedCueId)) & dispatch(fetchIAcomposer(selectedCueId));
+    }
   }
-});
+}
 
-export const selectHeader = (modal, rightColumnHeader) => ({
+export const handleSelectCue = (selectedCue) => ({
+  type: 'MODAL_SELECT_CUE',
+  selectedCue
+})
+
+export const handleSelectComposer = (selectedComposer) => ({
+  type: 'MODAL_SELECT_COMPOSER',
+  selectedComposer
+})
+
+export const selectHeader = (rightColumnHeader) => ({
   type: 'SELECT_HEADER',
-  modal: {
-    ...modal,
-    rightColumnHeader
-  }
+  rightColumnHeader
 })
 
 
-export const showCategories = (modal, selectedCategories) => ({
-  type: 'SHOW_CATEGORIES',
-  modal: {
-    ...modal,
-    searchFilter: '',
-    showCategories: true,
-    showInstruments: false,
-    showKeywords: false,
-    showRating: false,
-    showStyles: false,
-    showTempos: false,
-    showText: false
+export const showCategories = () => ({ type: 'SHOW_CATEGORIES' });
+
+export const showInstruments = () => ({ type: 'SHOW_INSTRUMENTS' });
+
+export const showKeywords = () => ({ type: 'SHOW_KEYWORDS' });
+
+export const showRatings = () => ({ type: 'SHOW_RATINGS' });
+
+export const showStatus = () => ({ type: 'SHOW_STATUS' });
+
+export const showStyles = () => ({ type: 'SHOW_STYLES' });
+
+export const showTempos = () => ({ type: 'SHOW_TEMPOS' });
+
+export const showTextBox = (textType) => ({ type: 'SHOW_TEXTBOX', textType });
+
+export const handleSearchFilter =  (searchFilter) => ({ type: 'SEARCH_FILTER', searchFilter });
+
+export const clearSearch =  () => ({ type: 'CLEAR_FILTER' });
+
+export const handleSelectStatus = (newStatus) => {
+  return function (dispatch, getState) {
+    let selectedCue = getState().modal.selectedCue;
+    let updatedCue = { ...selectedCue, cue_status: newStatus.value };
+    return dispatch(selectStatus(newStatus.value)) & dispatch(handleUpdateModal(updatedCue))
   }
-});
+}
 
-export const showInstruments = (modal) => ({
-  type: 'SHOW_INSTRUMENTS',
-  modal: {
-    ...modal,
-    searchFilter: '',
-    showCategories: false,
-    showInstruments: true,
-    showKeywords: false,
-    showRating: false,
-    showStyles: false,
-    showTempos: false,
-    showText: false
+export const handleUpdateModal = (updatedCue) => {
+  // console.log(115, updatedCue)
+  return function (dispatch, getState) {
+    return dispatch(updateModal(updatedCue)) && dispatch(handeleUpdateSelectedLibrary(updatedCue));
   }
-});
+}
 
-export const showKeywords = (modal) => ({
-  type: 'SHOW_KEYWORDS',
-  modal: {
-    ...modal,
-    searchFilter: '',
-    showCategories: false,
-    showInstruments: false,
-    showKeywords: true,
-    showRating: false,
-    showStyles: false,
-    showTempos: false,
-    showText: false
+
+export const updateModal = (updatedCue) => ({ type: 'UPDATE_MODAL_DATA', updatedCue });
+
+export const handleSave = (selectedCue) => {  // takes the selectedCue and pushes it to the props with the update information
+  // console.log(138, selectedCue)
+  return function (dispatch, getState) {
+    switch(getState().selectedLibrary.libraryName){
+      case 'background-instrumentals':
+        // return dispatch(handleSaveBILinks()) & dispatch(saveBIcue(selectedCue));
+      case 'independent-artists':
+        return  dispatch(handleSaveIALinks()) & dispatch(saveIAcue(selectedCue));
+    }
   }
-});
+}
 
-export const showRatings = (modal) => ({
-  type: 'SHOW_RATINGS',
-  modal: {
-    ...modal,
-    searchFilter: '',
-    showCategories: false,
-    showInstruments: false,
-    showKeywords: false,
-    showRating: true,
-    showStyles: false,
-    showTempos: false,
-    showText: false
-  }
-});
+export const handleUpdateSoundsLike = (soundsLike) => (dispatch, getState) => {
+  const soundsLikeArray = soundsLike.value.split(', ');
+  // const oldSoundsLike = getState().modal.selectedCue[soundsLike.type];
+  // console.log(138, oldSoundsLike)
+  soundsLikeArray.forEach(keyword => dispatch(handleSelectMasterKeyword(keyword)))
+}
 
-export const showStyles = (modal) => ({
-  type: 'SHOW_STYLES',
-  modal: {
-    ...modal,
-    searchFilter: '',
-    showCategories: false,
-    showInstruments: false,
-    showKeywords: false,
-    showRating: false,
-    showStyles: true,
-    showTempos: false,
-    showText: false
-  }
-});
+export const handleCloseModal = () => (dispatch, getState) => {
+  let emptyCue = {};
+  // could potentiall call one of these and trigger the rest through thunks
+  // VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+  dispatch(handleUpdateModal(emptyCue)); // update data
+  dispatch(clearRatings()); // and clear all the selected properties
+  dispatch(clearSelectedCategories());
+  dispatch(clearSelectedInstruments());
+  dispatch(clearSelectedKeywords());
+  dispatch(clearSelectedStyles());
+  dispatch(clearTempos());
+  dispatch(clearCatLink());
+  dispatch(clearStyleLink());
+  dispatch(closeModal()); // close the modal AFTER everything has been cleared
+}
 
-export const showTempos = (modal) => ({
-  type: 'SHOW_TEMPOS',
-  modal: {
-    ...modal,
-    searchFilter: '',
-    showCategories: false,
-    showInstruments: false,
-    showKeywords: false,
-    showRating: false,
-    showStyles: false,
-    showTempos: true,
-    showText: false
-  }
-});
-
-export const showTextBox = (modal, textType) => ({
-  type: 'SHOW_TEXTBOX',
-  textType: textType,
-  modal: {
-    ...modal,
-    searchFilter: '',
-    showCategories: false,
-    showInstruments: false,
-    showKeywords: false,
-    showRating: false,
-    showStyles: false,
-    showTempos: false,
-    showText: true
-  }
-});
-
-
-export const handleSearchFilter =  (searchQuery, modal) => ({
-  type: 'SEARCH_FILTER',
-  modal: {
-    ...modal,
-    searchFilter: searchQuery
-  }
-})
-
-export const clearSearch =  (modal) => ({
-  type: 'CLEAR_FILTER',
-  modal: {
-    ...modal,
-    searchFilter: ''
-  }
-})
-
-
-export const updateData = (modal, updatedCue) => ({
-  type: 'UPDATE_DATA',
-  modal: {
-    ...modal,
-    selectedCue: updatedCue || {}
-  }
-})
-
+export const closeModal = () => ({ type: 'CLOSE_MODAL' });
 
 
 export const save = (modal, updatedCue) => ({
@@ -224,6 +182,7 @@ export const save = (modal, updatedCue) => ({
     showInstruments: false,
     showKeywords: false,
     showModal: true,
+    showStatus: false,
     showRating: false,
     showStyles: false,
     showTempos: false,

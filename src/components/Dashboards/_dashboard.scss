@@ -1,22 +1,14 @@
-.header{
-  text-align: center;
-}
-
-.select{
-
-}
-
-.selected{
-  background: $hover-gray;
-}
-
 .dashboard{
   margin: 0 6% 0 6%;
 }
 
+.header{
+  text-align: center;
+}
+
 ::-webkit-scrollbar { // MAKES SCROLLBAR TRANSPARENT
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
+    // width: 0px;
+    // background: transparent; /* make scrollbar transparent */
 }
 
 .scrollableDiv {
@@ -50,35 +42,6 @@
   visibility: hidden;
 }
 
-
-a.download-links {
-  height: $m-size;
-  display:inline-block;
-  width: 85%;
-  padding: $xs-size 0 $xs-size $s-size;
-  border-radius: 10px 10px 10px 10px;
-}
-
-a.strikethrough {
-  height: $m-size;
-  text-decoration: line-through;
-  display:inline-block;
-  width: 85%;
-  padding: $xs-size 0 $xs-size $s-size;
-  border-radius: 10px 10px 10px 10px;
-}
-
-a.download-links:hover {
-  height: $m-size;
-  background: $hover-gray;
-  -webkit-transition: $hover-transition;
-  -moz-transition: $hover-transition;
-  -o-transition: $hover-transition;
-  transition: $hover-transition;
-}
-
-
-
 .search-bar{
   width: 78%;
   padding-left: 5px;
@@ -87,10 +50,6 @@ a.download-links:hover {
 
 .release-dropdown{
   width: 80%;
-}
-
-.exports-dropdown{
-  width: 85%;
 }
 
 .dashboard-left-column{
@@ -116,17 +75,6 @@ a.download-links:hover {
     // overflow-y: auto;
 }
 
-
-label.radio{
-  // display: block;
-  padding: $s-size;
-  // margin-left: auto;
-  // left: auto;
-  // right:auto;
-  // margin-right: auto;
-  // width: 50%;
-}
-
-.form-check-input{
-  padding: $xs-size;
+.selected{
+  background: $hover-gray;
 }
