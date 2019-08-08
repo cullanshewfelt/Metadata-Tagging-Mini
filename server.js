@@ -9,13 +9,12 @@ const linksRouter = require('./routes/linkRoutes');
 const compression = require('compression');
 const app = express();
 const util = require('util');
-//
-// const ENV = process.env.NODE_ENV;
-//
-// if (ENV === 'development') {
-//   console.log('Loading .env');
-//   require('dotenv').config();
-// }
+
+const env = require('dotenv').config()
+
+if (env.error) {
+  throw env.error
+}
 
 const port = process.env.PORT || 4000;
 
@@ -49,7 +48,7 @@ app.get('/*', (req, res) => {
 // ********************************************************************************************************************************
 
 app.listen(port, () => {
-  console.log('listening on port ', port);
+  console.log('listening on port', port);
 })
 
 // ********************************************************************************************************************************

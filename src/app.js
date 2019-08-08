@@ -17,6 +17,9 @@ import AppRouter from './routers/AppRouter';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
+const environmentHost = location.hostname;
+console.log(21, 'Connected on', environmentHost)
+
 const store = configureStore();
 
 // ****************************************************************************************************

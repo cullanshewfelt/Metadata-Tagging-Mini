@@ -13,7 +13,7 @@
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "live-server": "live-server public/",
-    "dev-server": "webpack-dev-server --hot & nodemon --max-old-space-size=4096 server.js",
+    "dev-server": "NODE_ENV=development webpack-dev-server --hot & nodemon --max-old-space-size=4096 server.js",
     "heroku-postbuild": "npm run build:prod"
   },
   "author": "Cullan Shewfelt",
