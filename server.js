@@ -10,11 +10,14 @@ const compression = require('compression');
 const app = express();
 const util = require('util');
 
-const env = require('dotenv').config()
-
-if (env.error) {
-  throw env.error
+if(process.env.NODE_ENV === 'development'){
+  const env = require('dotenv').config()
+  if (env.error) {
+    throw env.error
+  }
 }
+
+console.log(`server.js:20 ${process.env.NODE_ENV} build`)
 
 const port = process.env.PORT || 4000;
 
@@ -48,7 +51,7 @@ app.get('/*', (req, res) => {
 // ********************************************************************************************************************************
 
 app.listen(port, () => {
-  console.log('listening on port', port);
+  console.log('server.js:54 listening on port', port);
 })
 
 // ********************************************************************************************************************************
