@@ -16,7 +16,7 @@ export const updateMasterKeywordIA = (updatedMasterKeyword) => {
     body: JSON.stringify({keyword: updatedMasterKeyword})
   })
     .then(response => response)
-    .then(json => {
+    .then(json => { // eslint-disable-line no-unused-vars
     // console.log(27, json)
     })
     .catch( error =>
@@ -41,7 +41,7 @@ export const addMasterKeywordIA = (keywordQuery, keywords, cb) => {
     body: JSON.stringify({keyword: keywordQuery})
   })
     .then(response => response)
-    .then(json => {
+    .then(json => { 
       newKeyword = JSON.parse(json.statusText);
       cb(newKeyword);
     })

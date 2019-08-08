@@ -36,7 +36,7 @@ export const uploadMetadataBI = (files) => {
     body: formData
   })
     .then(response => response)
-    .then(json => {
+    .then(json => { // eslint-disable-line no-unused-vars
     // console.log(40, json.status)
     })
     .catch(error => console.log(error));

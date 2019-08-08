@@ -11,7 +11,7 @@ import { clearSelectedInstruments } from "./selectedInstrumentsActions";
 import { clearSelectedKeywords } from "./selectedKeywordsActions";
 import { clearSelectedStyles } from "./selectedStylesActions";
 import { clearTempos } from "./temposActions";
-import { clearCatLink, clearStyleLink, handleSaveBILinks, handleSaveIALinks } from "./linkActions";
+import { clearCatLink, clearStyleLink, handleSaveIALinks } from "./linkActions";
 
 // ==============================================================================================================
 // MODAL ACTIONS

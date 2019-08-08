@@ -1,5 +1,5 @@
 // import { fetchBIcomposer } from './BackgroundInstrumentalsActions/composersActions';
-import { fetchIAcomposer } from "./IndieArtistsActions/artistsActions";
+// import { fetchIAcomposer } from "./IndieArtistsActions/artistsActions";
 // ==============================================================================================================
 //  SELECTED COMPOSER ACTIONS
 // ==============================================================================================================

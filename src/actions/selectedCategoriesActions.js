@@ -21,6 +21,7 @@ export const handleSelectCategory = (newCategory) => {
       // & dispatch(selectCategory(newCatId))
       // & dispatch(handleCategoryToMasterKey(newCategory, oldCatId))
       // & dispatch(handleCategoryChange(newCategory));
+      break;
     case "independent-artists":
       return dispatch(handleUpdateModal(updatedCue))
         & dispatch(selectCategory(newCatId))
@@ -46,7 +47,7 @@ export const handleCategoryToMasterKey = (newCategory, oldCatID) => {
   let oldMasterKeywords = [];
 
   return (dispatch, getState) => {
-    const { modal, selectedCategories, selectedLibrary, selectedMasterKeywords } = getState();
+    const { modal, selectedCategories, selectedMasterKeywords } = getState();
     const { selectedCue } = modal;
     let selectedKeyIdArray = selectedCue.key_id_arry !== "" ? selectedCue.key_id_arry.split(",") : [];
 

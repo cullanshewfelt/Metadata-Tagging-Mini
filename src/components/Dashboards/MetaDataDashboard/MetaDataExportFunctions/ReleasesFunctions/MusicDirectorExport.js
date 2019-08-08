@@ -12,8 +12,8 @@ const exportTools = require("../ExportTools.js");
 // ******************************************************************************************
 
 const MusicDirectorExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
-    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
+  const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
+    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, updateDownload
   } = props;
 
   const [xlsData, setXlsData] = useState([]);
@@ -92,7 +92,6 @@ const MusicDirectorExport = (props) => {
       // and remove empty keywords/instruments and tailing commas
       // --------------------------------------------------------------------------------------------------
       let descriptionString = exportTools.parseData(row.cue_desc).join(", ");
-      let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(", ");
       let releaseParse = releaseFilter.label.split("R")[1];
       let genre = selectedCategories.filter(categories =>
         categories.cat_id === row.cat_id).map(cat =>

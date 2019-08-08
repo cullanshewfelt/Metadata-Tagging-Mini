@@ -1,4 +1,7 @@
+
+
 // INITIALIZE_KEYWORDS
+
 export const initializeKeywordsIA = (keywordsIA) => ({ type: "INITIALIZE_IA_KEYWORDS", keywordsIA });
 
 export const selectKeywordsIA = (keywordsIA) => ({ type: "SELECT_IA_KEYWORDS", keywordsIA });
@@ -22,7 +25,7 @@ export const saveKeywordIA = (updatedKeyword) => {
       body: JSON.stringify({ keyword: updatedKeyword })
     })
       .then(response => response)
-      .then(json => {
+      .then(json => {  // eslint-disable-line no-unused-vars
         // console.log(25, json);
         dispatch(updateKeywordIA(updatedKeyword));
       })

@@ -12,8 +12,8 @@ const exportTools = require("../ExportTools.js");
 // seems finished, diffCheck
 
 const ModoocomBIExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
-    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
+  const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
+    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, updateDownload
   } = props;
 
   const [xlsData, setXlsData] = useState([]);
@@ -66,18 +66,13 @@ const ModoocomBIExport = (props) => {
       // and remove empty keywords/instruments and tailing commas
       // --------------------------------------------------------------------------------------------------
       let descriptionString = exportTools.parseData(row.cue_desc).join(", ");
-      let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(", ");
       let releaseParse = releaseFilter.label.split("R")[1];
       let genre = selectedCategories.filter(categories =>
         categories.cat_id === row.cat_id).map(cat =>
         cat.cat_name)[0];
-      let subGenre = selectedStyles.filter(styles =>
-        styles.style_id === row.style_id).map(style =>
-        style.style_name)[0];
+
       // --------------------------------------------------------------------------------------------------
       let composerArray = selectedComposers.filter(composer => composer.cue_id === row.cue_id).sort((a, b) => b.composer_split - a.composer_split).sort((c, d) => c.last < d.last ? -1 : c.last > d.last ? 1 : 0);
-      let compString = "";
-      let pubString = "";
       let temp = [];
       let publisherArray = [];
       let combinedPubSplit = 0;
@@ -91,16 +86,7 @@ const ModoocomBIExport = (props) => {
         combinedPubSplit = pubDoesntExist
           ? currentSplit  // else we find the publisher and add the splits up
           : parseFloat(publisherArray.filter(pub => pub.name_only === composerArray[c].name_only).map(x => x.publisher_split)) + parseFloat(currentSplit);
-        pubString += (c > 0) && pubDoesntExist
-          ? ";"
-          : "";
-        pubString += pubDoesntExist
-          ? `${composerArray[c].name_only}`
-          : "";
-        compString += `${composerArray[c].last}${composerArray[c].suffix ?  " " + composerArray[c].suffix  : ""}, ${composerArray[c].first}${composerArray[c].middle ?  " " + composerArray[c].middle : ""}`;
-        compString += c < composerArray.length - 1
-          ? " / "
-          : " ";
+
         pubDoesntExist // push this publisher's name into an array to keep track of which pubs have been accounted for
           ? temp.push(composerArray[c].name_only)
           : null;

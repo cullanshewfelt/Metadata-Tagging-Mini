@@ -22,9 +22,10 @@ export const handleSelectStyle = (newStyle) => {
     case "background-instrumentals":
       // return dispatch(handleUpdateModal(updatedCue))
       // & dispatch(selectStyle(newStyleId))
-      // & dispatch(handleUpdateStylesBI(newStyleId)) 
+      // & dispatch(handleUpdateStylesBI(newStyleId))
       // & dispatch(handleStyleToMasterKey(newStyle, oldStyleID))
       // & dispatch(handleStyleChange(newStyle))
+      break;
     case "independent-artists":
       return dispatch(handleUpdateModal(updatedCue))
         & dispatch(selectStyle(newStyleId))
@@ -50,7 +51,7 @@ export const handleStyleToMasterKey = (newStyle, oldStyleID) => {
   let oldMasterKeywords = [];
 
   return (dispatch, getState) => {
-    const { modal, selectedStyles, selectedLibrary, selectedMasterKeywords } = getState();
+    const { modal, selectedStyles, selectedMasterKeywords } = getState();
     const { selectedCue } = modal;
     let selectedKeyIdArray = selectedCue.key_id_arry !== "" ? selectedCue.key_id_arry.split(",") : [];
 

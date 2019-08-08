@@ -11,7 +11,7 @@ export const initCatLink = (oldCatId) => (dispatch, getState) => {
 
 const setOldCatLink = (oldCategoryLink) => ({ type: "SET_OLD_CAT_LINK", oldCategoryLink });
 
-export const handleCategoryChange = (newCategory) => (dispatch, getState) => {
+export const handleCategoryChange = (newCategory) => (dispatch) => {
   let newCategoryLink = newCategory.cat_name.replace(/\s/g, "%20");
   dispatch(changeCatLink(newCategoryLink));
 };
@@ -34,7 +34,7 @@ export const initStyleLink = (oldStyleId) => (dispatch, getState) => {
 
 const setOldStyleLink = (oldStyleLink) => ({ type: "SET_OLD_STYLE_LINK", oldStyleLink });
 
-export const handleStyleChange = (newStyle) => (dispatch, getState) => {
+export const handleStyleChange = (newStyle) => (dispatch) => {
   let newStyleLink = newStyle.style_name.replace(/\s/g, "%20");
   dispatch(changeStyleLink(newStyleLink));
 };
@@ -73,7 +73,7 @@ export const saveBINewLinks = () => (dispatch, getState) => {
     body: JSON.stringify({selectedCue: selectedCue})
   })
     .then(response => response)
-    .then(json => {
+    .then(json => { // eslint-disable-line no-unused-vars
       // console.log(77, json) // DO SOMETHING
       dispatch(setOldCatLink(catLink.newCategoryLink)) &
       dispatch(setOldStyleLink(styleLink.newStyleLink));
@@ -99,7 +99,7 @@ export const moveBILinks = () => (dispatch, getState) => {
     body: JSON.stringify({selectedCue: selectedCue})
   })
     .then(response => response)
-    .then(json => {
+    .then(json => { // eslint-disable-line no-unused-vars
       // console.log(103, json) // DO SOMETHING
       dispatch(setOldCatLink(catLink.newCategoryLink)) &
       dispatch(setOldStyleLink(styleLink.newStyleLink));
@@ -138,7 +138,7 @@ export const saveIANewLinks = () => (dispatch, getState) => {
     body: JSON.stringify({selectedCue: selectedCue})
   })
     .then(response => response)
-    .then(json => {
+    .then(json => { // eslint-disable-line no-unused-vars
       // console.log(142, json) // DO SOMETHING
       dispatch(setOldCatLink(catLink.newCategoryLink)) &
       dispatch(setOldStyleLink(styleLink.newStyleLink));
@@ -164,8 +164,8 @@ export const moveIALinks = () => (dispatch, getState) => {
     body: JSON.stringify({selectedCue: selectedCue})
   })
     .then(response => response)
-    .then(json => {
-      console.log(168, json); // DO SOMETHING
+    .then(json => { // eslint-disable-line no-unused-vars 
+      // console.log(168, json); // DO SOMETHING
       dispatch(setOldCatLink(catLink.newCategoryLink)) &
       dispatch(setOldStyleLink(styleLink.newStyleLink));
     })

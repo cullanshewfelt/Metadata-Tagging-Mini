@@ -1,13 +1,13 @@
-const { createStore, combineReducers, applyMiddleware, compose } = require("redux");
+// const { createStore, combineReducers, applyMiddleware, compose } = require("redux");
 var thunk = require("redux-thunk").default;
 
 import { configureStore } from "redux-starter-kit";
-import { composeWithDevTools } from "redux-devtools-extension";
+// import { composeWithDevTools } from "redux-devtools-extension";
 import logger from "redux-logger";
 
 import categoriesIAReducers from "../reducers/IndependentArtistsReducers/categoriesIAReducers";
 import composersIAReducers from "../reducers/IndependentArtistsReducers/composersIAReducers";
-import { trackFetchError, trackFetchIsLoading, tracks } from "../reducers/IndependentArtistsReducers/tracksReducers";
+import { trackFetchIsLoading, tracks } from "../reducers/IndependentArtistsReducers/tracksReducers";
 import instrumentsIAReducers from "../reducers/IndependentArtistsReducers/instrumentsIAReducers";
 import masterKeywordsReducersIA from "../reducers/IndependentArtistsReducers/masterKeywordsReducersIA";
 import keywordsReducersIA from "../reducers/IndependentArtistsReducers/keywordsReducersIA";
@@ -62,7 +62,7 @@ const reducer = {
 // logger MUST come last
 
 let middleware = process.env.NODE_ENV !== "production"
-  ? [thunk] // require('redux-immutable-state-invariant').default(), logger
+  ? [thunk, logger] // require('redux-immutable-state-invariant').default(), logger
   : [thunk]; //
 
 export default () => {

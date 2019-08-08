@@ -1,5 +1,5 @@
 // import { asyncCuesFetch,  fetchBICuesFromRelease, handleClearBIcues } from './BackgroundInstrumentalsActions/cuesActions';
-import { asyncTracksFetch, fetchIATracksFromRelease, handleClearIAcues } from "./IndieArtistsActions/tracksActions";
+import { asyncTracksFetch, fetchIATracksFromRelease } from "./IndieArtistsActions/tracksActions";
 
 // ==============================================================================================================
 //  SELECTED RELEASES ACTIONS
@@ -16,7 +16,6 @@ export const handleFetchCuesFromRelease = (releaseID) => {
         break;
       case "independent-artists":
         return dispatch(asyncTracksFetch());
-        break;
       }
     } else {
       switch(getState().selectedLibrary.libraryName){
@@ -25,7 +24,6 @@ export const handleFetchCuesFromRelease = (releaseID) => {
         break;
       case "independent-artists":
         return dispatch(fetchIATracksFromRelease(releaseID));
-        break;
       }
     }
   };
