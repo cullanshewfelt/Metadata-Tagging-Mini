@@ -22,7 +22,7 @@ import ZinkoSoundMinerExport from "../MetaDataExportFunctions/ReleasesFunctions/
 
 
 const Releases = (props) => {
-  let { batchesBI, batchesDropDown, cuesLoading, downloadCompletedChecker, inclusive, releaseFilter } = props;
+  let { batchesDropDown, cuesLoading, downloadCompletedChecker, inclusive, releaseFilter } = props;
   return(
     <div>
       <AdRevExport

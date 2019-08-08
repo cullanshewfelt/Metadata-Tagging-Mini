@@ -11,9 +11,8 @@ const exportTools = require("../ExportTools.js");
 //  in progress
 // ******************************************************************************************
 const AlterKExport = (props) => {
-  const { cuesLoading, downloadCompletedChecker, downloadProgress, inclusive, releaseFilter, resetDownload,
-    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
-  } = props;
+  const { cuesLoading, downloadCompletedChecker, inclusive, releaseFilter, resetDownload,
+    selectedComposers, selectedLibrary, updateDownload } = props;
 
   const [xlsData, setXlsData] = useState([]);
   const [newRowData, setRowData] = useState([]);
@@ -80,7 +79,7 @@ const AlterKExport = (props) => {
         }
       };
 
-      composerArray.forEach((composer, i) => {
+      composerArray.forEach((composer) => {
         let newPub = {publisher: composer.publisher_name.split(" (")[0], split: composer.composer_split};
         pubMergeArray.pushIfNotExist(newPub, (c) => {
           return c.publisher === newPub.publisher;

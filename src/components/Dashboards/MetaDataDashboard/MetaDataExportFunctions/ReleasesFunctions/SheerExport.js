@@ -13,7 +13,7 @@ const exportTools = require("../ExportTools.js");
 
 const SheerExport = (props) => {
   const { cuesLoading, downloadCompletedChecker, inclusive, releaseFilter, resetDownload,
-    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, updateDownload, tempos
+    selectedComposers, selectedLibrary, updateDownload
   } = props;
 
   const [xlsData, setXlsData] = useState([]);
@@ -98,7 +98,7 @@ const SheerExport = (props) => {
         }
       };
 
-      composerArray.forEach((composer, i) => {
+      composerArray.forEach((composer) => {
         let newPub = {publisher_name: composer.publisher_name.split(" (")[0], composer_split: composer.composer_split, ipi: composer.ipi, pro_name: composer.pro_name};
         pubMergeArray.pushIfNotExist(newPub, (c) => {
           return c.publisher_name === newPub.publisher_name;

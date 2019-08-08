@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import {connect} from "react-redux";
 import { showCategories, selectHeader, showInstruments, showKeywords, showRatings  } from "../../../../actions/modalActions";
-import { showStatus, showStyles, showTempos, showTextBox, updateData } from "../../../../actions/modalActions";
+import { showStatus, showStyles, showTempos, showTextBox } from "../../../../actions/modalActions";
 
 const LeftColumn = (props) => {
-  let { batchesBI, modal, ratings, releasesIA, selectedCategories, selectedKeywords, selectedLibrary, selectedStyles,
+  let { batchesBI, modal, releasesIA, selectedCategories, selectedLibrary, selectedStyles,
     showCategories, showInstruments, showKeywords, showRatings, showStatus, showStyles, showTempos,
-    showTextBox, stylesBI, stylesIA, tempos
+    showTextBox, tempos
   } = props;
 
   let { selectedCue } = modal;
@@ -23,7 +23,7 @@ const LeftColumn = (props) => {
 
   // console.log(24, selectedComposer)
 
-  let publisherArray = Object.values(selectedComposer.reduce((accumulator, currentValue, currentIndex, array) => {
+  let publisherArray = Object.values(selectedComposer.reduce((accumulator, currentValue) => {
     if (accumulator[currentValue.publisher_name]) {
       accumulator[currentValue.publisher_name].composer_split += currentValue.composer_split;
     } else {

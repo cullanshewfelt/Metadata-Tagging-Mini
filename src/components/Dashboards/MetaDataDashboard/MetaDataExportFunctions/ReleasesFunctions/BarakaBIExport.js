@@ -12,7 +12,7 @@ const exportTools = require("../ExportTools.js");
 //  seems finished, need to diffCheck
 
 const BarakaBIExport = (props) => {
-  const { batchesDropDown, cuesLoading, downloadCompletedChecker, downloadProgress, inclusive, releaseFilter, resetDownload,
+  const { cuesLoading, downloadCompletedChecker, inclusive, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 

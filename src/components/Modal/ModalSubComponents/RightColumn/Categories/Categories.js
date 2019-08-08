@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {connect} from "react-redux";
 import { handleSelectCategory } from "../../../../../actions/selectedCategoriesActions";
 
@@ -6,7 +6,7 @@ const Categories = (props) => {
   // **********************************************************************************************************
   // CATEGORIES FUNCTIONS
   // **********************************************************************************************************
-  const { catLink, modal, selectedCategories, handleSelectCategory } = props;
+  const { modal, selectedCategories, handleSelectCategory } = props;
   const selectedCue = modal.selectedCue;
 
   const allCategories = selectedCategories.map(category => {
@@ -34,7 +34,6 @@ const Categories = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    catLink: state.catLink,
     modal: state.modal,
     selectedCategories: state.selectedCategories
   };

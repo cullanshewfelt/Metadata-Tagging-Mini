@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {connect} from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Categories from "./Categories/Categories";
@@ -12,10 +12,7 @@ import TextBox from "./TextBox";
 import { clearSearch, handleSearchFilter, handleUpdateModal, handleUpdateSoundsLike } from "../../../../actions/modalActions";
 
 const RightColumn = (props) => {
-  let { clearSearch, handleSearchFilter, handleUpdateSoundsLike,
-    modal, selectedLibrary,
-    handleUpdateModal
-  } = props;
+  let { clearSearch, handleSearchFilter, handleUpdateSoundsLike, modal, handleUpdateModal } = props;
 
   let searchFilter = modal.searchFilter;
 
@@ -44,26 +41,6 @@ const RightColumn = (props) => {
     }
   };
 
-  // const SearchBar = () =>
-  //   modal.showInstruments || modal.showKeywords ?
-  //     <div>
-  //       <br/>
-  //       <input
-  //         className='search-bar'
-  //         id='keyword-instrument-filter'
-  //         name='keyword-instrument-filter'
-  //         onChange={ e => handleSearchFilter(e.target.value)}
-  //         onKeyPress={e => e.key === 'Enter' && handleAddKeyword() }
-  //         onSubmit={handleAddKeyword}
-  //         type='text'
-  //         value={searchFilter}
-  //       />
-  //       <br/>
-  //       <button onClick={handleAddKeyword}>Add</button>
-  //       <button onClick={handleClearSearch}>Clear</button>
-  //     </div> :
-  //   null;
-
   const handleClearSearch = () => {
     clearSearch();
     document.getElementById("keyword-instrument-filter").value = "";
@@ -82,7 +59,6 @@ const RightColumn = (props) => {
       value: document.getElementsByClassName("text-area")[0].value,
       type: document.getElementsByClassName("text-area")[0].getAttribute("texttype")
     };
-    // console.log(88, soundsLike)
     handleUpdateSoundsLike(soundsLike);
   };
 
@@ -116,7 +92,6 @@ const RightColumn = (props) => {
           <SubmitTextButton/>
         </form>
       </div>;
-      break;
     case "sounds_like_film_edit":
       return <div>
         <br/><strong> Sounds like Films: </strong>
@@ -130,7 +105,6 @@ const RightColumn = (props) => {
           <SubmitTextButton/>
         </form>
       </div>;
-      break;
     case "sounds_like_composer_edit":
       return <div>
         <br/><strong> Sounds like Composers: </strong>
@@ -144,7 +118,6 @@ const RightColumn = (props) => {
           <SubmitTextButton/>
         </form>
       </div>;
-      break;
     }
   };
 
@@ -166,10 +139,10 @@ const RightColumn = (props) => {
 
   // -------------------------------------------------------------------------------------------------------------
   // If the InfiniteScroll component is present, this function will get called every time this RightColumn component renders.
-  let scrollToTop = () => {
-    const div = document.getElementsByClassName("scrollableModalDiv")[0];
-    div ? div.scrollTop = 0 : null;
-  };
+  // let scrollToTop = () => {
+  //   const div = document.getElementsByClassName("scrollableModalDiv")[0];
+  //   div ? div.scrollTop = 0 : null;
+  // };
   // document.getElementsByClassName('scrollableModalDiv')[0] && scrollToTop() // uncomment to trigger scrollingToTop upon rerender
   // -------------------------------------------------------------------------------------------------------------
 
@@ -250,9 +223,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(RightColumn);
 
 
 
-
-
 const handleAddKeyword = () => {
+
+  // NEED THIS LOGIC
+
+
   // let searchQuery = modal.searchFilter;
   // if(searchQuery.trim() !== ''){ // if the searchQuery isn't blank
   //    // if we are editing instruments

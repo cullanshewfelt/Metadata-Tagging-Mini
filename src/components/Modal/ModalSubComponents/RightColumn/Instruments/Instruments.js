@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {connect} from "react-redux";
 import { handleSelectInstrument } from "../../../../../actions/selectedInstrumentsActions";
 
 const Instruments = (props) => {
-  let { limitTo, modal, selectedInstruments, handleSelectInstrument, selectedLibrary } = props;
-  let { selectedCue } = modal;
+  let { limitTo, modal, selectedInstruments, handleSelectInstrument } = props;
 
   // **********************************************************************************************************
   // INSTRUMENTS FUNCTIONS
@@ -61,8 +60,7 @@ const Instruments = (props) => {
 
 const mapStateToProps = (state) => ({
   modal: state.modal,
-  selectedInstruments: state.selectedInstruments,
-  selectedLibrary: state.selectedLibrary
+  selectedInstruments: state.selectedInstruments
 });
 
 const mapDispatchToProps = {

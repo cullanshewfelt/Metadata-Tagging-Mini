@@ -240,7 +240,7 @@ const PreludioExport = (props) => {
   };
 
   const genreIAParse = (row) => {
-  	if (row.style_id === 24 || row.style_id === 71){
+    if (row.style_id === 24 || row.style_id === 71){
       return "Bluegrass"; // COUNTRY: BLUE GRASS
     } else if (row.style_id === 15 || row.style_id === 68){
       return "Country";   // COUNTRY: TRADITIONAL COUNTRY

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {connect} from "react-redux";
 import { handleSelectStyle } from "../../../../../actions/selectedStylesActions";
 
 const Styles = (props) => {
-  let { modal, handleSelectStyle, selectedStyles, styleLink } = props;
+  let { modal, handleSelectStyle, selectedStyles } = props;
   let selectedCue = modal.selectedCue;
   // **********************************************************************************************************
   // STYLES FUNCTIONS

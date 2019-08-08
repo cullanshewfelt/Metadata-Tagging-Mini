@@ -12,7 +12,6 @@ export const initializeTempos = (tempos) => ({
 
 export const handleSelectTempos = (newTempo) => {
   return function (dispatch, getState) {
-    const selectedLibrary = getState().selectedLibrary.libraryName;
     const selectedCue = getState().modal.selectedCue;
     const oldTempoID = selectedCue.tempo_id;
 
@@ -41,7 +40,7 @@ export const clearTempos = () => ({ type: "CLEAR_TEMPOS" });
 
 export const handleTempoToMasterKey = (newTempo, oldTempo) => {
   return (dispatch, getState) => {
-    const { modal, selectedLibrary, selectedMasterKeywords, tempos } = getState();
+    const { modal, selectedMasterKeywords } = getState();
     const { selectedCue } = modal;
     let selectedKeyIdArray = selectedCue.key_id_arry !== "" ? selectedCue.key_id_arry.split(",") : [];
 

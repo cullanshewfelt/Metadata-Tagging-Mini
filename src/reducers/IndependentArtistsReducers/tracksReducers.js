@@ -1,20 +1,6 @@
 // ==============================================================================================================
-// CUES REDUCER
+// TRACKS REDUCER
 // ==============================================================================================================
-// reducers take our state, an action, and return a new state
-let trackReducerDefaultState = [];
-
-// export default (state = trackReducerDefaultState, action) => {
-//  switch(action.type){
-//    case 'INITIALIZE_TRACKS':
-//    // array spreading, we are adding the new track to the previous track state without changing the original state
-//      return action.tracks;
-//   case 'UDPADTE_TRACKS':
-//     return action.tracks;
-//    default:
-//      return state;
-//    }
-// };
 
 export function trackFetchError(state = false, action) {
   switch (action.type) {

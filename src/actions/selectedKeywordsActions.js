@@ -10,9 +10,9 @@ import { handleSelectMasterKeyword } from "./selectedMasterKeysActions";
 export const initializeSelectedKeywords = (selectedKeywords) =>
   ({ type: "INITIALIZE_SELECTED_KEYWORDS", selectedKeywords });
 
-export const handleSelectKeyword = (newKeyword) =>
-  (dispatch, getState) => // simeatanously dispatch keywords and master_keys actions
-    dispatch(selectKeyword(newKeyword))
+export const handleSelectKeyword = (newKeyword) => (dispatch) =>
+  // simeatanously dispatch keywords and master_keys actions
+  dispatch(selectKeyword(newKeyword))
   & dispatch(handleSelectMasterKeyword(newKeyword.keyword_name));
 
 
@@ -52,6 +52,7 @@ let updateKeywords = (updatedKeyword) => {
     switch(getState().selectedLibrary.libraryName){
     case "background-instrumentals":
       // return dispatch(handleUpdateKeywordsBI(updatedKeyword)) & dispatch(updateSelectedKeyword(updatedKeyword));
+      break;
     case "independent-artists":
       return dispatch(handleUpdateKeywordsIA(updatedKeyword)) & dispatch(updateSelectedKeyword(updatedKeyword));
     }

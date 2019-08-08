@@ -24,7 +24,6 @@ export const handeleUpdateSelectedLibrary = (updatedCue) => {
       break;
     case "independent-artists":
       return dispatch(handleUpdateCuesIA(updatedCue, updatedCueIndex)) & dispatch(updateSelectedLibrary(updatedCue, updatedCueIndex, selectedLibrary.libraryName));
-      break;
     }
   };
 };

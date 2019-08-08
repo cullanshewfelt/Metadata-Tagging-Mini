@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import moment from "moment";
 // ------------------------------------------------------------------------------------------------------------
-import InfiniteScroll from "react-infinite-scroll-component";
 import LeftColumn from "./MetaDataSubComponents/LeftColumn";
 import RightColumn from "./MetaDataSubComponents/RightColumn";
-
 // ------------------------------------------------------------------------------------------------------------
-// import { asyncClientsFetch } from '../../../actions/ClientActions/clientActions.js';
-// import { asyncCuesFetch } from '../../../actions/BackgroundInstrumentalsActions/cuesActions';
 import { asyncTracksFetch } from "../../../actions/IndieArtistsActions/tracksActions";
-// import { asyncMonitoringFetch } from '../../../actions/ClientActions/monitoringActions';
-// import { asyncSearchFetch } from '../../../actions/ClientActions/searchActions';
 import { initializeSelectedLibrary } from "../../../actions/selectedLibraryActions";
 import { initializeSelectedCategories } from "../../../actions/selectedCategoriesActions";
 import { initializeSelectedComposer } from "../../../actions/selectedComposerActions";
@@ -25,20 +18,17 @@ import { resetDownload, updateDownload } from "../../../actions/ExportActions/ex
 let releasesDropDownJSON = require("./MetaDataExportFunctions/dropdownJsonData/releasesDropDown.json");
 // ------------------------------------------------------------------------------------------------------------
 const ExportDashboard = (props) => {
-  let { categoriesIA, composersBI, composersIA,
-    initializeSelectedCategories, initializeSelectedComposer, initializeSelectedLibrary,
-    initializeSelectedReleases, initializeSelectedStyles, releasesIA, searches, selectedCategories,
-    selectedComposers, selectedLibrary, selectedStyles,
-    stylesIA, tracks, tempos } = props;
+  let { categoriesIA, initializeSelectedCategories, initializeSelectedLibrary,
+    initializeSelectedStyles, releasesIA, searches, stylesIA } = props;
   // ------------------------------------------------------------------------------------------------------------
   const [batchesDropDown, setBatchesDropDown] = useState([]);
   const [batchOrRelease, setBatchOrRelease] = useState("Indie Artist Release");
-  const [clients, setClients] = useState(props.clients);
+  // const [clients, setClients] = useState(props.clients);
   const [downloadFinished, setDownloadFinished] = useState(true);
-  const [downloadProgress, setDownloadProgress] = useState(props.downloadProgress);
+  // const [downloadProgress, setDownloadProgress] = useState(props.downloadProgress);
   const [endDate, setEndDate] = useState(moment().toDate());
   const [inclusive, setInclusive] = useState(false);
-  const [monitoring, setMonitoring] = useState(props.monitoring);
+  // const [monitoring, setMonitoring] = useState(props.monitoring);
   const [releaseFilter, setReleaseFilter] = useState(147);
   const [releasesDropDown, setReleasesDropDown] = useState(releasesDropDownJSON);
   const [selectedOption, setSelectedOption] = useState("independent-artists");
@@ -65,15 +55,6 @@ const ExportDashboard = (props) => {
   useEffect(() => {
     initializeSelectedLibrary([], "independent-artists");
   }, []);
-  // ------------------------------------------------------------------------------------------------------------
-
-  // (selectedLibrary.length === 0 || monitoring.length === 0)
-  //   ? <div className='loading'>
-  //     <Loader/>
-  //     <br/>
-  //     Lot's of Data Loading! Please Be Patient...
-  //   </div>
-  //   :
 
   return(
     <div className='dashboard'>
@@ -99,11 +80,11 @@ const ExportDashboard = (props) => {
         <RightColumn
           batchesDropDown={batchesDropDown}
           batchOrRelease={batchOrRelease}
-          clients={clients}
+          // clients={clients}
           downloadCompletedChecker={downloadCompletedChecker}
           endDate={endDate}
           inclusive={inclusive}
-          monitoring={monitoring}
+          // monitoring={monitoring}
           releaseFilter={releaseFilter}
           searches={searches}
           startDate={startDate}

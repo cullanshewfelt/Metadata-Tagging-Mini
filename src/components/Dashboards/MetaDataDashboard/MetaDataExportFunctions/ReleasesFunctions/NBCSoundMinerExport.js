@@ -10,7 +10,7 @@ const exportTools = require("../ExportTools.js");
 // ******************************************************************************************
 
 const NBCSoundMinerExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
+  const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 
@@ -37,7 +37,7 @@ const NBCSoundMinerExport = (props) => {
       "FeaturedInstrument", "Keywords", "Composer", "Publisher", "Designer", "BWDescription", "BWOriginator",
       "BWOriginatorRef", "BWTime", "BWDate", "Tempo", "ReleaseDate", "TrackYear", "ISRC"
     ];
-    setCsvData([headersRow.join("\t")]);
+    setXlsData([headersRow.join("\t")]);
     let releasesArray = isNaN(releaseFilter.value) && releaseFilter.value.includes("-") ? releaseFilter.value.split("-") : [];
     let filteredLibrary = selectedLibrary.library.filter(cue =>
       releaseFilter.value !== 9999

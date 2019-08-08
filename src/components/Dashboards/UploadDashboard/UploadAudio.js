@@ -1,9 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Select from "react-select";
-import { handleToggleModal } from "../../../actions/modalActions";
 import { uploadAudio } from "../../../actions/UploadActions/uploadActions";
 
 const UploadAudio = (props) => {

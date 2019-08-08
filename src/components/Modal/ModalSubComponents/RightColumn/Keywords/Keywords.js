@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {connect} from "react-redux";
 import { handleSelectKeyword } from "../../../../../actions/selectedKeywordsActions";
 
 const Keywords = (props) => {
-  let { limitTo, modal, selectedKeywords, handleSelectKeyword, selectedLibrary } = props;
+  let { limitTo, modal, selectedKeywords, handleSelectKeyword } = props;
   let { selectedCue } = modal;
   // **********************************************************************************************************
   // KEYWORDS FUNCTIONS
@@ -58,11 +58,8 @@ const Keywords = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  keywordsBI: state.keywordsBI,
-  keywordsIA: state.keywordsIA,
   modal: state.modal,
-  selectedKeywords: state.selectedKeywords,
-  selectedLibrary: state.selectedLibrary
+  selectedKeywords: state.selectedKeywords
 });
 
 const mapDispatchToProps = {

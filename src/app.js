@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 
 import { initializeModal } from "./actions/modalActions";
-import { initializeIAComposers } from "./actions/IndieArtistsActions/artistsActions";
 import { initializeIAReleases } from "./actions/IndieArtistsActions/releasesActions";
 import { initializeIACategories } from "./actions/IndieArtistsActions/categoriesActions";
 import { initializeIAInstruments } from "./actions/IndieArtistsActions/instrumentsIAActions";

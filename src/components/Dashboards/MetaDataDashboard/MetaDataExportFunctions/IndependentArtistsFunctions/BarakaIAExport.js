@@ -10,7 +10,7 @@ const exportTools = require("../ExportTools.js");
 // ******************************************************************************************
 
 const BarakaIAExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
+  const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 
@@ -57,7 +57,6 @@ const BarakaIAExport = (props) => {
       "ATT: G:SMSubCat",	"Alternate Title",	"ATT: ISWC"
     ];
     setXlsData([headersRow.join("\t")]);
-    let releasesArray = isNaN(releaseFilter.value) && releaseFilter.value.includes("-") ? releaseFilter.value.split("-") : [];
     let filteredLibrary = selectedLibrary.library.filter(cue =>
       cue.rel_id === releaseFilter.value);
     exportTools.asyncExport(filteredLibrary, filteredLibrary.length, (row) => {
@@ -68,7 +67,6 @@ const BarakaIAExport = (props) => {
       // --------------------------------------------------------------------------------------------------
       let descriptionString = exportTools.parseData(row.cue_desc).join(", ");
       let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(", ");
-      let releaseParse = releaseFilter.label.split("R")[1];
       let genre = selectedCategories.filter(categories =>
         categories.cat_id === row.cat_id).map(cat =>
         cat.cat_name)[0];

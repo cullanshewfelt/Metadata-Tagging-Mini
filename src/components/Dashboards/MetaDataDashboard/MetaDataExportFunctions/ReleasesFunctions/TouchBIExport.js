@@ -12,7 +12,7 @@ const exportTools = require("../ExportTools.js");
 // ******************************************************************************************
 
 const TouchBIExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
+  const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 

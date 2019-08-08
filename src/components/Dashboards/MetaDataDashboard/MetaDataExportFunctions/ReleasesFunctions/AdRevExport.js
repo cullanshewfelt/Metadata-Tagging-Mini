@@ -12,7 +12,7 @@ const exportTools = require("../ExportTools.js");
 // working needs to be diff checked
 
 const AdRevExport = (props) => {
-  const { batchesBI, cuesLoading, downloadCompletedChecker, downloadProgress, inclusive, releaseFilter, resetDownload,
+  const { batchesBI, cuesLoading, downloadCompletedChecker, inclusive, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 

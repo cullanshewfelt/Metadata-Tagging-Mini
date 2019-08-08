@@ -8,7 +8,7 @@ import ExportDashboard from "../components/Dashboards/MetaDataDashboard/ExportMe
 import UploadAudio from "../components/Dashboards/UploadDashboard/UploadAudio";
 import UploadMetadata from "../components/Dashboards/UploadDashboard/UploadMetadata";
 
-import Loader from "../components/SubComponents/Loader/Loader";
+import { Loader }  from "../components/SubComponents/Loader/Loader";
 
 
 // the router handles client side rendering of routes

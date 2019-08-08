@@ -10,10 +10,10 @@ const exportTools = require('../ExportTools.js');
 class UsageReportTimeline extends React.Component {
    constructor(props) {
      super(props)
-   }
-   state = {
-     progress: 0.00,
-     wb: {}
+     this.state = {
+       progress: 0.00,
+       wb: {}
+     }
    }
 
   asyncForEachWorker = (arr, originalLength, task, onProgress, done) => {

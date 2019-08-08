@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {connect} from "react-redux";
-import { clearSearch, handleSearchFilter } from "../../../../../actions/modalActions";
 import { handleSelectRating } from "../../../../../actions/ratingsActions";
 
 const Ratings = (props) => {
   let { modal, ratings, handleSelectRating } = props;
-  let { selectedCue } = modal; 
+  let { selectedCue } = modal;
   let destructuredRatings = [...ratings];
   let selectedRatings = destructuredRatings.map(rating => {
     return rating.value === selectedCue.cue_rating

@@ -10,7 +10,7 @@ const exportTools = require("../ExportTools.js");
 // ******************************************************************************************
 
 const ATempoExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
+  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 

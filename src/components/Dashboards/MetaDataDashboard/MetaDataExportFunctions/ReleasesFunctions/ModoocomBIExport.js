@@ -13,7 +13,7 @@ const exportTools = require("../ExportTools.js");
 
 const ModoocomBIExport = (props) => {
   const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
-    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, updateDownload
+    selectedCategories, selectedComposers, selectedLibrary, updateDownload
   } = props;
 
   const [xlsData, setXlsData] = useState([]);

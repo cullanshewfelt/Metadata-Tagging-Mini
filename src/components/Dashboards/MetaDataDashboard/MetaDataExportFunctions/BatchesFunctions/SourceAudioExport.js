@@ -294,10 +294,7 @@ const SourceAudioExport = (props) => {
       // creates composer/publisher/splits data
       // --------------------------------------------------------------------------------------------------
       let compString = "";
-      let proString = "";
       let pubString = "";
-      let splitString = "";
-      let pubSplit = "";
       let composerArray = selectedComposers.filter(composer => composer.cue_id === row.cue_id).sort((a, b) => b.composer_split - a.composer_split);
 
       let releaseDateParse = row.cue_reldate_h.split("T")[0].split("-");

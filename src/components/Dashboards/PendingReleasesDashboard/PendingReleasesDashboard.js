@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import { handleToggleModal } from '../../../actions/modalActions';
-import Loader from '../../SubComponents/Loader/Loader';
+import { Loader }  from '../../SubComponents/Loader/Loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { handleFetchCuesFromRelease } from '../../../actions/selectedReleasesActions';

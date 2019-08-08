@@ -12,7 +12,7 @@ export const handleSelectMasterKeyword = (newKeyword) => {
   // console.log(11, 'selectedMasterKeysActions.handleSelectMasterKeyword.newKeyword', newKeyword);
 
   return (dispatch, getState) => {
-    const { modal, selectedLibrary, selectedMasterKeywords } = getState();
+    const { modal, selectedMasterKeywords } = getState();
     const { selectedCue } = modal;
 
     const newKeywordArray = newKeyword.includes(",") ? newKeyword.split(", ") : newKeyword.split(" ");
@@ -59,7 +59,7 @@ export const handleSelectMasterKeyword = (newKeyword) => {
           return dispatch(handleUpdateModal(updatedCue)) & dispatch(handleUpdateMasterKeyword(updatedMasterKeyword));
         }
       } else {
-
+        null;
       }
     });
   };
@@ -71,6 +71,7 @@ export const handleUpdateMasterKeyword = (updatedMasterKeyword) => {
     switch(getState().selectedLibrary.libraryName){
     case "background-instrumentals":
       // return dispatch(handleUpdateMasterKeysBI(updatedMasterKeyword)) & dispatch(updateSelectedMasterKeyword(updatedMasterKeyword));
+      break;
     case "independent-artists":
       return dispatch(handleUpdateMasterKeysIA(updatedMasterKeyword)) & dispatch(updateSelectedMasterKeyword(updatedMasterKeyword));
     }
@@ -78,6 +79,7 @@ export const handleUpdateMasterKeyword = (updatedMasterKeyword) => {
 };
 
 export const handleAddMasterKeyword = (newKeyword) => {
+  console.log(82, newKeyword);
   return (dispatch, getState) => {
     switch(getState().selectedLibrary.libraryName){
     case "background-instrumentals":

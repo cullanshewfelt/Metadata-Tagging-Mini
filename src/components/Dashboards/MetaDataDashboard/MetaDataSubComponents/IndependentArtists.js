@@ -13,7 +13,7 @@ import SourceAudioExport from "../MetaDataExportFunctions/BatchesFunctions/Sourc
 import TouchIAExport from "../MetaDataExportFunctions/IndependentArtistsFunctions/TouchIAExport";
 
 const IndependentArtists = (props) => {
-  let { batchesBI, batchesDropDown, cuesLoading, downloadCompletedChecker, inclusive, releaseFilter } = props;
+  let { batchesDropDown, cuesLoading, downloadCompletedChecker, inclusive, releaseFilter } = props;
   return (
     <div>
       <ATempoExport

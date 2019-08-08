@@ -13,7 +13,7 @@ const exportTools = require("../ExportTools.js");
 // ******************************************************************************************
 
 const ZinkoSoundMinerExport = (props) => {
-  const { batchesBI, cuesLoading, downloadCompletedChecker, downloadProgress, inclusive, releaseFilter, resetDownload,
+  const { cuesLoading, downloadCompletedChecker, inclusive, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 
@@ -63,7 +63,6 @@ const ZinkoSoundMinerExport = (props) => {
       let composerArray = selectedComposers.filter(composer => composer.cue_id === row.cue_id).sort((a, b) => b.composer_split - a.composer_split);
 
       let compString = "";
-      let splitString = "";
       let pubString = "";
       let proString = "(";
       for(let c in composerArray){

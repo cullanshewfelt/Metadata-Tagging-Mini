@@ -12,7 +12,7 @@ const exportTools = require("../ExportTools.js");
 // ******************************************************************************************
 
 const ZinkoExport = (props) => {
-  const { batchesBI, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
+  const { batchesBI, cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 

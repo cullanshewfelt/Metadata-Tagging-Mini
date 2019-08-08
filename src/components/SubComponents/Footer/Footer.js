@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import Loader from "../Loader/Loader";
+import { Loader }  from "../Loader/Loader";
 import ReactPlayer from "react-player";
 import { withRouter } from "react-router";
 
@@ -17,7 +17,7 @@ const Footer = (props) => {
 
   const isEmpty = (selectedCue) => {
     for(let key in selectedCue) {
-      if(selectedCue.hasOwnProperty(key))
+      if(Object.prototype.hasOwnProperty.call(selectedCue, key))
         return false;
     }
     return true;

@@ -12,7 +12,7 @@ const exportTools = require("../ExportTools.js");
 //  seems finished, need to diffCheck
 
 const GenericBIExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
+  const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 
@@ -100,7 +100,7 @@ const GenericBIExport = (props) => {
         // 9 Publisher
         pubString,
         // 10 Release
-        batchesBI.filter(release => release.rel_id === row.rel_id).map(rel => rel.rel_num)[0],
+        batchesBI.filter(release => release.rel_id === row.rel_id).map(rel => rel.rel_num)[0], // eslint-disable-line
         // 11 Composer Split
         splitString,
         // 12 Publisher Split

@@ -10,7 +10,7 @@ const exportTools = require("../ExportTools.js");
 // ******************************************************************************************
 
 const BmatExport = (props) => {
-  const { batchesDropDown, cuesLoading, downloadCompletedChecker, downloadProgress, inclusive, releaseFilter, resetDownload,
+  const { batchesDropDown, cuesLoading, downloadCompletedChecker, inclusive, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 
@@ -84,8 +84,6 @@ const BmatExport = (props) => {
         styles.style_id === row.style_id).map(style =>
         style.style_name);
 
-      let descriptionString = exportTools.parseData(row.cue_desc).join(", ");
-      let instrumentsString = exportTools.parseData(row.cue_instrus_edit).join(", ");
       // --------------------------------------------------------------------------------------------------
       let newRow = [
         // TrackFilepath

@@ -6,8 +6,8 @@ import { resetDownload, updateDownload } from "../../../../../actions/ExportActi
 const exportTools = require("../ExportTools.js");
 
 const ProTunesExport = (props) => {
-  const { batchesDropDown, cuesLoading, downloadCompletedChecker, downloadProgress, inclusive, releaseFilter, resetDownload,
-    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
+  const { cuesLoading, downloadCompletedChecker, inclusive, releaseFilter, resetDownload,
+    selectedCategories, selectedComposers, selectedLibrary, selectedStyles, updateDownload
   } = props;
 
   const [csvData, setCsvData] = useState([]);
@@ -121,7 +121,7 @@ const ProTunesExport = (props) => {
         // one-stop licensing
         "Yes",
         // cd title / ref #
-        `${genre}, ${subGenre} Vol. ${(/\_/).test(releaseParse) ?
+        `${genre}, ${subGenre} Vol. ${(/\_/).test(releaseParse) ? //eslint-disable-line
           releaseParse.split("_")[0] :
           releaseParse}`,
         // release date

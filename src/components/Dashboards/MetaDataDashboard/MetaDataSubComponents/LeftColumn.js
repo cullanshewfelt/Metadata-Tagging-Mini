@@ -1,36 +1,26 @@
-import React, { useState,  useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 // ------------------------------------------------------------------------------------------------------------
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "../../../SubComponents/Loader/Loader";
 import moment from "moment";
-import ReactModal from "react-modal";
 import Select from "react-select";
 // ------------------------------------------------------------------------------------------------------------
 import { handleFetchCuesForExport } from "../../../../actions/ExportActions/exportActions";
-// import { asyncCuesFetch } from '../../../../actions/BackgroundInstrumentalsActions/cuesActions';
-import { asyncTracksFetch } from "../../../../actions/IndieArtistsActions/tracksActions";
-// import { asyncMonitoringFetch } from '../../../../actions/ClientActions/monitoringActions';
-// import { asyncSearchFetch } from '../../../../actions/ClientActions/searchActions';
 import { initializeSelectedLibrary } from "../../../../actions/selectedLibraryActions";
 import { initializeSelectedCategories } from "../../../../actions/selectedCategoriesActions";
 import { initializeSelectedComposer } from "../../../../actions/selectedComposerActions";
 import { initializeSelectedReleases } from "../../../../actions/selectedReleasesActions";
 import { initializeSelectedStyles } from "../../../../actions/selectedStylesActions";
-// import { asyncClientsFetch } from '../../../../actions/ClientActions/clientActions.js';
 // ------------------------------------------------------------------------------------------------------------
 
 const LeftColumn = (props) => {
   let { batchesBI, batchesDropDown, batchOrRelease, categoriesBI, categoriesIA, composersBI, composersIA, cues,
     endDate, inclusive, handleFetchCuesForExport, initializeSelectedCategories, initializeSelectedComposer, initializeSelectedLibrary,
     initializeSelectedReleases, initializeSelectedStyles, releasesIA, releaseFilter, releasesDropDown,
-    selectedLibrary, selectedOption,
-    setBatchesDropDown, setBatchOrRelease, setClients, setEndDate, setInclusive, setMonitoring,
-    setReleaseFilter, setReleasesDropDown, setSelectedOption, setStartDate, startDate,
+    selectedOption, setBatchesDropDown, setBatchOrRelease, setEndDate, setInclusive,
+    setReleaseFilter, setSelectedOption, setStartDate, startDate,
     stylesBI, stylesIA, tracks } = props;
 
   const handleReleaseFilter = (releaseFilter) => {

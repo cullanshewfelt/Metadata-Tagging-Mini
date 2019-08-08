@@ -12,7 +12,7 @@ const exportTools = require("../ExportTools.js");
 //  seems finished, need to diffCheck
 
 const GenericIAExport = (props) => {
-  const { batchesDropDown, cuesLoading, inclusive, downloadCompletedChecker, downloadProgress, releaseFilter, resetDownload,
+  const { cuesLoading, inclusive, downloadCompletedChecker, releaseFilter, resetDownload,
     selectedCategories, selectedComposers, selectedLibrary, selectedStyles, tempos, updateDownload
   } = props;
 
@@ -64,7 +64,6 @@ const GenericIAExport = (props) => {
       let compString = "";
       let splitString = "";
       let pubString = "";
-      let caeString = "";
       let proString = "";
       for(let c in composerArray){
         pubString += composerArray[c].publisher_name;
@@ -73,8 +72,6 @@ const GenericIAExport = (props) => {
         compString += c < composerArray.length - 1 ? " / " : "";
         splitString += composerArray[c].composer_split.toFixed(2);
         splitString += c < composerArray.length - 1 ? " / " : "";
-        caeString += composerArray[c].cae;
-        caeString += c < composerArray.length - 1 ? " / " : "";
         proString += composerArray[c].pro_name;
         proString += c < composerArray.length - 1 ? " / " : "";
       }

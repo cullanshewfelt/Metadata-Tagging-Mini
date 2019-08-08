@@ -1,8 +1,6 @@
 // ******************************************************************************************
-import moment from "moment";
-import XLSX from "xlsx";
+// EXPORT TOOLS
 // ******************************************************************************************
-// CHECKER
 
 const batchChecker = (batch) => {
   return batch !== 147 ? !!batch : false;

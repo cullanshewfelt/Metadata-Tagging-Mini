@@ -1,9 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { connect } from "react-redux";
-import Select from "react-select";
-import { handleToggleModal } from "../../../actions/modalActions";
-import Loader from "../../SubComponents/Loader/Loader";
 import { uploadMetadataBI } from "../../../actions/UploadActions/uploadActions";
 
 const UploadMetadata = (props) => {
