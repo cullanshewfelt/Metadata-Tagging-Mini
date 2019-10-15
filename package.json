@@ -66,7 +66,7 @@
     "@babel/runtime": "^7.5.5",
     "@types/react": "^16.8.24",
     "babel-eslint": "^10.0.2",
-    "csv-parse": "^4.4.4",
+    "csv-parse": "^4.4.6",
     "eslint": "^6.1.0",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-react": "^7.14.3",
