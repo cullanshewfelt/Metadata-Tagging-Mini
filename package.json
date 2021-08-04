@@ -52,7 +52,7 @@
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^1.0.0",
-    "tar": "^4.4.10",
+    "tar": "^4.4.15",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "validator": "^11.1.0"
   },
