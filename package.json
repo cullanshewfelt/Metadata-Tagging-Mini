@@ -54,7 +54,7 @@
     "style-loader": "^1.0.0",
     "tar": "^4.4.10",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
